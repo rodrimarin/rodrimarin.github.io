@@ -1,0 +1,29 @@
+[
+  {
+    "title": "ENDLESS SKIES",
+    "type": "Level Design",
+    "tags": ["Blockout", "UE5"],
+    "description": "A complete environment design showcase featuring layout, blockout, and final scene production. Demonstrating end-to-end design pipeline from concept to polished environment.",
+    "image": "images/projects/endless-skies.jpg",
+    "url": "project.html?id=0",
+    "year": "2024"
+  },
+  {
+    "title": "PROJECT 02",
+    "type": "Game Design",
+    "tags": ["Systems", "UE5"],
+    "description": "Add your project description here. What did you design, what was your role, what engine, what makes it worth seeing.",
+    "image": "",
+    "url": "project.html?id=1",
+    "year": "2024"
+  },
+  {
+    "title": "PROJECT 03",
+    "type": "Level Design",
+    "tags": ["Narrative", "Unity"],
+    "description": "Add your project description here. What did you design, what was your role, what engine, what makes it worth seeing.",
+    "image": "",
+    "url": "project.html?id=2",
+    "year": "2023"
+  }
+]
