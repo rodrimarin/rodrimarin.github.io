@@ -345,6 +345,103 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
   .admin-bar{overflow-x:auto}
 }
 @media(max-width:600px){.playing-grid{grid-template-columns:1fr}}
+
+/* =============================================
+   HERO MEDIA BOX
+   ============================================= */
+.hero-media-box{position:absolute;inset:40px;z-index:5;pointer-events:none}
+.hero-media-content{width:100%;height:100%;position:relative;background:#000;overflow:hidden;border:1px solid var(--border);display:none;pointer-events:auto}
+.hero-media-content.loaded{display:block}
+.hero-media-content img,.hero-media-content video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media-text-overlay{position:absolute;bottom:56px;left:0;right:0;padding:14px 18px;color:var(--white);font-size:14px;line-height:1.6;text-shadow:0 1px 4px rgba(0,0,0,.9);min-height:20px;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.5))}
+body.edit-mode-active .hero-media-text-overlay{pointer-events:auto;cursor:text;border:1px dashed transparent;transition:border-color .2s}
+body.edit-mode-active .hero-media-text-overlay:hover{border-color:rgba(232,255,71,.3)}
+body.edit-mode-active .hero-media-text-overlay:focus{border-color:var(--accent);outline:none}
+.hero-media-controls{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.88));display:flex;align-items:center;gap:10px;opacity:0;transition:opacity .3s;z-index:3;box-sizing:border-box}
+.hero-media-content:hover .hero-media-controls{opacity:1}
+.mc-btn{background:none;border:none;color:var(--white);font-size:14px;cursor:pointer;padding:2px 4px;transition:color var(--tr);flex-shrink:0;line-height:1}
+.mc-btn:hover{color:var(--accent)}
+.mc-progress-wrap{flex:1;height:4px;background:rgba(255,255,255,.2);cursor:pointer;position:relative;border-radius:2px}
+.mc-progress-fill{height:100%;background:var(--accent);border-radius:2px;width:0%}
+.mc-time{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,.6);white-space:nowrap;min-width:32px}
+.mc-vol-slider{width:52px;cursor:pointer;accent-color:var(--accent);flex-shrink:0}
+.mc-quality{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--accent);border:1px solid rgba(232,255,71,.35);padding:2px 6px}
+.hero-media-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:2px dashed rgba(232,255,71,.35);cursor:pointer;background:rgba(10,10,11,.4);transition:background var(--tr);z-index:10;pointer-events:auto}
+.hero-media-placeholder:hover{background:rgba(10,10,11,.6)}
+.hero-media-placeholder input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.hero-media-placeholder svg{width:32px;height:32px;color:var(--accent)}
+.hero-media-placeholder span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+body.edit-mode-active .hero-media-box{pointer-events:auto}
+body.edit-mode-active .hero-media-box:not(.has-media) .hero-media-placeholder{display:flex}
+.hero-media-change-btn{position:absolute;top:10px;right:10px;width:36px;height:36px;background:rgba(10,10,11,.85);border:1px solid var(--accent);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
+.hero-media-change-btn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.hero-media-change-btn svg{width:16px;height:16px;color:var(--accent)}
+body.edit-mode-active .hero-media-box.has-media .hero-media-change-btn{display:flex}
+body.edit-mode-active .hero-media-box.has-media .hero-media-placeholder{display:none}
+
+/* =============================================
+   HERO LAYOUT EDIT MODE
+   ============================================= */
+body.layout-edit-active .hero-left>*{position:relative;cursor:grab;transition:outline .15s;user-select:none}
+body.layout-edit-active .hero-left>*:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:5px}
+body.layout-edit-active .hero-left>*.layout-selected{outline:2px solid var(--accent) !important;outline-offset:5px}
+body.layout-edit-active .hero-left>*.layout-dragging{cursor:grabbing;opacity:.85;z-index:100}
+.layout-panel{position:fixed;bottom:90px;right:28px;z-index:9200;background:var(--bg2);border:1px solid var(--accent);padding:16px 18px;width:210px;display:none;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
+.layout-panel.visible{display:flex}
+.layout-panel-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.layout-panel-pos{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)}
+.layout-panel label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.layout-panel input[type=range]{width:100%;accent-color:var(--accent);margin-top:4px}
+.layout-panel-reset{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px;background:none;cursor:pointer;width:100%;text-align:center;transition:all var(--tr)}
+.layout-panel-reset:hover{color:var(--danger);border-color:var(--danger)}
+
+/* =============================================
+   MARQUEE EDIT PANEL
+   ============================================= */
+.marquee-edit-panel{background:var(--bg2);border-bottom:2px solid var(--accent);padding:14px 48px;display:none;flex-wrap:wrap;gap:8px;align-items:center}
+.marquee-edit-panel.open{display:flex}
+.marquee-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);padding:6px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--text);transition:border-color var(--tr)}
+.marquee-chip:focus-within{border-color:var(--accent)}
+.marquee-chip-text{outline:none;min-width:60px;color:var(--text)}
+.marquee-chip-del{color:var(--muted);cursor:pointer;font-size:13px;line-height:1;transition:color var(--tr);flex-shrink:0}
+.marquee-chip-del:hover{color:var(--danger)}
+.marquee-chip-add{background:none;border:1px dashed rgba(232,255,71,.4);padding:6px 16px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);cursor:pointer;transition:all var(--tr)}
+.marquee-chip-add:hover{border-color:var(--accent);background:rgba(232,255,71,.06)}
+@media(max-width:900px){.marquee-edit-panel{padding:14px 24px}}
+
+/* =============================================
+   ENGINE BADGE IMAGE
+   ============================================= */
+.engine-badge{position:relative;overflow:hidden}
+.engine-badge img.badge-img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;padding:6px}
+.engine-badge-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,10,11,.75);cursor:pointer;z-index:2}
+.engine-badge-overlay input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.engine-badge-overlay svg{width:16px;height:16px;color:var(--accent)}
+body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
+
+/* =============================================
+   SEARCH BAR
+   ============================================= */
+.nav-search-btn{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr);flex-shrink:0;padding:0}
+.nav-search-btn:hover,.nav-search-btn.active{border-color:var(--accent);color:var(--accent)}
+.nav-search-btn svg{width:14px;height:14px}
+.search-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:145;background:rgba(10,10,11,.97);border-bottom:1px solid var(--accent);backdrop-filter:blur(12px);padding:12px 48px;display:flex;align-items:center;gap:10px;transform:translateY(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.search-bar-wrap.open{transform:translateY(0)}
+body.edit-mode-active .search-bar-wrap{top:52px}
+.search-bar-icon{color:var(--muted);flex-shrink:0}
+.search-bar-icon svg{width:15px;height:15px;display:block}
+.search-bar-input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:12px;padding:9px 14px;outline:none;transition:border-color var(--tr)}
+.search-bar-input:focus{border-color:var(--accent)}
+.search-bar-input::placeholder{color:var(--muted)}
+.search-count{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;min-width:70px;text-align:right}
+.search-nav-btn{background:none;border:1px solid var(--border);color:var(--muted);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;transition:all var(--tr);flex-shrink:0}
+.search-nav-btn:hover{border-color:var(--accent);color:var(--accent)}
+.search-close-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0 4px;transition:color var(--tr);flex-shrink:0}
+.search-close-btn:hover{color:var(--danger)}
+.search-active-box{outline:2px solid var(--accent) !important;outline-offset:8px !important;border-radius:0 !important}
+@keyframes searchPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,.5)}60%{box-shadow:0 0 0 10px rgba(232,255,71,0)}}
+.search-active-box{animation:searchPulse 1.6s ease infinite}
+@media(max-width:900px){.search-bar-wrap{padding:10px 20px}.search-count{display:none}}
 </style>
 </head>
 <body>
@@ -385,6 +482,14 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
     Reorder
   </button>
+  <button class="admin-bar-btn" id="btn-edit-layout" onclick="toggleEditMode('layout')" title="Move & scale hero elements">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+    Layout
+  </button>
+  <button class="admin-bar-btn" id="btn-edit-marquee" onclick="toggleEditMode('marquee')" title="Edit marquee items">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg>
+    Marquee
+  </button>
   <div class="admin-bar-sep"></div>
   <button class="admin-bar-btn" onclick="addNewProject()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -413,8 +518,34 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
         Resume
       </a>
     </li>
+    <li>
+      <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" title="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </li>
   </ul>
 </nav>
+
+<!-- Search bar (slides down from top) -->
+<div class="search-bar-wrap" id="searchBarWrap">
+  <span class="search-bar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+  <input type="text" class="search-bar-input" id="searchInput" placeholder="Search anything on this site..." autocomplete="off">
+  <span class="search-count" id="searchCount"></span>
+  <button class="search-nav-btn" onclick="cycleMatch(-1)" title="Previous">&#8593;</button>
+  <button class="search-nav-btn" onclick="cycleMatch(1)" title="Next">&#8595;</button>
+  <button class="search-close-btn" onclick="toggleSearch()" title="Close">&times;</button>
+</div>
+
+<!-- Layout panel (hero free move/scale) -->
+<div class="layout-panel" id="layoutPanel">
+  <span class="layout-panel-title" id="layoutPanelTitle">Select an element</span>
+  <div class="layout-panel-pos" id="layoutPanelPos">x: 0 &nbsp; y: 0</div>
+  <div>
+    <label>Scale: <span id="layoutScaleVal">1.0x</span></label>
+    <input type="range" id="layoutScaleSlider" min="0.4" max="2.5" step="0.05" value="1" oninput="onLayoutScale(this.value)">
+  </div>
+  <button class="layout-panel-reset" id="layoutPanelReset">&#8635; Reset element</button>
+</div>
 
 <!-- =============================================
      HERO
@@ -431,24 +562,36 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
       4 years shaping gameplay from concept to final environment.
     </p>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View My Work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      <a href="#contact" class="btn-ghost">Get In Touch</a>
+      <a href="#projects" class="btn-primary" data-editable data-key="hero_cta_primary">View My Work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#contact" class="btn-ghost" data-editable data-key="hero_cta_ghost">Get In Touch</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
         <span class="stat-number counter" data-target="4" data-editable data-key="stat_years">4</span>
-        <span class="stat-label">Years Exp.</span>
+        <span class="stat-label" data-editable data-key="stat_label_years">Years Exp.</span>
       </div>
       <div class="stat-item">
         <span class="stat-number" id="project-count">3</span>
-        <span class="stat-label">Projects</span>
+        <span class="stat-label" data-editable data-key="stat_label_projects">Projects</span>
       </div>
       <div class="stat-item">
         <div class="engine-logo-row">
-          <div class="engine-badge">UNITY</div>
-          <div class="engine-badge">UE5</div>
+          <div class="engine-badge" data-badge-idx="0">
+            <span class="badge-text" data-editable data-key="engine_badge_1">UNITY</span>
+            <div class="engine-badge-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <input type="file" accept="image/*">
+            </div>
+          </div>
+          <div class="engine-badge" data-badge-idx="1">
+            <span class="badge-text" data-editable data-key="engine_badge_2">UE5</span>
+            <div class="engine-badge-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <input type="file" accept="image/*">
+            </div>
+          </div>
         </div>
-        <span class="stat-label">Engines</span>
+        <span class="stat-label" data-editable data-key="stat_label_engines">Engines</span>
       </div>
     </div>
   </div>
@@ -460,8 +603,39 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
       <div class="hero-shape shape-2"></div>
       <div class="hero-shape shape-3"></div>
       <div class="hero-overlay-text">
-        <p class="hero-overlay-label">// Invictus Games Studio</p>
-        <p class="hero-overlay-big">GAME<br>DESIGN</p>
+        <p class="hero-overlay-label" data-editable data-key="hero_overlay_label">// Invictus Games Studio</p>
+        <p class="hero-overlay-big" data-editable data-key="hero_overlay_big">GAME<br>DESIGN</p>
+      </div>
+    </div>
+    <!-- Media box: image / video upload -->
+    <div class="hero-media-box" id="heroMediaBox">
+      <!-- placeholder (shown in admin when no media) -->
+      <div class="hero-media-placeholder" id="heroMediaPlaceholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><rect x="2" y="3" width="10" height="7" rx="1" opacity=".4"/></svg>
+        <span>Upload Image or Video</span>
+        <input type="file" id="heroMediaInput" accept="image/*,video/*">
+      </div>
+      <!-- media content area -->
+      <div class="hero-media-content" id="heroMediaContent">
+        <img id="heroMediaImg" alt="Hero media" style="display:none">
+        <video id="heroMediaVideo" playsinline style="display:none"></video>
+        <!-- overlay text (editable in text-edit mode) -->
+        <div class="hero-media-text-overlay" id="heroMediaTextOverlay" data-editable data-key="hero_media_text" contenteditable="false"></div>
+        <!-- video controls -->
+        <div class="hero-media-controls" id="heroMediaControls">
+          <button class="mc-btn" id="mcPlay" title="Play/Pause">&#9654;</button>
+          <div class="mc-progress-wrap" id="mcProgressWrap"><div class="mc-progress-fill" id="mcProgressFill"></div></div>
+          <span class="mc-time" id="mcTime">0:00</span>
+          <button class="mc-btn" id="mcVol" title="Mute">&#128266;</button>
+          <input type="range" class="mc-vol-slider" id="mcVolSlider" min="0" max="1" step="0.05" value="1">
+          <span class="mc-quality">HD</span>
+          <button class="mc-btn" id="mcFs" title="Fullscreen">&#x26F6;</button>
+        </div>
+        <!-- change media button (admin mode) -->
+        <label class="hero-media-change-btn" id="heroMediaChangeBtn" title="Change media">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <input type="file" id="heroMediaChangeInput" accept="image/*,video/*" style="display:none">
+        </label>
       </div>
     </div>
   </div>
@@ -471,6 +645,7 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
 <!-- =============================================
      MARQUEE
      ============================================= -->
+<div class="marquee-edit-panel" id="marqueeEditPanel"></div>
 <div class="marquee-section">
   <div class="marquee-track" id="marqueeTrack">
     <span class="marquee-item"><span>✦</span> GAME DESIGN</span>
@@ -737,19 +912,23 @@ body.edit-mode-active .skill-bar-track{cursor:ew-resize}
 
 <script>
 // =============================================
-// CONFIG — CHANGE YOUR PASSWORD HERE
+// CONFIG — password stored as SHA-256 hash only
 // =============================================
-const ADMIN_PASS = 'rg2025admin'; // ← CHANGE THIS
+const ADMIN_HASH = '5967f975efb4ce8a4eb892e6637fee3a917c4432e0c24759eb49f1f3ac306100';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
 
 // =============================================
 // STATE
 // =============================================
 let isLoggedIn   = sessionStorage.getItem('rg_admin') === '1';
-let editMode     = null; // 'text' | 'images' | 'skills' | 'drag'
+let editMode     = null; // 'text'|'images'|'skills'|'drag'|'layout'|'marquee'
 let projects     = [];
-let editData     = {}; // key → value for editable fields
+let editData     = {};
 let dragSrcIndex = null;
-let pendingImageProjectIndex = null;
 
 // =============================================
 // BOOT
@@ -761,17 +940,47 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillBars();
   initCounter();
   loadEditData();
+  loadLayoutData();
+  loadHeroMedia();
+  loadEngineBadges();
   loadProjects().then(() => {
     if (isLoggedIn) showAdminBar();
   });
+  // Search input listener
+  document.getElementById('searchInput').addEventListener('input', e => searchSite(e.target.value));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('searchBarWrap').classList.contains('open')) toggleSearch();
+      if (document.getElementById('adminLoginPopup').classList.contains('open'))
+        document.getElementById('adminLoginPopup').classList.remove('open');
+    }
+    if (e.key === 'Enter' && document.getElementById('adminLoginPopup').classList.contains('open')) attemptLogin();
+  });
+  // Hero media file inputs
+  document.getElementById('heroMediaInput').addEventListener('change', function(){ handleHeroMediaUpload(this.files[0]); });
+  document.getElementById('heroMediaChangeInput').addEventListener('change', function(){ handleHeroMediaUpload(this.files[0]); });
 });
 
 // =============================================
-// MARQUEE
+// MARQUEE DATA
 // =============================================
+const DEFAULT_MARQUEE = [
+  'GAME DESIGN','LEVEL DESIGN','UNREAL ENGINE 5','UNITY','BLOCKOUT','WHITEBOX',
+  'SYSTEMS DESIGN','ENVIRONMENT ART','NARRATIVE DESIGN','GDD · LDD','PACING DESIGN',
+  'ENCOUNTER DESIGN','AI BEHAVIOR'
+];
+function getMarqueeItems() {
+  const s = localStorage.getItem('rg_marquee');
+  return s ? JSON.parse(s) : DEFAULT_MARQUEE;
+}
+function saveMarqueeItems(items) { localStorage.setItem('rg_marquee', JSON.stringify(items)); }
+
 function initMarquee() {
   const t = document.getElementById('marqueeTrack');
-  if (t) t.innerHTML += t.innerHTML;
+  if (!t) return;
+  const items = getMarqueeItems();
+  const html = items.map(text => `<span class="marquee-item"><span>✦</span> ${text}</span>`).join('');
+  t.innerHTML = html + html;
 }
 
 // =============================================
@@ -854,14 +1063,10 @@ function toggleLoginPopup() {
   setTimeout(() => document.getElementById('adminPasswordInput').focus(), 50);
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key==='Escape') document.getElementById('adminLoginPopup').classList.remove('open');
-  if (e.key==='Enter' && document.getElementById('adminLoginPopup').classList.contains('open')) attemptLogin();
-});
-
-function attemptLogin() {
+async function attemptLogin() {
   const val = document.getElementById('adminPasswordInput').value;
-  if (val === ADMIN_PASS) {
+  const hash = await sha256(val);
+  if (hash === ADMIN_HASH) {
     isLoggedIn = true;
     sessionStorage.setItem('rg_admin','1');
     document.getElementById('adminLoginPopup').classList.remove('open');
@@ -904,18 +1109,21 @@ function showAdminBar() {
 function toggleEditMode(mode) {
   const wasActive = editMode === mode;
   disableAllEditModes();
-
   if (!wasActive) {
     editMode = mode;
-    document.getElementById(`btn-edit-${mode==='drag'?'drag':mode==='images'?'images':mode==='skills'?'skills':'text'}`).classList.add('active');
-    if (mode==='text')   enableTextEdit();
-    if (mode==='images') enableImageEdit();
-    if (mode==='skills') enableSkillEdit();
-    if (mode==='drag')   enableDragEdit();
+    const btnMap = {text:'btn-edit-text',images:'btn-edit-images',skills:'btn-edit-skills',drag:'btn-edit-drag',layout:'btn-edit-layout',marquee:'btn-edit-marquee'};
+    const btn = document.getElementById(btnMap[mode]);
+    if (btn) btn.classList.add('active');
+    if (mode==='text')    enableTextEdit();
+    if (mode==='images')  enableImageEdit();
+    if (mode==='skills')  enableSkillEdit();
+    if (mode==='drag')    enableDragEdit();
+    if (mode==='layout')  enableLayoutEdit();
+    if (mode==='marquee') enableMarqueeEdit();
     showToast(`${mode.charAt(0).toUpperCase()+mode.slice(1)} editing on`, 'success');
   } else {
     editMode = null;
-    showToast('Edit mode off','success');
+    showToast('Edit mode off', 'success');
   }
 }
 
@@ -926,13 +1134,18 @@ function disableAllEditModes() {
     el.classList.remove('editing');
     el.removeEventListener('blur', onEditableBlur);
   });
-  // Image overlays
+  // Image overlays (project cards)
   document.querySelectorAll('.img-edit-overlay').forEach(o => o.remove());
   // Skill handles
   document.querySelectorAll('.skill-bar-track').forEach(t => t.classList.remove('edit-mode'));
   document.querySelectorAll('.skill-bar-handle').forEach(h => h.style.display='none');
   // Drag
   document.querySelectorAll('.project-card').forEach(c => { c.draggable=false; });
+  // Layout
+  disableLayoutEdit();
+  // Marquee panel
+  document.getElementById('marqueeEditPanel').classList.remove('open');
+  // Reset all admin bar btns
   document.querySelectorAll('.admin-bar-btn').forEach(b => b.classList.remove('active'));
 }
 
@@ -1238,6 +1451,376 @@ function showToast(msg, type='success') {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = `toast ${type} show`;
   setTimeout(()=>t.classList.remove('show'), 4000);
+}
+
+// =============================================
+// HERO MEDIA BOX
+// =============================================
+function loadHeroMedia() {
+  const saved = localStorage.getItem('rg_hero_media');
+  if (!saved) return;
+  try {
+    const {type, src} = JSON.parse(saved);
+    applyHeroMedia(type, src);
+  } catch(e) {}
+}
+
+function handleHeroMediaUpload(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const type = file.type.startsWith('video') ? 'video' : 'image';
+    localStorage.setItem('rg_hero_media', JSON.stringify({type, src: e.target.result}));
+    applyHeroMedia(type, e.target.result);
+    showToast('Media uploaded successfully', 'success');
+  };
+  reader.readAsDataURL(file);
+}
+
+function applyHeroMedia(type, src) {
+  const box     = document.getElementById('heroMediaBox');
+  const content = document.getElementById('heroMediaContent');
+  const img     = document.getElementById('heroMediaImg');
+  const video   = document.getElementById('heroMediaVideo');
+  const ctrls   = document.getElementById('heroMediaControls');
+  img.style.display   = 'none';
+  video.style.display = 'none';
+  ctrls.style.opacity = '0';
+  if (type === 'video') {
+    video.src = src;
+    video.style.display = 'block';
+    initVideoControls(video);
+  } else {
+    img.src = src;
+    img.style.display = 'block';
+  }
+  content.classList.add('loaded');
+  box.classList.add('has-media');
+}
+
+function initVideoControls(video) {
+  const play  = document.getElementById('mcPlay');
+  const fill  = document.getElementById('mcProgressFill');
+  const wrap  = document.getElementById('mcProgressWrap');
+  const time  = document.getElementById('mcTime');
+  const vol   = document.getElementById('mcVol');
+  const slider= document.getElementById('mcVolSlider');
+  const fs    = document.getElementById('mcFs');
+  const cont  = document.getElementById('heroMediaContent');
+  // remove old listeners by cloning
+  [play,vol,fs,wrap].forEach(el => { const n=el.cloneNode(true); el.parentNode.replaceChild(n,el); });
+  const pl = document.getElementById('mcPlay');
+  const vl = document.getElementById('mcVol');
+  const fs2= document.getElementById('mcFs');
+  const wr = document.getElementById('mcProgressWrap');
+  const sl = document.getElementById('mcVolSlider');
+  pl.onclick = () => { video.paused ? video.play() : video.pause(); };
+  video.onplay  = () => { pl.innerHTML = '&#9646;&#9646;'; };
+  video.onpause = () => { pl.innerHTML = '&#9654;'; };
+  video.ontimeupdate = () => {
+    if (video.duration) {
+      document.getElementById('mcProgressFill').style.width = (video.currentTime/video.duration*100)+'%';
+      document.getElementById('mcTime').textContent = fmtTime(video.currentTime);
+    }
+  };
+  wr.onclick = e => {
+    const r = wr.getBoundingClientRect();
+    video.currentTime = ((e.clientX - r.left)/r.width) * video.duration;
+  };
+  vl.onclick = () => { video.muted = !video.muted; vl.innerHTML = video.muted ? '&#128263;' : '&#128266;'; };
+  sl.oninput = () => { video.volume = sl.value; };
+  fs2.onclick = () => {
+    if (!document.fullscreenElement) cont.requestFullscreen().catch(()=>{});
+    else document.exitFullscreen();
+  };
+  document.addEventListener('fullscreenchange', () => {
+    fs2.innerHTML = document.fullscreenElement ? '&#x22A0;' : '&#x26F6;';
+  });
+}
+
+function fmtTime(s) {
+  const m = Math.floor(s/60);
+  return `${m}:${Math.floor(s%60).toString().padStart(2,'0')}`;
+}
+
+// =============================================
+// ENGINE BADGE IMAGES
+// =============================================
+function loadEngineBadges() {
+  document.querySelectorAll('.engine-badge[data-badge-idx]').forEach(badge => {
+    const idx = badge.dataset.badgeIdx;
+    const src = localStorage.getItem(`rg_engine_badge_${idx}`);
+    if (src) applyBadgeImage(badge, src);
+    // bind file input
+    const input = badge.querySelector('input[type=file]');
+    if (input) input.addEventListener('change', function() {
+      const file = this.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        localStorage.setItem(`rg_engine_badge_${idx}`, e.target.result);
+        applyBadgeImage(badge, e.target.result);
+        showToast('Badge image updated', 'success');
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+}
+
+function applyBadgeImage(badge, src) {
+  let img = badge.querySelector('img.badge-img');
+  if (!img) { img = document.createElement('img'); img.className = 'badge-img'; badge.prepend(img); }
+  img.src = src;
+  const txt = badge.querySelector('.badge-text');
+  if (txt) txt.style.display = 'none';
+}
+
+// =============================================
+// MARQUEE EDIT
+// =============================================
+function enableMarqueeEdit() {
+  const panel = document.getElementById('marqueeEditPanel');
+  panel.classList.add('open');
+  renderMarqueePanel();
+}
+
+function renderMarqueePanel() {
+  const items = getMarqueeItems();
+  const panel = document.getElementById('marqueeEditPanel');
+  panel.innerHTML = items.map((text, i) => `
+    <div class="marquee-chip">
+      <span class="marquee-chip-text" contenteditable="true" spellcheck="false"
+        onblur="updateMarqueeItem(${i}, this.textContent.trim())">${text}</span>
+      <span class="marquee-chip-del" onclick="removeMarqueeItem(${i})">&#x2715;</span>
+    </div>
+  `).join('') + `<button class="marquee-chip-add" onclick="addMarqueeItem()">+ Add item</button>`;
+}
+
+function updateMarqueeItem(idx, val) {
+  if (!val) return;
+  const items = getMarqueeItems();
+  items[idx] = val.toUpperCase();
+  saveMarqueeItems(items);
+  initMarquee();
+}
+
+function removeMarqueeItem(idx) {
+  const items = getMarqueeItems();
+  items.splice(idx, 1);
+  saveMarqueeItems(items);
+  initMarquee();
+  renderMarqueePanel();
+}
+
+function addMarqueeItem() {
+  const text = prompt('New marquee item:');
+  if (!text) return;
+  const items = getMarqueeItems();
+  items.push(text.toUpperCase());
+  saveMarqueeItems(items);
+  initMarquee();
+  renderMarqueePanel();
+}
+
+// =============================================
+// HERO LAYOUT EDIT (move & scale)
+// =============================================
+let layoutData = {};
+let layoutSelected = null;
+let layoutDragging = false;
+let layoutDragStartX, layoutDragStartY, layoutElemStartX, layoutElemStartY;
+
+const LAYOUT_KEYS = ['hero-tag','hero-title','hero-desc','hero-cta','hero-stats'];
+
+function loadLayoutData() {
+  const s = localStorage.getItem('rg_hero_layout');
+  if (s) layoutData = JSON.parse(s);
+  applyLayoutData();
+}
+
+function applyLayoutData() {
+  const heroLeft = document.querySelector('.hero-left');
+  if (!heroLeft) return;
+  Array.from(heroLeft.children).forEach((el, i) => {
+    const key = LAYOUT_KEYS[i] || `hero-el-${i}`;
+    el.dataset.layoutKey = key;
+    const d = layoutData[key];
+    if (d) el.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`;
+  });
+}
+
+function enableLayoutEdit() {
+  document.body.classList.add('layout-edit-active');
+  const heroLeft = document.querySelector('.hero-left');
+  if (!heroLeft) return;
+  Array.from(heroLeft.children).forEach((el, i) => {
+    const key = LAYOUT_KEYS[i] || `hero-el-${i}`;
+    el.dataset.layoutKey = key;
+    el.addEventListener('mousedown', onLayoutMouseDown);
+  });
+  document.getElementById('layoutPanel').classList.add('visible');
+}
+
+function disableLayoutEdit() {
+  document.body.classList.remove('layout-edit-active');
+  document.querySelectorAll('.hero-left > *').forEach(el => {
+    el.removeEventListener('mousedown', onLayoutMouseDown);
+    el.classList.remove('layout-selected','layout-dragging');
+  });
+  document.getElementById('layoutPanel').classList.remove('visible');
+  layoutSelected = null; layoutDragging = false;
+  document.removeEventListener('mousemove', onLayoutMouseMove);
+  document.removeEventListener('mouseup', onLayoutMouseUp);
+}
+
+function onLayoutMouseDown(e) {
+  if (e.target.closest('[data-editable]') && e.target.closest('[data-editable]').contentEditable === 'true') return;
+  const el = e.currentTarget;
+  // select it
+  document.querySelectorAll('.hero-left > .layout-selected').forEach(x => x.classList.remove('layout-selected'));
+  layoutSelected = el;
+  el.classList.add('layout-selected');
+  const key = el.dataset.layoutKey;
+  const d = layoutData[key] || {x:0, y:0, scale:1};
+  layoutData[key] = d;
+  layoutElemStartX = d.x || 0;
+  layoutElemStartY = d.y || 0;
+  layoutDragStartX = e.clientX;
+  layoutDragStartY = e.clientY;
+  layoutDragging = false;
+  updateLayoutPanel(key, d);
+  document.addEventListener('mousemove', onLayoutMouseMove);
+  document.addEventListener('mouseup', onLayoutMouseUp);
+  e.preventDefault();
+}
+
+function onLayoutMouseMove(e) {
+  if (!layoutSelected) return;
+  const dx = e.clientX - layoutDragStartX;
+  const dy = e.clientY - layoutDragStartY;
+  if (!layoutDragging && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+    layoutDragging = true;
+    layoutSelected.classList.add('layout-dragging');
+  }
+  if (!layoutDragging) return;
+  const key = layoutSelected.dataset.layoutKey;
+  const d = layoutData[key];
+  d.x = layoutElemStartX + dx;
+  d.y = layoutElemStartY + dy;
+  layoutSelected.style.transform = `translate(${d.x}px,${d.y}px) scale(${d.scale||1})`;
+  document.getElementById('layoutPanelPos').textContent = `x: ${Math.round(d.x)}  y: ${Math.round(d.y)}`;
+}
+
+function onLayoutMouseUp() {
+  if (layoutSelected) {
+    layoutSelected.classList.remove('layout-dragging');
+    if (layoutDragging) {
+      localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
+    }
+  }
+  layoutDragging = false;
+  document.removeEventListener('mousemove', onLayoutMouseMove);
+  document.removeEventListener('mouseup', onLayoutMouseUp);
+}
+
+function onLayoutScale(val) {
+  if (!layoutSelected) return;
+  const key = layoutSelected.dataset.layoutKey;
+  const d = layoutData[key] || {x:0, y:0, scale:1};
+  d.scale = parseFloat(val);
+  layoutData[key] = d;
+  layoutSelected.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale})`;
+  document.getElementById('layoutScaleVal').textContent = d.scale.toFixed(2) + 'x';
+  localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
+}
+
+function updateLayoutPanel(key, d) {
+  document.getElementById('layoutPanelTitle').textContent = key;
+  document.getElementById('layoutPanelPos').textContent = `x: ${Math.round(d.x||0)}  y: ${Math.round(d.y||0)}`;
+  document.getElementById('layoutScaleSlider').value = d.scale || 1;
+  document.getElementById('layoutScaleVal').textContent = (d.scale||1).toFixed(2) + 'x';
+  document.getElementById('layoutPanelReset').onclick = () => {
+    layoutData[key] = {x:0, y:0, scale:1};
+    localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
+    if (layoutSelected && layoutSelected.dataset.layoutKey === key) {
+      layoutSelected.style.transform = '';
+      updateLayoutPanel(key, {x:0, y:0, scale:1});
+    }
+    showToast('Element reset', 'success');
+  };
+}
+
+// =============================================
+// SEARCH
+// =============================================
+let searchMatches = [];
+let searchCurrentIdx = -1;
+
+function toggleSearch() {
+  const wrap = document.getElementById('searchBarWrap');
+  const btn  = document.getElementById('navSearchBtn');
+  const isOpen = wrap.classList.contains('open');
+  if (isOpen) {
+    clearSearchState();
+    wrap.classList.remove('open');
+    btn.classList.remove('active');
+  } else {
+    wrap.classList.add('open');
+    btn.classList.add('active');
+    setTimeout(() => document.getElementById('searchInput').focus(), 150);
+  }
+}
+
+const SEARCH_SELECTORS = 'h1,h2,h3,h4,p,a,.project-name,.playing-title,.skill-bar-name,.lesson-title,.timeline-title,.timeline-desc,.marquee-item,.stat-number,.stat-label,.section-label,.about-heading,.contact-big';
+
+function searchSite(query) {
+  clearSearchHighlights();
+  searchMatches = [];
+  searchCurrentIdx = -1;
+  const count = document.getElementById('searchCount');
+  if (!query.trim()) { count.textContent = ''; return; }
+  const q = query.toLowerCase();
+  document.querySelectorAll(SEARCH_SELECTORS).forEach(el => {
+    if (el.offsetParent !== null && el.textContent.toLowerCase().includes(q)) {
+      // avoid duplicates (child also matched parent)
+      if (!searchMatches.some(m => m.contains(el) || el.contains(m))) {
+        searchMatches.push(el);
+      }
+    }
+  });
+  if (searchMatches.length) {
+    searchCurrentIdx = 0;
+    showMatch(0);
+    count.textContent = `1 / ${searchMatches.length}`;
+  } else {
+    count.textContent = 'No results';
+  }
+}
+
+function showMatch(idx) {
+  document.querySelectorAll('.search-active-box').forEach(el => el.classList.remove('search-active-box'));
+  if (idx < 0 || idx >= searchMatches.length) return;
+  const el = searchMatches[idx];
+  el.classList.add('search-active-box');
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('searchCount').textContent = `${idx+1} / ${searchMatches.length}`;
+}
+
+function cycleMatch(dir) {
+  if (!searchMatches.length) return;
+  searchCurrentIdx = (searchCurrentIdx + dir + searchMatches.length) % searchMatches.length;
+  showMatch(searchCurrentIdx);
+}
+
+function clearSearchHighlights() {
+  document.querySelectorAll('.search-active-box').forEach(el => el.classList.remove('search-active-box'));
+}
+
+function clearSearchState() {
+  clearSearchHighlights();
+  searchMatches = [];
+  searchCurrentIdx = -1;
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchCount').textContent = '';
 }
 </script>
 </body>
