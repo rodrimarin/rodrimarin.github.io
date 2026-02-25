@@ -7,14 +7,20 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0b;--bg2:#111114;--surface:#18181d;--border:#2a2a32;--accent:#e8ff47;--accent2:#ff6b35;--text:#e8e8e0;--muted:#6b6b78;--white:#f5f5f0;--tr:.25s cubic-bezier(.4,0,.2,1)}
+:root{
+  --bg:#0a0a0b;--bg2:#111114;--surface:#18181d;
+  --border:#2a2a32;--accent:#e8ff47;--accent2:#ff6b35;
+  --text:#e8e8e0;--muted:#6b6b78;--white:#f5f5f0;
+  --danger:#ff4455;--success:#44ff88;
+  --tr:.22s cubic-bezier(.4,0,.2,1);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
 
-/* NAV */
+/* ── TOP NAV ── */
 .topnav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:24px 48px;transition:padding var(--tr),background var(--tr),border-color var(--tr);border-bottom:1px solid transparent}
 .topnav.scrolled{padding:14px 48px;background:rgba(10,10,11,.95);backdrop-filter:blur(12px);border-bottom-color:var(--border)}
 .nav-logo{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
@@ -22,10 +28,10 @@ img{max-width:100%;display:block}
 .nav-back:hover{color:var(--white)}
 .nav-back svg{width:14px;height:14px}
 
-/* HERO */
+/* ── HERO ── */
 .project-hero{min-height:60vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 64px 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
 .project-hero-bg{position:absolute;inset:0;background:var(--surface)}
-.project-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.3) saturate(.6);transition:filter .5s}
+.project-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.3) saturate(.6)}
 .project-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,255,71,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,255,71,.03) 1px,transparent 1px);background-size:60px 60px}
 .project-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,.95) 0%,rgba(10,10,11,.4) 60%,transparent 100%)}
 .project-hero-content{position:relative;z-index:2;max-width:900px}
@@ -35,13 +41,17 @@ img{max-width:100%;display:block}
 .project-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px}
 .project-tag.highlight{border-color:rgba(232,255,71,.4);color:var(--accent);background:rgba(232,255,71,.05)}
 .project-hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,120px);line-height:.92;color:var(--white);letter-spacing:.01em;margin-bottom:24px}
-.project-hero-title em{color:var(--accent);font-style:normal}
 .project-hero-meta{display:flex;gap:48px;flex-wrap:wrap}
 .meta-item{display:flex;flex-direction:column;gap:4px}
 .meta-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
 .meta-value{font-family:'Space Mono',monospace;font-size:12px;color:var(--white)}
+/* Hero image upload — only shows in edit mode */
+.hero-upload-btn{display:none;position:absolute;bottom:24px;right:24px;z-index:10;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:10px 18px;align-items:center;gap:8px;cursor:pointer}
+.hero-upload-btn svg{width:12px;height:12px;flex-shrink:0}
+.hero-upload-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2}
+body.edit-active .hero-upload-btn{display:flex}
 
-/* LAYOUT */
+/* ── LAYOUT ── */
 .project-layout{display:grid;grid-template-columns:240px 1fr;min-height:80vh}
 .project-sidebar{border-right:1px solid var(--border);position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;padding:40px 0;background:var(--bg2)}
 .sidebar-nav{list-style:none;display:flex;flex-direction:column}
@@ -58,10 +68,9 @@ img{max-width:100%;display:block}
 .sidebar-proj-link.current{color:var(--accent)}
 .sidebar-proj-dot{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0}
 .sidebar-proj-link.current .sidebar-proj-dot{background:var(--accent)}
-
 .project-content{padding:64px}
 
-/* SECTIONS */
+/* ── SECTIONS ── */
 .cs-section{margin-bottom:80px;scroll-margin-top:80px}
 .cs-section-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:16px}
 .cs-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -71,119 +80,169 @@ img{max-width:100%;display:block}
 .cs-body p{margin-bottom:16px}
 .cs-body p:last-child{margin-bottom:0}
 
-/* STATS ROW */
+/* ── STATS ── */
 .cs-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:40px 0}
 .cs-stat{background:var(--surface);border:1px solid var(--border);padding:28px 24px}
 .cs-stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:4px}
 .cs-stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
 
-/* COLUMNS */
+/* ── TWO COLS ── */
 .cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0}
 .cs-col{background:var(--surface);border:1px solid var(--border);padding:32px}
 .cs-col-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .cs-col-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);margin-bottom:12px}
 .cs-col p{font-size:13px;line-height:1.75;color:var(--muted)}
 
-/* GALLERY */
+/* ── TAGS ── */
+.cs-tags-wrap{margin:28px 0;display:flex;flex-direction:column;gap:12px}
+.cs-tags-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cs-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:6px 12px;transition:all var(--tr);cursor:pointer;position:relative;user-select:none}
+.cs-tag:hover,.cs-tag.on{border-color:var(--accent);color:var(--accent);background:rgba(232,255,71,.06)}
+/* delete X on tag — only in edit mode */
+.cs-tag .tdel{display:none;position:absolute;top:-7px;right:-7px;width:15px;height:15px;background:var(--danger);color:#fff;font-size:9px;align-items:center;justify-content:center;border-radius:50%;line-height:1;z-index:2}
+body.edit-active .cs-tag .tdel{display:flex}
+/* add tag btn */
+.cs-add-tag{display:none;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,255,71,.5);border:1px dashed rgba(232,255,71,.25);padding:6px 14px;cursor:pointer;transition:all var(--tr);align-items:center;gap:6px}
+.cs-add-tag svg{width:10px;height:10px}
+.cs-add-tag:hover{color:var(--accent);border-color:var(--accent)}
+body.edit-active .cs-add-tag{display:inline-flex}
+
+/* ── GALLERY ── */
 .cs-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0}
-.gallery-item{aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;position:relative}
-.gallery-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(.7);transition:filter .3s,transform .3s}
-.gallery-item:hover img{filter:brightness(1) saturate(.9);transform:scale(1.04)}
-.gallery-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--border)}
-.gallery-item-overlay{position:absolute;inset:0;background:rgba(10,10,11,.0);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s,background .3s}
-.gallery-item:hover .gallery-item-overlay{opacity:1;background:rgba(10,10,11,.3)}
-.gallery-item-overlay svg{color:var(--accent);width:32px;height:32px}
+/* slot with image */
+.gslot{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border)}
+.gslot.filled{cursor:zoom-in}
+.gslot.filled img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(.7);transition:filter .3s,transform .3s;display:block}
+.gslot.filled:hover img{filter:brightness(1) saturate(.9);transform:scale(1.04)}
+.gslot.filled:hover .gexpand{opacity:1}
+.gexpand{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;background:rgba(10,10,11,.3);pointer-events:none}
+.gexpand svg{color:var(--accent);width:30px;height:30px}
+/* delete btn on filled slot — edit mode only */
+.gdel{display:none;position:absolute;top:8px;right:8px;z-index:10;background:var(--danger);color:#fff;width:26px;height:26px;align-items:center;justify-content:center;font-size:15px;cursor:pointer;border-radius:2px;border:none;font-family:inherit}
+body.edit-active .gslot.filled .gdel{display:flex}
+/* empty slot — HIDDEN normally, only shows in edit mode */
+.gslot.empty{display:none}
+body.edit-active .gslot.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed rgba(232,255,71,.2);cursor:pointer;transition:border-color var(--tr),background var(--tr)}
+body.edit-active .gslot.empty:hover{border-color:var(--accent);background:rgba(232,255,71,.03)}
+.gempty-icon{color:var(--border);transition:color var(--tr)}
+body.edit-active .gslot.empty:hover .gempty-icon{color:var(--accent)}
+.gempty-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity var(--tr)}
+body.edit-active .gslot.empty:hover .gempty-label{opacity:1}
+.gslot input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:5}
 
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;padding:40px}
-.lightbox.open{display:flex}
-.lightbox img{max-width:100%;max-height:90vh;object-fit:contain;border:1px solid var(--border)}
-.lightbox-close{position:absolute;top:24px;right:24px;background:none;border:1px solid var(--border);color:var(--muted);width:40px;height:40px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
-.lightbox-close:hover{color:var(--white);border-color:var(--white)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,10,11,.8);border:1px solid var(--border);color:var(--muted);width:48px;height:48px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
-.lightbox-nav:hover{color:var(--accent);border-color:var(--accent)}
-.lightbox-prev{left:24px}
-.lightbox-next{right:24px}
+/* ── LIGHTBOX ── */
+.lb{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain;border:1px solid var(--border);display:block}
+.lb-close{position:fixed;top:20px;right:24px;background:none;border:1px solid var(--border);color:var(--muted);width:38px;height:38px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);z-index:2}
+.lb-close:hover{color:var(--white);border-color:var(--white)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(10,10,11,.7);border:1px solid var(--border);color:var(--muted);width:48px;height:48px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+.lb-nav:hover{color:var(--accent);border-color:var(--accent)}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-count{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted)}
 
-/* TAGS INLINE */
-.cs-tags{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
-.cs-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:6px 12px;transition:all var(--tr)}
-.cs-tag:hover{border-color:var(--accent);color:var(--accent)}
+/* ── NEXT/PREV ── */
+.proj-nav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.proj-nav-item{padding:40px 48px;display:flex;flex-direction:column;gap:8px;transition:background var(--tr)}
+.proj-nav-item:hover{background:var(--surface)}
+.proj-nav-item:first-child{border-right:1px solid var(--border)}
+.proj-nav-dir{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.proj-nav-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);transition:color var(--tr)}
+.proj-nav-item:hover .proj-nav-title{color:var(--accent)}
 
-/* PLACEHOLDER card */
-.cs-placeholder{background:var(--surface);border:1px dashed var(--border);padding:40px;text-align:center}
-.cs-placeholder p{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);line-height:1.8}
-.cs-placeholder strong{color:var(--accent)}
-
-/* NEXT/PREV */
-.project-nav-footer{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
-.project-nav-item{padding:40px 48px;display:flex;flex-direction:column;gap:8px;transition:background var(--tr)}
-.project-nav-item:hover{background:var(--surface)}
-.project-nav-item:first-child{border-right:1px solid var(--border)}
-.project-nav-dir{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.project-nav-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);transition:color var(--tr)}
-.project-nav-item:hover .project-nav-title{color:var(--accent)}
-
-/* EDIT MODE */
-.admin-bar{position:fixed;top:0;left:0;right:0;z-index:9100;height:52px;background:rgba(10,10,11,.97);border-bottom:2px solid var(--accent);display:none;align-items:center;gap:0;padding:0 16px;box-shadow:0 4px 24px rgba(232,255,71,.1)}
+/* ── ADMIN BAR ── */
+.admin-bar{position:fixed;top:0;left:0;right:0;z-index:9100;height:52px;background:rgba(10,10,11,.97);border-bottom:2px solid var(--accent);display:none;align-items:center;padding:0 12px;gap:0;overflow-x:auto;box-shadow:0 4px 24px rgba(232,255,71,.1)}
 .admin-bar.visible{display:flex}
-.admin-bar-logo{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap}
-.admin-bar-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 14px;border:none;background:none;cursor:pointer;transition:color var(--tr),background var(--tr);white-space:nowrap;height:52px}
-.admin-bar-btn:hover{color:var(--white);background:rgba(255,255,255,.04)}
-.admin-bar-btn.active{color:var(--accent);background:rgba(232,255,71,.06)}
-.admin-bar-spacer{flex:1}
-.admin-bar-save-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:8px 20px;cursor:pointer;border:none;transition:background var(--tr);white-space:nowrap;height:36px;margin-right:8px}
-.admin-bar-save-btn:hover{background:#fff}
-.admin-bar-logout{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border:1px solid var(--border);cursor:pointer;background:none;transition:all var(--tr)}
-.admin-bar-logout:hover{color:#ff4455;border-color:#ff4455}
+.ab-logo{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-right:16px;border-right:1px solid var(--border);margin-right:6px;white-space:nowrap;flex-shrink:0}
+.ab-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 11px;border:none;background:none;cursor:pointer;transition:color var(--tr),background var(--tr);white-space:nowrap;height:52px;flex-shrink:0;position:relative}
+.ab-btn svg{width:12px;height:12px;flex-shrink:0}
+.ab-btn:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.ab-btn.on{color:var(--accent);background:rgba(232,255,71,.06)}
+.ab-btn.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent)}
+.ab-sep{width:1px;height:28px;background:var(--border);margin:0 4px;flex-shrink:0}
+.ab-spacer{flex:1;min-width:4px}
+.ab-save{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:8px 18px;cursor:pointer;border:none;transition:background var(--tr);white-space:nowrap;height:36px;margin-right:8px;flex-shrink:0}
+.ab-save:hover{background:#fff}
+.ab-save svg{width:11px;height:11px}
+.ab-logout{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border:1px solid var(--border);cursor:pointer;background:none;transition:all var(--tr);flex-shrink:0}
+.ab-logout:hover{color:var(--danger);border-color:var(--danger)}
 body.edit-active{padding-top:52px}
 body.edit-active .topnav{top:52px}
+
+/* ── EDITABLE ── */
 [data-editable]{transition:outline var(--tr)}
-body.edit-active [data-editable]:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:3px;cursor:text}
-body.edit-active [data-editable]:focus{outline:2px solid var(--accent);outline-offset:3px}
-.img-upload-zone{position:relative}
-body.edit-active .img-upload-zone::after{content:'Click to change image';position:absolute;inset:0;background:rgba(10,10,11,.7);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);cursor:pointer;opacity:0;transition:opacity var(--tr)}
-body.edit-active .img-upload-zone:hover::after{opacity:1}
-.img-upload-input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:5}
+body.edit-active [data-editable]:hover{outline:2px dashed rgba(232,255,71,.3);outline-offset:3px;cursor:text}
+body.edit-active [data-editable][contenteditable="true"]:focus{outline:2px solid var(--accent);outline-offset:3px;background:rgba(232,255,71,.02)}
 
-/* TOAST */
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;background:var(--surface);border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;padding:12px 24px;opacity:0;transition:all .3s ease;white-space:nowrap;pointer-events:none}
+/* ── ADD TAG MODAL ── */
+.tag-modal{position:fixed;inset:0;z-index:9800;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center}
+.tag-modal.open{display:flex}
+.tag-modal-box{background:var(--bg2);border:1px solid var(--border);padding:32px;width:100%;max-width:420px}
+.tag-modal-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.tag-modal-input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:13px;padding:11px 14px;outline:none;transition:border-color var(--tr);margin-bottom:8px}
+.tag-modal-input:focus{border-color:var(--accent)}
+.tag-modal-hint{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.tag-modal-btns{display:flex;gap:10px;justify-content:flex-end}
+.tag-modal-add{background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:10px 20px;cursor:pointer;border:none;transition:background var(--tr)}
+.tag-modal-add:hover{background:#fff}
+.tag-modal-cancel{background:none;color:var(--muted);border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:10px 14px;cursor:pointer;transition:all var(--tr)}
+.tag-modal-cancel:hover{color:var(--white);border-color:var(--muted)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);z-index:9999;background:var(--surface);border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;padding:11px 22px;opacity:0;transition:all .25s ease;white-space:nowrap;pointer-events:none;max-width:88vw;overflow:hidden;text-overflow:ellipsis}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{border-color:rgba(68,255,136,.4);color:#44ff88}
-.toast.error{border-color:rgba(255,68,85,.4);color:#ff4455}
+.toast.success{border-color:rgba(68,255,136,.4);color:var(--success)}
+.toast.error{border-color:rgba(255,68,85,.4);color:var(--danger)}
 
-/* RESPONSIVE */
-@media(max-width:1100px){.project-layout{grid-template-columns:1fr}.project-sidebar{display:none}.project-content{padding:40px 24px}}
-@media(max-width:900px){.topnav{padding:16px 24px}.project-hero{padding:100px 24px 48px}.cs-stats{grid-template-columns:1fr 1fr}.cs-two-col{grid-template-columns:1fr}.cs-gallery{grid-template-columns:1fr 1fr}.project-nav-footer{grid-template-columns:1fr}.project-nav-item:first-child{border-right:none;border-bottom:1px solid var(--border)}}
-@media(max-width:600px){.cs-gallery{grid-template-columns:1fr}.cs-stats{grid-template-columns:1fr 1fr}}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.project-layout{grid-template-columns:1fr}.project-sidebar{display:none}.project-content{padding:40px 24px}}
+@media(max-width:900px){
+  .topnav{padding:16px 24px}.project-hero{padding:100px 24px 48px}
+  .cs-stats{grid-template-columns:1fr 1fr}.cs-two-col{grid-template-columns:1fr}
+  .cs-gallery{grid-template-columns:1fr 1fr}
+  .proj-nav{grid-template-columns:1fr}.proj-nav-item:first-child{border-right:none;border-bottom:1px solid var(--border)}
+}
+@media(max-width:600px){.cs-gallery{grid-template-columns:1fr}.cs-stats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- ADMIN BAR -->
+<!-- ══ ADMIN BAR ══════════════════════════════ -->
 <div class="admin-bar" id="adminBar">
-  <span class="admin-bar-logo">⬡ Edit Mode</span>
-  <button class="admin-bar-btn" id="btn-text" onclick="toggleTextEdit()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    Edit Texts
+  <span class="ab-logo">⬡ Edit Mode</span>
+
+  <button class="ab-btn" id="btn-text" onclick="toggleMode('text')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    Texts
   </button>
-  <button class="admin-bar-btn" id="btn-images" onclick="toggleImageEdit()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    Edit Images
+  <button class="ab-btn" id="btn-images" onclick="toggleMode('images')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Images
   </button>
-  <div class="admin-bar-spacer"></div>
-  <button class="admin-bar-save-btn" onclick="saveProject()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  <button class="ab-btn" id="btn-tags" onclick="toggleMode('tags')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    Tags
+  </button>
+  <div class="ab-sep"></div>
+  <button class="ab-btn" onclick="addGallerySlot()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    + Gallery Slot
+  </button>
+
+  <div class="ab-spacer"></div>
+
+  <button class="ab-save" onclick="saveAll()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Save & Download
   </button>
-  <button class="admin-bar-logout" onclick="logout()">Logout</button>
+  <button class="ab-logout" onclick="logout()">Logout</button>
 </div>
 
-<!-- TOP NAV -->
+<!-- ══ TOP NAV ════════════════════════════════ -->
 <nav class="topnav" id="topnav">
   <a href="index.html" class="nav-logo">Rodrigo Giliberti</a>
   <a href="index.html#projects" class="nav-back">
@@ -192,11 +251,10 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
   </a>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ═══════════════════════════════════ -->
 <div class="project-hero" id="projectHero">
   <div class="project-hero-bg"></div>
-  <img class="project-hero-img img-upload-zone" id="heroImg" src="" alt="" style="display:none">
-  <input type="file" class="img-upload-input" id="heroImgInput" accept="image/*" style="display:none">
+  <img class="project-hero-img" id="heroImg" src="" alt="" style="display:none">
   <div class="project-hero-grid"></div>
   <div class="project-hero-overlay"></div>
   <div class="project-hero-content">
@@ -205,14 +263,19 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
     <h1 class="project-hero-title" id="heroTitle">Loading...</h1>
     <div class="project-hero-meta" id="heroMeta"></div>
   </div>
+  <!-- Hero image upload btn (edit mode only) -->
+  <label class="hero-upload-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Change Hero Image
+    <input type="file" id="heroImgInput" accept="image/*">
+  </label>
 </div>
 
-<!-- LAYOUT: sidebar + content -->
+<!-- ══ LAYOUT ══════════════════════════════════ -->
 <div class="project-layout">
 
-  <!-- SIDEBAR -->
   <aside class="project-sidebar">
-    <ul class="sidebar-nav" id="sidebarNav">
+    <ul class="sidebar-nav">
       <li class="sidebar-nav-item"><a href="#overview"   data-section="overview"><span class="sidebar-nav-num">01</span> Overview</a></li>
       <li class="sidebar-nav-item"><a href="#goals"      data-section="goals"><span class="sidebar-nav-num">02</span> Goals</a></li>
       <li class="sidebar-nav-item"><a href="#experience" data-section="experience"><span class="sidebar-nav-num">03</span> Player Experience</a></li>
@@ -229,7 +292,6 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
     </div>
   </aside>
 
-  <!-- CONTENT -->
   <main class="project-content">
 
     <!-- 01 OVERVIEW -->
@@ -237,26 +299,14 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-section-label">01 — Overview</div>
       <h2 class="cs-section-title" data-editable data-key="cs_overview_title">Project Overview</h2>
       <div class="cs-body" data-editable data-key="cs_overview_body">
-        <p>Click <strong>Edit Texts</strong> in the admin bar to edit this section. Describe what this project is, what genre, what engine, and the core design challenge you were solving.</p>
-        <p>What made this project unique? What were the constraints? Who was the target audience?</p>
+        <p>Describe what this project is — genre, engine, and the core design challenge you were solving.</p>
+        <p>What made it unique? What were the constraints? Who was the target audience?</p>
       </div>
-      <div class="cs-stats" id="csStats">
-        <div class="cs-stat reveal">
-          <div class="cs-stat-num" data-editable data-key="cs_stat1_num">UE5</div>
-          <div class="cs-stat-label" data-editable data-key="cs_stat1_label">Engine</div>
-        </div>
-        <div class="cs-stat reveal">
-          <div class="cs-stat-num" data-editable data-key="cs_stat2_num">Solo</div>
-          <div class="cs-stat-label" data-editable data-key="cs_stat2_label">Team Size</div>
-        </div>
-        <div class="cs-stat reveal">
-          <div class="cs-stat-num" data-editable data-key="cs_stat3_num">8wk</div>
-          <div class="cs-stat-label" data-editable data-key="cs_stat3_label">Duration</div>
-        </div>
-        <div class="cs-stat reveal">
-          <div class="cs-stat-num" data-editable data-key="cs_stat4_num">2024</div>
-          <div class="cs-stat-label" data-editable data-key="cs_stat4_label">Year</div>
-        </div>
+      <div class="cs-stats">
+        <div class="cs-stat reveal"><div class="cs-stat-num" data-editable data-key="cs_s1n">UE5</div><div class="cs-stat-label" data-editable data-key="cs_s1l">Engine</div></div>
+        <div class="cs-stat reveal"><div class="cs-stat-num" data-editable data-key="cs_s2n">Solo</div><div class="cs-stat-label" data-editable data-key="cs_s2l">Team Size</div></div>
+        <div class="cs-stat reveal"><div class="cs-stat-num" data-editable data-key="cs_s3n">8wk</div><div class="cs-stat-label" data-editable data-key="cs_s3l">Duration</div></div>
+        <div class="cs-stat reveal"><div class="cs-stat-num" data-editable data-key="cs_s4n">2024</div><div class="cs-stat-label" data-editable data-key="cs_s4l">Year</div></div>
       </div>
     </section>
 
@@ -267,17 +317,17 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-two-col">
         <div class="cs-col reveal">
           <div class="cs-col-label">Design Goal</div>
-          <div class="cs-col-title" data-editable data-key="cs_goal1_title">Primary Objective</div>
-          <p data-editable data-key="cs_goal1_body">Describe your first main design goal. What did you set out to achieve? What problem were you solving?</p>
+          <div class="cs-col-title" data-editable data-key="cs_g1t">Primary Objective</div>
+          <p data-editable data-key="cs_g1b">Describe your first design goal. What did you set out to achieve?</p>
         </div>
         <div class="cs-col reveal">
           <div class="cs-col-label">Design Goal</div>
-          <div class="cs-col-title" data-editable data-key="cs_goal2_title">Secondary Objective</div>
-          <p data-editable data-key="cs_goal2_body">Describe your second main design goal. What skills were you trying to demonstrate or develop?</p>
+          <div class="cs-col-title" data-editable data-key="cs_g2t">Secondary Objective</div>
+          <p data-editable data-key="cs_g2b">Describe your second design goal. What skills were you demonstrating?</p>
         </div>
       </div>
       <div class="cs-body" data-editable data-key="cs_goals_body" style="margin-top:32px">
-        <p>Add any additional context about your design intentions here. What reference games did you look at? What design philosophy guided your decisions?</p>
+        <p>Additional context: reference games, design philosophy, key decisions that guided the project.</p>
       </div>
     </section>
 
@@ -286,10 +336,18 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-section-label">03 — Player Experience</div>
       <h2 class="cs-section-title" data-editable data-key="cs_exp_title">What Should Players Feel?</h2>
       <div class="cs-body" data-editable data-key="cs_exp_body">
-        <p>Describe the intended emotional journey for the player. What should they feel at the start, middle, and end of your level or game?</p>
-        <p>What moments were you designing toward? Tension, relief, wonder, dread — what was the emotional arc?</p>
+        <p>Describe the intended emotional journey. What should players feel at the start, middle, and end?</p>
+        <p>Tension, relief, wonder, dread — what was the emotional arc you designed toward?</p>
       </div>
-      <div class="cs-tags" id="csTags"></div>
+
+      <!-- EDITABLE TAGS -->
+      <div class="cs-tags-wrap">
+        <div class="cs-tags-row" id="expTags"></div>
+        <button class="cs-add-tag" onclick="openTagModal('expTags')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Tag
+        </button>
+      </div>
     </section>
 
     <!-- 04 LEVEL FLOW -->
@@ -297,19 +355,19 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-section-label">04 — Level Flow & Layout</div>
       <h2 class="cs-section-title" data-editable data-key="cs_flow_title">Level Flow & Layout</h2>
       <div class="cs-body" data-editable data-key="cs_flow_body">
-        <p>Explain your level layout decisions. How does the player navigate the space? Linear, open, or branching? What landmarks guide navigation?</p>
-        <p>How did you handle pacing through the space? Where are the choke points, the breathing rooms, the escalation beats?</p>
+        <p>Explain your level layout decisions. How does the player navigate? Linear, open, or branching?</p>
+        <p>How did you handle pacing? Where are the choke points, breathing rooms, escalation beats?</p>
       </div>
       <div class="cs-two-col" style="margin-top:32px">
         <div class="cs-col reveal">
           <div class="cs-col-label">Approach</div>
-          <div class="cs-col-title" data-editable data-key="cs_flow_col1_title">Layout Structure</div>
-          <p data-editable data-key="cs_flow_col1_body">Describe the structural layout — linear, hub-and-spoke, open world, etc. How does the player move through it?</p>
+          <div class="cs-col-title" data-editable data-key="cs_fl1t">Layout Structure</div>
+          <p data-editable data-key="cs_fl1b">Linear, hub-and-spoke, open world? How does the player move through the space?</p>
         </div>
         <div class="cs-col reveal">
           <div class="cs-col-label">Technique</div>
-          <div class="cs-col-title" data-editable data-key="cs_flow_col2_title">Navigation & Wayfinding</div>
-          <p data-editable data-key="cs_flow_col2_body">How does the player know where to go? Environmental storytelling, lighting, color, landmark placement?</p>
+          <div class="cs-col-title" data-editable data-key="cs_fl2t">Navigation & Wayfinding</div>
+          <p data-editable data-key="cs_fl2b">How does the player know where to go? Lighting, color, landmarks, environmental storytelling?</p>
         </div>
       </div>
     </section>
@@ -319,8 +377,8 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-section-label">05 — Encounter Design</div>
       <h2 class="cs-section-title" data-editable data-key="cs_enc_title">Encounter Design</h2>
       <div class="cs-body" data-editable data-key="cs_enc_body">
-        <p>Walk through how you designed the key encounters — enemy placement, threat positioning, cover distribution, pacing between fights.</p>
-        <p>What was the design intent behind your toughest or most interesting encounter? What did you want players to learn or feel?</p>
+        <p>Walk through how you designed key encounters — enemy placement, threat positioning, cover, pacing.</p>
+        <p>What was the design intent behind your most interesting encounter? What did you want players to learn?</p>
       </div>
     </section>
 
@@ -329,19 +387,19 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-section-label">06 — Systems & Technical</div>
       <h2 class="cs-section-title" data-editable data-key="cs_sys_title">Systems & Technical Work</h2>
       <div class="cs-body" data-editable data-key="cs_sys_body">
-        <p>What technical work did you do? Blueprints, scripting, custom tools, AI behavior, triggers, level streaming?</p>
-        <p>What systems did you build or use to support the design? What was the most technically challenging part?</p>
+        <p>What technical work did you do? Blueprints, scripting, AI behavior, triggers, level streaming?</p>
+        <p>What was the most technically challenging part of this project?</p>
       </div>
       <div class="cs-two-col" style="margin-top:32px">
         <div class="cs-col reveal">
           <div class="cs-col-label">Technical</div>
-          <div class="cs-col-title" data-editable data-key="cs_sys_col1_title">Engine Work</div>
-          <p data-editable data-key="cs_sys_col1_body">What did you build in the engine? Blueprint scripts, AI behavior trees, custom events, level streaming setups?</p>
+          <div class="cs-col-title" data-editable data-key="cs_sy1t">Engine Work</div>
+          <p data-editable data-key="cs_sy1b">Blueprint scripts, AI behavior trees, custom events, level streaming, triggers?</p>
         </div>
         <div class="cs-col reveal">
           <div class="cs-col-label">Tooling</div>
-          <div class="cs-col-title" data-editable data-key="cs_sys_col2_title">Pipeline & Tools</div>
-          <p data-editable data-key="cs_sys_col2_body">What tools or pipeline did you establish? Documentation, version control, asset naming, folder structure?</p>
+          <div class="cs-col-title" data-editable data-key="cs_sy2t">Pipeline & Tools</div>
+          <p data-editable data-key="cs_sy2b">Documentation, version control, asset naming, folder structure, tools used?</p>
         </div>
       </div>
     </section>
@@ -353,13 +411,13 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
       <div class="cs-two-col">
         <div class="cs-col reveal">
           <div class="cs-col-label" style="color:#ff6b6b">✕ The Challenge</div>
-          <div class="cs-col-title" data-editable data-key="cs_ch_col1_title">Biggest Problem</div>
-          <p data-editable data-key="cs_ch_col1_body">What was the hardest thing you ran into on this project? A design problem, a technical wall, a scope issue?</p>
+          <div class="cs-col-title" data-editable data-key="cs_ch1t">Biggest Problem</div>
+          <p data-editable data-key="cs_ch1b">What was the hardest thing you ran into? Design problem, technical wall, scope issue?</p>
         </div>
         <div class="cs-col reveal">
           <div class="cs-col-label" style="color:var(--accent)">✓ The Solution</div>
-          <div class="cs-col-title" data-editable data-key="cs_ch_col2_title">How I Solved It</div>
-          <p data-editable data-key="cs_ch_col2_body">How did you work through it? What did you change, cut, or rethink? What would you do differently?</p>
+          <div class="cs-col-title" data-editable data-key="cs_ch2t">How I Solved It</div>
+          <p data-editable data-key="cs_ch2b">How did you work through it? What would you do differently next time?</p>
         </div>
       </div>
     </section>
@@ -367,345 +425,428 @@ body.edit-active .img-upload-zone:hover::after{opacity:1}
     <!-- 08 GALLERY -->
     <section class="cs-section reveal" id="gallery">
       <div class="cs-section-label">08 — Gallery</div>
-      <h2 class="cs-section-title" data-editable data-key="cs_gallery_title">Screenshots & Process</h2>
-      <div class="cs-gallery" id="csGallery">
-        <!-- Populated by JS -->
-      </div>
+      <h2 class="cs-section-title" data-editable data-key="cs_gal_title">Screenshots & Process</h2>
+      <div class="cs-gallery" id="csGallery"></div>
     </section>
 
   </main>
 </div>
 
-<!-- PROJECT NAV FOOTER -->
-<div class="project-nav-footer" id="projectNavFooter"></div>
+<!-- FOOTER NAV -->
+<div class="proj-nav" id="projNav"></div>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();lightboxNav(-1)">‹</button>
-  <img id="lightboxImg" src="" alt="">
-  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();lightboxNav(1)">›</button>
+<div class="lb" id="lb" onclick="lbClose()">
+  <button class="lb-nav lb-prev" onclick="event.stopPropagation();lbStep(-1)">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="" onclick="event.stopPropagation()">
+  <button class="lb-nav lb-next" onclick="event.stopPropagation();lbStep(1)">›</button>
+  <button class="lb-close" onclick="lbClose()">×</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<!-- TAG MODAL -->
+<div class="tag-modal" id="tagModal">
+  <div class="tag-modal-box">
+    <p class="tag-modal-title">Add Tag</p>
+    <input class="tag-modal-input" id="tagInput" placeholder="e.g. Tension, Horror, Wonder..." autocomplete="off">
+    <p class="tag-modal-hint">Separate multiple tags with commas. Press Enter to add.</p>
+    <div class="tag-modal-btns">
+      <button class="tag-modal-cancel" onclick="closeTagModal()">Cancel</button>
+      <button class="tag-modal-add" onclick="addTagsFromModal()">Add</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+// ════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════
 const ADMIN_PASS = 'rg2025admin'; // ← same as index.html
-const isLoggedIn = sessionStorage.getItem('rg_admin') === '1';
-let project = null;
-let allProjects = [];
-let projectId = 0;
+
+// ════════════════════════════════════
+// STATE
+// ════════════════════════════════════
+const isAdmin = sessionStorage.getItem('rg_admin') === '1';
+let allProjects = [], project = null;
+let projectId = parseInt(new URLSearchParams(location.search).get('id') || '0');
 let csData = {};
-let textEditOn = false;
-let imageEditOn = false;
-let galleryImages = [];
-let lightboxIndex = 0;
+let galleryImgs = []; // array of {src, file} | null
+let lbIndex = 0;
+let activeTagsId = null;
+let textOn = false, imagesOn = false, tagsOn = false;
 
-// =============================================
+const DEFAULT_TAGS = ['Tension','Exploration','Wonder','Dread','Relief','Challenge','Discovery'];
+
+// ════════════════════════════════════
 // BOOT
-// =============================================
+// ════════════════════════════════════
 document.addEventListener('DOMContentLoaded', async () => {
-  const params = new URLSearchParams(location.search);
-  projectId = parseInt(params.get('id') || '0');
-
-  await loadProjects();
-  loadCSData();
+  await loadData();
+  loadSaved();
   buildPage();
   initNav();
   initReveal();
   initSidebarSpy();
-
-  if (isLoggedIn) {
+  initFastScroll();
+  if (isAdmin) {
     document.getElementById('adminBar').classList.add('visible');
     document.body.classList.add('edit-active');
   }
 });
 
-// =============================================
+// ════════════════════════════════════
+// FAST SCROLL — JS-driven, no CSS lag
+// ════════════════════════════════════
+function initFastScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const offset = isAdmin ? 72 : 20;
+      const y = el.getBoundingClientRect().top + window.scrollY - offset;
+      // Fast smooth scroll: 400ms
+      smoothScrollTo(y, 400);
+    });
+  });
+}
+function smoothScrollTo(target, duration) {
+  const start = window.scrollY;
+  const dist = target - start;
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const ease = t < .5 ? 2*t*t : -1+(4-2*t)*t; // ease-in-out
+    window.scrollTo(0, start + dist * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ════════════════════════════════════
 // LOAD DATA
-// =============================================
-async function loadProjects() {
+// ════════════════════════════════════
+async function loadData() {
   const local = localStorage.getItem('rg_projects');
   if (local) { allProjects = JSON.parse(local); project = allProjects[projectId]; return; }
   try {
-    const res = await fetch('projects.json');
-    if (res.ok) { allProjects = await res.json(); localStorage.setItem('rg_projects', JSON.stringify(allProjects)); }
-  } catch(e) { allProjects = []; }
+    const r = await fetch('projects.json');
+    if (r.ok) { allProjects = await r.json(); localStorage.setItem('rg_projects', JSON.stringify(allProjects)); }
+  } catch(e) {}
   project = allProjects[projectId] || null;
 }
 
-function loadCSData() {
-  const key = `rg_cs_${projectId}`;
-  const saved = localStorage.getItem(key);
-  if (saved) csData = JSON.parse(saved);
-
+function loadSaved() {
+  const s = localStorage.getItem(`rg_cs_${projectId}`);
+  if (s) csData = JSON.parse(s);
   document.querySelectorAll('[data-editable]').forEach(el => {
     const k = el.dataset.key;
     if (k && csData[k] !== undefined) el.innerHTML = csData[k];
   });
 }
 
-// =============================================
+// ════════════════════════════════════
 // BUILD PAGE
-// =============================================
+// ════════════════════════════════════
 function buildPage() {
-  if (!project) {
-    document.getElementById('heroTitle').textContent = 'Project Not Found';
-    document.getElementById('breadcrumb-title').textContent = '404';
-    return;
-  }
-
-  // Meta
+  if (!project) { document.getElementById('heroTitle').textContent='Project not found'; return; }
   document.title = `${project.title} — Rodrigo Giliberti`;
   document.getElementById('breadcrumb-title').textContent = project.title;
-  document.getElementById('heroTitle').innerHTML = project.title.replace(' ','<br>');
+  document.getElementById('heroTitle').textContent = project.title;
 
   // Hero image
-  const img = document.getElementById('heroImg');
-  if (project._imageDataUrl || project.image) {
-    img.src = project._imageDataUrl || project.image;
-    img.style.display = 'block';
-    img.onerror = () => img.style.display = 'none';
-  }
+  const src = project._imageDataUrl || project.image;
+  if (src) { const img=document.getElementById('heroImg'); img.src=src; img.style.display='block'; img.onerror=()=>img.style.display='none'; }
 
-  // Tags
-  const tagsEl = document.getElementById('heroTags');
-  tagsEl.innerHTML = `<span class="project-tag highlight">${project.type||'Level Design'}</span>` +
+  // Hero tags
+  document.getElementById('heroTags').innerHTML =
+    `<span class="project-tag highlight">${project.type||'Level Design'}</span>` +
     (project.tags||[]).map(t=>`<span class="project-tag">${t}</span>`).join('');
 
-  // Meta row
+  // Hero meta
+  const eng = (project.tags||[]).find(t=>['UE5','Unity','UE4','Custom'].includes(t))||'—';
   document.getElementById('heroMeta').innerHTML = `
     <div class="meta-item"><span class="meta-label">Year</span><span class="meta-value">${project.year||'2024'}</span></div>
-    <div class="meta-item"><span class="meta-label">Engine</span><span class="meta-value">${(project.tags||[]).find(t=>['UE5','Unity','UE4'].includes(t))||'—'}</span></div>
-    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">${project.type||'Designer'}</span></div>
-  `;
+    <div class="meta-item"><span class="meta-label">Engine</span><span class="meta-value">${eng}</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">${project.type||'Designer'}</span></div>`;
+
+  // Year stat default
+  if (!csData['cs_s4n']) document.querySelector('[data-key="cs_s4n"]').textContent = project.year||'2024';
 
   // Sidebar project links
-  const linksEl = document.getElementById('sidebarProjectLinks');
-  linksEl.innerHTML = allProjects.map((p,i) => `
-    <a href="project.html?id=${i}" class="sidebar-proj-link ${i===projectId?'current':''}">
-      <span class="sidebar-proj-dot"></span>
-      ${p.title}
-    </a>
-  `).join('');
+  document.getElementById('sidebarProjectLinks').innerHTML =
+    allProjects.map((p,i)=>`
+      <a href="project.html?id=${i}" class="sidebar-proj-link ${i===projectId?'current':''}">
+        <span class="sidebar-proj-dot"></span>${p.title}
+      </a>`).join('');
 
-  // Player experience tags
-  const tagsRow = document.getElementById('csTags');
-  const expTags = ['Tension','Exploration','Wonder','Dread','Relief','Challenge','Discovery'];
-  tagsRow.innerHTML = expTags.map(t=>`<span class="cs-tag">${t}</span>`).join('');
+  // Experience tags
+  const savedTags = csData['exp_tags'] ? JSON.parse(csData['exp_tags']) : DEFAULT_TAGS;
+  buildTags('expTags', savedTags);
 
   // Gallery
-  buildGallery();
+  galleryImgs = csData['gallery'] ? JSON.parse(csData['gallery']) : Array(6).fill(null);
+  renderGallery();
 
   // Footer nav
-  buildFooterNav();
-
-  // stat 4 = year
-  const stat4 = document.querySelector('[data-key="cs_stat4_num"]');
-  if (stat4 && !csData['cs_stat4_num']) stat4.textContent = project.year || '2024';
+  const prev = allProjects[projectId-1], next = allProjects[projectId+1];
+  document.getElementById('projNav').innerHTML = `
+    ${prev ? `<a href="project.html?id=${projectId-1}" class="proj-nav-item"><span class="proj-nav-dir">← Previous</span><div class="proj-nav-title">${prev.title}</div></a>`
+           : `<div class="proj-nav-item" style="opacity:.25;pointer-events:none"><span class="proj-nav-dir">← Previous</span><div class="proj-nav-title" style="font-size:16px;font-family:'Space Mono',monospace">First project</div></div>`}
+    ${next ? `<a href="project.html?id=${projectId+1}" class="proj-nav-item" style="text-align:right"><span class="proj-nav-dir">Next →</span><div class="proj-nav-title">${next.title}</div></a>`
+           : `<div class="proj-nav-item" style="opacity:.25;pointer-events:none;text-align:right"><span class="proj-nav-dir">Next →</span><div class="proj-nav-title" style="font-size:16px;font-family:'Space Mono',monospace">Last project</div></div>`}`;
 }
 
-function buildGallery() {
-  const el = document.getElementById('csGallery');
-  galleryImages = (project.gallery || []);
-
-  // Always show 6 slots
-  const slots = 6;
-  let html = '';
-  for (let i = 0; i < slots; i++) {
-    const img = galleryImages[i];
-    html += `
-      <div class="gallery-item img-upload-zone" data-gallery-index="${i}" onclick="openLightbox(${i})">
-        ${img ? `<img src="${img.src||img}" alt="Screenshot ${i+1}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
-        <div class="gallery-placeholder" style="${img?'display:none':''}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px;opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        </div>
-        <div class="gallery-item-overlay">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-        </div>
-        ${isLoggedIn ? `<input type="file" class="img-upload-input" accept="image/*" data-slot="${i}" onclick="event.stopPropagation()">` : ''}
-      </div>
-    `;
-  }
-  el.innerHTML = html;
-
-  // Bind gallery image uploads
-  el.querySelectorAll('.img-upload-input').forEach(input => {
-    input.addEventListener('change', function() {
-      const file = this.files[0]; if (!file) return;
-      const slot = parseInt(this.dataset.slot);
-      const reader = new FileReader();
-      reader.onload = e => {
-        while (galleryImages.length <= slot) galleryImages.push(null);
-        galleryImages[slot] = { src: e.target.result, file: file.name };
-        if (!project.gallery) project.gallery = [];
-        project.gallery[slot] = galleryImages[slot];
-        localStorage.setItem('rg_projects', JSON.stringify(allProjects));
-        buildGallery();
-        showToast(`Gallery image ${slot+1} updated — upload ${file.name}`, 'success');
-      };
-      reader.readAsDataURL(file);
+// ════════════════════════════════════
+// TAGS
+// ════════════════════════════════════
+function buildTags(containerId, tags) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = tags.map((t,i) => `
+    <span class="cs-tag ${csData[`ta_${containerId}_${i}`]?'on':''}">
+      ${t}
+      <span class="tdel" onclick="event.stopPropagation();deleteTag('${containerId}',${i})">×</span>
+    </span>`).join('');
+  el.querySelectorAll('.cs-tag').forEach((tag,i) => {
+    tag.addEventListener('click', () => {
+      tag.classList.toggle('on');
+      csData[`ta_${containerId}_${i}`] = tag.classList.contains('on');
+      save();
     });
   });
 }
 
-function buildFooterNav() {
-  const prev = allProjects[projectId - 1];
-  const next = allProjects[projectId + 1];
-  const el = document.getElementById('projectNavFooter');
-  el.innerHTML = `
-    ${prev ? `<a href="project.html?id=${projectId-1}" class="project-nav-item"><span class="project-nav-dir">← Previous</span><div class="project-nav-title">${prev.title}</div></a>` : '<div class="project-nav-item" style="opacity:.3"><span class="project-nav-dir">← Previous</span><div class="project-nav-title" style="font-family:Space Mono,monospace;font-size:12px;color:var(--muted)">First project</div></div>'}
-    ${next ? `<a href="project.html?id=${projectId+1}" class="project-nav-item" style="text-align:right"><span class="project-nav-dir">Next →</span><div class="project-nav-title">${next.title}</div></a>` : '<div class="project-nav-item" style="opacity:.3;text-align:right"><span class="project-nav-dir">Next →</span><div class="project-nav-title" style="font-family:Space Mono,monospace;font-size:12px;color:var(--muted)">Last project</div></div>'}
-  `;
+function getTagList(containerId) {
+  return Array.from(document.getElementById(containerId).querySelectorAll('.cs-tag'))
+    .map(t => t.childNodes[0].textContent.trim());
 }
 
-// =============================================
-// NAV
-// =============================================
-function initNav() {
-  const nav = document.getElementById('topnav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
+function deleteTag(containerId, idx) {
+  const tags = getTagList(containerId);
+  tags.splice(idx, 1);
+  buildTags(containerId, tags);
+  persistTags(containerId, tags);
 }
 
-function initReveal() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e,i) => {
-      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}
-    });
-  },{threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function persistTags(containerId, tags) {
+  if (containerId === 'expTags') csData['exp_tags'] = JSON.stringify(tags);
+  save();
 }
 
-function initSidebarSpy() {
-  const sections = ['overview','goals','experience','flow','encounters','systems','challenges','gallery'];
-  const links = {};
-  sections.forEach(id => { links[id] = document.querySelector(`[data-section="${id}"]`); });
-
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        sections.forEach(id=>links[id]?.classList.remove('active'));
-        links[e.target.id]?.classList.add('active');
-      }
-    });
-  },{rootMargin:'-20% 0px -70% 0px'});
-  sections.forEach(id=>{ const el=document.getElementById(id); if(el)obs.observe(el); });
+// Tag modal
+function openTagModal(cid) {
+  activeTagsId = cid;
+  document.getElementById('tagInput').value = '';
+  document.getElementById('tagModal').classList.add('open');
+  setTimeout(() => document.getElementById('tagInput').focus(), 60);
 }
-
-// =============================================
-// LIGHTBOX
-// =============================================
-function openLightbox(idx) {
-  const imgs = galleryImages.filter(Boolean);
-  if (!imgs.length) return;
-  lightboxIndex = Math.min(idx, imgs.length-1);
-  const src = imgs[lightboxIndex]?.src || imgs[lightboxIndex];
-  if (!src) return;
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function closeTagModal() { document.getElementById('tagModal').classList.remove('open'); activeTagsId=null; }
+function addTagsFromModal() {
+  const raw = document.getElementById('tagInput').value.trim();
+  if (!raw || !activeTagsId) return;
+  const tags = getTagList(activeTagsId);
+  raw.split(',').map(t=>t.trim()).filter(Boolean).forEach(t=>{ if(!tags.includes(t)) tags.push(t); });
+  buildTags(activeTagsId, tags);
+  persistTags(activeTagsId, tags);
+  document.getElementById('tagInput').value = '';
+  showToast('Tag added','success');
 }
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function lightboxNav(dir) {
-  const imgs = galleryImages.filter(Boolean);
-  lightboxIndex = (lightboxIndex + dir + imgs.length) % imgs.length;
-  const src = imgs[lightboxIndex]?.src || imgs[lightboxIndex];
-  document.getElementById('lightboxImg').src = src;
-}
-document.addEventListener('keydown', e => {
-  if (e.key==='Escape') closeLightbox();
-  if (e.key==='ArrowLeft') lightboxNav(-1);
-  if (e.key==='ArrowRight') lightboxNav(1);
+document.getElementById('tagInput').addEventListener('keydown', e => {
+  if (e.key==='Enter') addTagsFromModal();
+  if (e.key==='Escape') closeTagModal();
+});
+document.getElementById('tagModal').addEventListener('click', e => {
+  if (e.target===document.getElementById('tagModal')) closeTagModal();
 });
 
-// =============================================
-// EDIT MODE
-// =============================================
-function toggleTextEdit() {
-  textEditOn = !textEditOn;
-  document.getElementById('btn-text').classList.toggle('active', textEditOn);
-  document.querySelectorAll('[data-editable]').forEach(el => {
-    el.contentEditable = textEditOn ? 'true' : 'false';
-    if (textEditOn) el.addEventListener('blur', saveEditable);
-    else el.removeEventListener('blur', saveEditable);
+// ════════════════════════════════════
+// GALLERY
+// ════════════════════════════════════
+function renderGallery() {
+  const el = document.getElementById('csGallery');
+  el.innerHTML = '';
+  galleryImgs.forEach((img, i) => {
+    const slot = document.createElement('div');
+    if (img) {
+      slot.className = 'gslot filled';
+      slot.innerHTML = `
+        <img src="${img.src||img}" alt="Screenshot ${i+1}" onerror="this.closest('.gslot').className='gslot empty';this.remove()">
+        <div class="gexpand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:30px;height:30px"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        <button class="gdel" onclick="event.stopPropagation();removeImg(${i})" title="Remove">×</button>`;
+      slot.addEventListener('click', () => openLightbox(i));
+    } else {
+      slot.className = 'gslot empty';
+      slot.innerHTML = `
+        <svg class="gempty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:28px;height:28px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="gempty-label">Upload Image</span>
+        <input type="file" accept="image/*" data-slot="${i}" title="Upload screenshot">`;
+      slot.querySelector('input').addEventListener('change', function() {
+        const file = this.files[0]; if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          galleryImgs[i] = { src: ev.target.result, file: file.name };
+          saveGallery();
+          renderGallery();
+          showToast(`Image added — also upload ${file.name} to images/projects/`, 'success');
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    el.appendChild(slot);
   });
-  showToast(textEditOn ? 'Text editing ON — click any text to edit' : 'Text editing OFF', 'success');
 }
 
-function saveEditable(e) {
-  const key = e.target.dataset.key;
-  if (key) {
-    csData[key] = e.target.innerHTML;
-    localStorage.setItem(`rg_cs_${projectId}`, JSON.stringify(csData));
-  }
+function removeImg(idx) {
+  if (!confirm('Remove this image?')) return;
+  galleryImgs[idx] = null;
+  saveGallery();
+  renderGallery();
 }
 
-function toggleImageEdit() {
-  imageEditOn = !imageEditOn;
-  document.getElementById('btn-images').classList.toggle('active', imageEditOn);
-
-  // Hero image input
-  const heroInput = document.getElementById('heroImgInput');
-  if (imageEditOn) {
-    heroInput.style.display = 'block';
-    heroInput.addEventListener('change', onHeroImageChange);
-    document.getElementById('heroImg').style.cursor = 'pointer';
-  } else {
-    heroInput.style.display = 'none';
-    document.getElementById('heroImg').style.cursor = '';
-  }
-
-  // Gallery inputs
-  document.querySelectorAll('.gallery-item .img-upload-input').forEach(input => {
-    input.style.display = imageEditOn ? 'block' : 'none';
-  });
-  showToast(imageEditOn ? 'Image editing ON — click any image to replace' : 'Image editing OFF', 'success');
+function addGallerySlot() {
+  galleryImgs.push(null);
+  saveGallery();
+  renderGallery();
+  showToast('Slot added — scroll to gallery to upload','success');
 }
 
-function onHeroImageChange() {
+function saveGallery() { csData['gallery']=JSON.stringify(galleryImgs); save(); }
+
+// ════════════════════════════════════
+// LIGHTBOX
+// ════════════════════════════════════
+function openLightbox(startIdx) {
+  const filled = galleryImgs.map((g,i)=>g?i:-1).filter(i=>i>=0);
+  if (!filled.length) return;
+  lbIndex = Math.max(0, filled.indexOf(startIdx));
+  showLb(filled);
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function showLb(filled) {
+  filled = filled || galleryImgs.map((g,i)=>g?i:-1).filter(i=>i>=0);
+  const g = galleryImgs[filled[lbIndex]];
+  document.getElementById('lbImg').src = g?.src || g;
+  document.getElementById('lbCount').textContent = `${lbIndex+1} / ${filled.length}`;
+}
+function lbClose() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
+function lbStep(dir) {
+  const filled = galleryImgs.map((g,i)=>g?i:-1).filter(i=>i>=0);
+  lbIndex = (lbIndex+dir+filled.length)%filled.length;
+  showLb(filled);
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lb');
+  if (e.key==='Escape') { lb.classList.contains('open')?lbClose():closeTagModal(); }
+  if (e.key==='ArrowLeft'  && lb.classList.contains('open')) lbStep(-1);
+  if (e.key==='ArrowRight' && lb.classList.contains('open')) lbStep(1);
+});
+
+// ════════════════════════════════════
+// HERO IMAGE
+// ════════════════════════════════════
+document.getElementById('heroImgInput').addEventListener('change', function() {
   const file = this.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = e => {
     const img = document.getElementById('heroImg');
-    img.src = e.target.result; img.style.display = 'block';
-    if (project) { project._heroImageDataUrl = e.target.result; project._heroImageFile = file.name; }
+    img.src=e.target.result; img.style.display='block';
+    if (project) { project._imageDataUrl=e.target.result; project._imageFile=file.name; }
     localStorage.setItem('rg_projects', JSON.stringify(allProjects));
-    showToast(`Hero image set — upload ${file.name}`, 'success');
+    showToast(`Hero image set — also upload ${file.name} to your repo`,'success');
   };
   reader.readAsDataURL(file);
+});
+
+// ════════════════════════════════════
+// EDIT MODES
+// ════════════════════════════════════
+function toggleMode(mode) {
+  if (mode==='text') {
+    textOn = !textOn;
+    document.getElementById('btn-text').classList.toggle('on', textOn);
+    document.querySelectorAll('[data-editable]').forEach(el => {
+      el.contentEditable = textOn ? 'true' : 'false';
+      if (textOn) el.addEventListener('blur', onBlur);
+      else el.removeEventListener('blur', onBlur);
+    });
+    showToast(textOn?'Click any text to edit it':'Text editing off','success');
+  }
+  if (mode==='images') {
+    imagesOn = !imagesOn;
+    document.getElementById('btn-images').classList.toggle('on', imagesOn);
+    showToast(imagesOn?'Use "Change Hero Image" btn below hero, or click empty gallery slots':'Image editing off','success');
+  }
+  if (mode==='tags') {
+    tagsOn = !tagsOn;
+    document.getElementById('btn-tags').classList.toggle('on', tagsOn);
+    showToast(tagsOn?'× to delete a tag, + Add Tag to add new ones':'Tag editing off','success');
+  }
 }
 
-function saveProject() {
-  // Collect all editable text
+function onBlur(e) {
+  const k = e.target.dataset.key;
+  if (k) { csData[k]=e.target.innerHTML; save(); }
+}
+
+// ════════════════════════════════════
+// SAVE / PERSIST / DOWNLOAD
+// ════════════════════════════════════
+function save() { localStorage.setItem(`rg_cs_${projectId}`, JSON.stringify(csData)); }
+
+function saveAll() {
   document.querySelectorAll('[data-editable]').forEach(el => {
-    const k = el.dataset.key;
-    if (k) csData[k] = el.innerHTML.trim();
+    const k=el.dataset.key; if(k) csData[k]=el.innerHTML.trim();
   });
-  localStorage.setItem(`rg_cs_${projectId}`, JSON.stringify(csData));
-
-  // Download cs data file
-  const exportData = { projectId, ...csData };
-  const blob = new Blob([JSON.stringify(exportData, null, 2)], {type:'application/json'});
+  csData['exp_tags'] = JSON.stringify(getTagList('expTags'));
+  csData['gallery'] = JSON.stringify(galleryImgs);
+  save();
+  const blob = new Blob([JSON.stringify({projectId,...csData},null,2)],{type:'application/json'});
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `project-${projectId}-content.json`;
-  a.click();
-  showToast(`project-${projectId}-content.json downloaded!`, 'success');
+  a.href=URL.createObjectURL(blob); a.download=`project-${projectId}-content.json`; a.click();
+  showToast(`project-${projectId}-content.json downloaded!`,'success');
 }
 
-function logout() {
-  sessionStorage.removeItem('rg_admin');
-  location.reload();
+function logout() { sessionStorage.removeItem('rg_admin'); location.reload(); }
+
+// ════════════════════════════════════
+// NAV & SIDEBAR SPY
+// ════════════════════════════════════
+function initNav() {
+  window.addEventListener('scroll',()=>
+    document.getElementById('topnav').classList.toggle('scrolled',window.scrollY>60),{passive:true});
+}
+function initSidebarSpy() {
+  const ids=['overview','goals','experience','flow','encounters','systems','challenges','gallery'];
+  const links={};
+  ids.forEach(id=>{ links[id]=document.querySelector(`[data-section="${id}"]`); });
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ids.forEach(id=>links[id]?.classList.remove('active'));links[e.target.id]?.classList.add('active');}
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  ids.forEach(id=>{ const el=document.getElementById(id); if(el) obs.observe(el); });
 }
 
-// =============================================
+// ════════════════════════════════════
+// REVEAL
+// ════════════════════════════════════
+function initReveal() {
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);obs.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ════════════════════════════════════
 // TOAST
-// =============================================
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
+// ════════════════════════════════════
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
   t.textContent=msg; t.className=`toast ${type} show`;
   setTimeout(()=>t.classList.remove('show'),4000);
 }
