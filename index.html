@@ -380,12 +380,12 @@ body.edit-mode-active .hero-media-box.has-media .hero-media-change-btn{display:f
 body.edit-mode-active .hero-media-box.has-media .hero-media-placeholder{display:none}
 
 /* =============================================
-   HERO LAYOUT EDIT MODE
+   LAYOUT EDIT MODE (all moveable elements)
    ============================================= */
-body.layout-edit-active .hero-left>*{position:relative;cursor:grab;transition:outline .15s;user-select:none}
-body.layout-edit-active .hero-left>*:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:5px}
-body.layout-edit-active .hero-left>*.layout-selected{outline:2px solid var(--accent) !important;outline-offset:5px}
-body.layout-edit-active .hero-left>*.layout-dragging{cursor:grabbing;opacity:.85;z-index:100}
+body.layout-edit-active [data-move-key]{cursor:grab;transition:outline .15s;user-select:none;position:relative}
+body.layout-edit-active [data-move-key]:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:6px}
+body.layout-edit-active [data-move-key].layout-selected{outline:2px solid var(--accent) !important;outline-offset:6px;z-index:50}
+body.layout-edit-active [data-move-key].layout-dragging{cursor:grabbing !important;opacity:.85;z-index:200}
 .layout-panel{position:fixed;bottom:90px;right:28px;z-index:9200;background:var(--bg2);border:1px solid var(--accent);padding:16px 18px;width:210px;display:none;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
 .layout-panel.visible{display:flex}
 .layout-panel-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
@@ -420,28 +420,29 @@ body.layout-edit-active .hero-left>*.layout-dragging{cursor:grabbing;opacity:.85
 body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
 
 /* =============================================
-   SEARCH BAR
+   SEARCH BAR (inside topnav)
    ============================================= */
 .nav-search-btn{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr);flex-shrink:0;padding:0}
 .nav-search-btn:hover,.nav-search-btn.active{border-color:var(--accent);color:var(--accent)}
 .nav-search-btn svg{width:14px;height:14px}
-.search-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:145;background:rgba(10,10,11,.97);border-bottom:1px solid var(--accent);backdrop-filter:blur(12px);padding:12px 48px;display:flex;align-items:center;gap:10px;transform:translateY(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1)}
-.search-bar-wrap.open{transform:translateY(0)}
-body.edit-mode-active .search-bar-wrap{top:52px}
-.search-bar-icon{color:var(--muted);flex-shrink:0}
-.search-bar-icon svg{width:15px;height:15px;display:block}
-.search-bar-input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:12px;padding:9px 14px;outline:none;transition:border-color var(--tr)}
-.search-bar-input:focus{border-color:var(--accent)}
-.search-bar-input::placeholder{color:var(--muted)}
-.search-count{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;min-width:70px;text-align:right}
-.search-nav-btn{background:none;border:1px solid var(--border);color:var(--muted);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;transition:all var(--tr);flex-shrink:0}
+/* search mode replaces nav-links inside the same fixed topnav */
+.nav-search-mode{display:none;flex:1;align-items:center;gap:10px;margin-left:24px}
+.topnav.search-open .nav-links{display:none}
+.topnav.search-open .nav-search-mode{display:flex}
+.nav-search-icon{color:var(--muted);flex-shrink:0;display:flex}
+.nav-search-icon svg{width:14px;height:14px}
+.nav-search-input{flex:1;background:var(--surface);border:1px solid var(--accent);color:var(--white);font-family:'Space Mono',monospace;font-size:12px;padding:8px 14px;outline:none;max-width:500px}
+.nav-search-input::placeholder{color:var(--muted)}
+.search-count{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;min-width:60px}
+.search-nav-btn{background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;transition:all var(--tr);flex-shrink:0}
 .search-nav-btn:hover{border-color:var(--accent);color:var(--accent)}
-.search-close-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0 4px;transition:color var(--tr);flex-shrink:0}
-.search-close-btn:hover{color:var(--danger)}
-.search-active-box{outline:2px solid var(--accent) !important;outline-offset:8px !important;border-radius:0 !important}
-@keyframes searchPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,.5)}60%{box-shadow:0 0 0 10px rgba(232,255,71,0)}}
+.nav-search-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 4px;transition:color var(--tr);flex-shrink:0}
+.nav-search-close:hover{color:var(--danger)}
+/* highlight found element */
+.search-active-box{outline:2px solid var(--accent) !important;outline-offset:8px !important}
+@keyframes searchPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,.5)}60%{box-shadow:0 0 0 12px rgba(232,255,71,0)}}
 .search-active-box{animation:searchPulse 1.6s ease infinite}
-@media(max-width:900px){.search-bar-wrap{padding:10px 20px}.search-count{display:none}}
+@media(max-width:900px){.nav-search-mode{margin-left:8px}.search-count{display:none}}
 </style>
 </head>
 <body>
@@ -508,7 +509,8 @@ body.edit-mode-active .search-bar-wrap{top:52px}
      ============================================= -->
 <nav class="topnav" id="topnav">
   <a href="#hero" class="nav-logo">Rodrigo Giliberti</a>
-  <ul class="nav-links">
+  <!-- Normal nav links -->
+  <ul class="nav-links" id="navLinks">
     <li><a href="#projects">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -519,22 +521,21 @@ body.edit-mode-active .search-bar-wrap{top:52px}
       </a>
     </li>
     <li>
-      <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" title="Search">
+      <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" title="Search site">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
     </li>
   </ul>
+  <!-- Search mode (replaces nav links, inside same fixed nav) -->
+  <div class="nav-search-mode" id="navSearchMode">
+    <span class="nav-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <input type="text" class="nav-search-input" id="searchInput" placeholder="Search anything on this site..." autocomplete="off">
+    <span class="search-count" id="searchCount"></span>
+    <button class="search-nav-btn" onclick="cycleMatch(-1)" title="Previous">&#8593;</button>
+    <button class="search-nav-btn" onclick="cycleMatch(1)" title="Next">&#8595;</button>
+    <button class="nav-search-close" onclick="toggleSearch()" title="Close">&times;</button>
+  </div>
 </nav>
-
-<!-- Search bar (slides down from top) -->
-<div class="search-bar-wrap" id="searchBarWrap">
-  <span class="search-bar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-  <input type="text" class="search-bar-input" id="searchInput" placeholder="Search anything on this site..." autocomplete="off">
-  <span class="search-count" id="searchCount"></span>
-  <button class="search-nav-btn" onclick="cycleMatch(-1)" title="Previous">&#8593;</button>
-  <button class="search-nav-btn" onclick="cycleMatch(1)" title="Next">&#8595;</button>
-  <button class="search-close-btn" onclick="toggleSearch()" title="Close">&times;</button>
-</div>
 
 <!-- Layout panel (hero free move/scale) -->
 <div class="layout-panel" id="layoutPanel">
@@ -939,6 +940,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initSkillBars();
   initCounter();
+  initAutoEditIds();   // assign auto IDs before loadEditData restores content
   loadEditData();
   loadLayoutData();
   loadHeroMedia();
@@ -950,7 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('searchInput').addEventListener('input', e => searchSite(e.target.value));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      if (document.getElementById('searchBarWrap').classList.contains('open')) toggleSearch();
+      if (document.getElementById('topnav').classList.contains('search-open')) toggleSearch();
       if (document.getElementById('adminLoginPopup').classList.contains('open'))
         document.getElementById('adminLoginPopup').classList.remove('open');
     }
@@ -1128,8 +1130,8 @@ function toggleEditMode(mode) {
 }
 
 function disableAllEditModes() {
-  // Text
-  document.querySelectorAll('[data-editable]').forEach(el => {
+  // Text — clear ALL editable elements (both data-editable and auto-assigned)
+  document.querySelectorAll('[data-editable],[data-edit-id],' + ALL_TEXT_SELECTORS).forEach(el => {
     el.contentEditable = 'false';
     el.classList.remove('editing');
     el.removeEventListener('blur', onEditableBlur);
@@ -1149,18 +1151,61 @@ function disableAllEditModes() {
   document.querySelectorAll('.admin-bar-btn').forEach(b => b.classList.remove('active'));
 }
 
-// ---- TEXT EDIT ----
+// ---- TEXT EDIT — covers ALL content text ----
+// Sections + selectors for every visible text element
+const ALL_TEXT_SELECTORS = [
+  // Hero
+  '.hero-tag','.hero-title span','.hero-title em span','.hero-desc',
+  '.btn-primary','.btn-ghost',
+  '.stat-number','.stat-label','.badge-text',
+  '.hero-overlay-label','.hero-overlay-big','.hero-media-text-overlay',
+  // About
+  '.about-heading','.about-body',
+  '.skill-bar-name','.skill-bar-meta','.skill-tag',
+  '.section-label','.timeline-year','.timeline-title','.timeline-desc',
+  // Projects (dynamic, handled via data-editable on render)
+  '.project-name','.project-desc','.project-tag',
+  // Lessons
+  '.lessons-title','.lessons-intro','.lesson-title','.lesson-col p',
+  // Playing
+  '.playing-type','.playing-title','.playing-desc','.playing-tag',
+  // Contact
+  '.contact-big','.contact-sub','.contact-item-label','.contact-item-value',
+  // Footer
+  '.footer-copy','.footer-credit',
+].join(',');
+
+function initAutoEditIds() {
+  let idx = 0;
+  document.querySelectorAll(ALL_TEXT_SELECTORS).forEach(el => {
+    if (!el.dataset.key && !el.dataset.editId) {
+      el.dataset.editId = `auto_${idx}`;
+    }
+    idx++;
+  });
+}
+
 function enableTextEdit() {
-  document.querySelectorAll('[data-editable]').forEach(el => {
+  // All elements matching the broad selector list
+  document.querySelectorAll(ALL_TEXT_SELECTORS).forEach(el => {
+    // skip elements inside .admin-bar or .topnav chrome (except search overlay)
+    if (el.closest('.admin-bar') || el.closest('.side-nav')) return;
     el.contentEditable = 'true';
     el.classList.add('editing');
     el.addEventListener('blur', onEditableBlur);
     el.addEventListener('focus', function(){ this.classList.add('editing'); });
   });
+  // Also cover any existing [data-editable] not caught above
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    if (el.closest('.admin-bar') || el.closest('.side-nav')) return;
+    el.contentEditable = 'true';
+    el.classList.add('editing');
+    el.addEventListener('blur', onEditableBlur);
+  });
 }
 
 function onEditableBlur(e) {
-  const key = e.target.dataset.key;
+  const key = e.target.dataset.key || e.target.dataset.editId;
   if (key) {
     editData[key] = e.target.innerHTML;
     localStorage.setItem('rg_editdata', JSON.stringify(editData));
@@ -1299,8 +1344,14 @@ function loadEditData() {
   const saved = localStorage.getItem('rg_editdata');
   if (saved) {
     editData = JSON.parse(saved);
+    // Restore data-key elements
     document.querySelectorAll('[data-editable]').forEach(el => {
       const key = el.dataset.key;
+      if (key && editData[key] !== undefined) el.innerHTML = editData[key];
+    });
+    // Restore auto-edit-id elements
+    document.querySelectorAll('[data-edit-id]').forEach(el => {
+      const key = el.dataset.editId;
       if (key && editData[key] !== undefined) el.innerHTML = editData[key];
     });
     // Restore skill bar percentages
@@ -1403,6 +1454,16 @@ function renderProjects() {
   // If image edit mode is active, show overlays
   if (editMode === 'images') {
     grid.querySelectorAll('.img-edit-overlay').forEach(o => o.style.display='flex');
+  }
+  // Assign move keys to newly rendered cards & apply saved layout
+  assignMoveKeys();
+  applyLayoutData();
+  // If layout mode is active, re-register new cards
+  if (editMode === 'layout') {
+    grid.querySelectorAll('.project-card[data-move-key]').forEach(el => {
+      el.addEventListener('mousedown', onLayoutMouseDown, true);
+      if (!moveableEls.includes(el)) moveableEls.push(el);
+    });
   }
 }
 
@@ -1622,14 +1683,32 @@ function addMarqueeItem() {
 }
 
 // =============================================
-// HERO LAYOUT EDIT (move & scale)
+// LAYOUT EDIT — move & scale ANY element
 // =============================================
 let layoutData = {};
 let layoutSelected = null;
 let layoutDragging = false;
 let layoutDragStartX, layoutDragStartY, layoutElemStartX, layoutElemStartY;
+let moveableEls = []; // all registered moveable elements
 
-const LAYOUT_KEYS = ['hero-tag','hero-title','hero-desc','hero-cta','hero-stats'];
+// Which elements can be moved — comprehensive list
+const MOVEABLE_QUERY = [
+  '.hero-left > *',
+  '.hero-media-box',
+  '.hero-overlay-text',
+  '.about-left > .about-heading',
+  '.about-left > .about-body',
+  '.about-left > .skill-bars',
+  '.about-left > .skills-tags-row',
+  '.about-right > .timeline',
+  '.project-card',
+  '.lesson-card',
+  '.playing-card',
+  '.contact-left > .contact-big',
+  '.contact-left > .contact-sub',
+  '.contact-right > .contact-info',
+  '.contact-right > .social-links',
+].join(',');
 
 function loadLayoutData() {
   const s = localStorage.getItem('rg_hero_layout');
@@ -1638,114 +1717,138 @@ function loadLayoutData() {
 }
 
 function applyLayoutData() {
-  const heroLeft = document.querySelector('.hero-left');
-  if (!heroLeft) return;
-  Array.from(heroLeft.children).forEach((el, i) => {
-    const key = LAYOUT_KEYS[i] || `hero-el-${i}`;
-    el.dataset.layoutKey = key;
-    const d = layoutData[key];
+  document.querySelectorAll('[data-move-key]').forEach(el => {
+    const d = layoutData[el.dataset.moveKey];
     if (d) el.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`;
   });
 }
 
+function assignMoveKeys() {
+  document.querySelectorAll(MOVEABLE_QUERY).forEach((el, i) => {
+    if (!el.dataset.moveKey) {
+      el.dataset.moveKey = el.dataset.key || el.id || `mvk-${i}`;
+    }
+  });
+}
+
 function enableLayoutEdit() {
+  assignMoveKeys();
   document.body.classList.add('layout-edit-active');
-  const heroLeft = document.querySelector('.hero-left');
-  if (!heroLeft) return;
-  Array.from(heroLeft.children).forEach((el, i) => {
-    const key = LAYOUT_KEYS[i] || `hero-el-${i}`;
-    el.dataset.layoutKey = key;
-    el.addEventListener('mousedown', onLayoutMouseDown);
+  moveableEls = Array.from(document.querySelectorAll(MOVEABLE_QUERY));
+  moveableEls.forEach(el => {
+    // Apply any saved transform
+    const d = layoutData[el.dataset.moveKey];
+    if (d) el.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`;
+    el.addEventListener('mousedown', onLayoutMouseDown, true);
   });
   document.getElementById('layoutPanel').classList.add('visible');
+  showToast('Click any element to select, then drag to move', 'success');
 }
 
 function disableLayoutEdit() {
   document.body.classList.remove('layout-edit-active');
-  document.querySelectorAll('.hero-left > *').forEach(el => {
-    el.removeEventListener('mousedown', onLayoutMouseDown);
+  moveableEls.forEach(el => {
+    el.removeEventListener('mousedown', onLayoutMouseDown, true);
     el.classList.remove('layout-selected','layout-dragging');
   });
-  document.getElementById('layoutPanel').classList.remove('visible');
-  layoutSelected = null; layoutDragging = false;
-  document.removeEventListener('mousemove', onLayoutMouseMove);
-  document.removeEventListener('mouseup', onLayoutMouseUp);
+  moveableEls = [];
+  const panel = document.getElementById('layoutPanel');
+  if (panel) panel.classList.remove('visible');
+  layoutSelected = null;
+  layoutDragging = false;
+  document.removeEventListener('mousemove', onLayoutMouseMove, true);
+  document.removeEventListener('mouseup', onLayoutMouseUp, true);
 }
 
 function onLayoutMouseDown(e) {
-  if (e.target.closest('[data-editable]') && e.target.closest('[data-editable]').contentEditable === 'true') return;
+  // Don't intercept clicks on contenteditable elements in text mode
+  const editable = e.target.closest('[contenteditable="true"]');
+  if (editable) return;
+  // Don't intercept file inputs, buttons in admin bar
+  if (e.target.closest('.admin-bar') || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+
   const el = e.currentTarget;
-  // select it
-  document.querySelectorAll('.hero-left > .layout-selected').forEach(x => x.classList.remove('layout-selected'));
+  // deselect previous
+  document.querySelectorAll('.layout-selected').forEach(x => x.classList.remove('layout-selected'));
   layoutSelected = el;
   el.classList.add('layout-selected');
-  const key = el.dataset.layoutKey;
-  const d = layoutData[key] || {x:0, y:0, scale:1};
-  layoutData[key] = d;
+
+  const key = el.dataset.moveKey;
+  if (!layoutData[key]) layoutData[key] = {x:0, y:0, scale:1};
+  const d = layoutData[key];
   layoutElemStartX = d.x || 0;
   layoutElemStartY = d.y || 0;
   layoutDragStartX = e.clientX;
   layoutDragStartY = e.clientY;
   layoutDragging = false;
+
   updateLayoutPanel(key, d);
-  document.addEventListener('mousemove', onLayoutMouseMove);
-  document.addEventListener('mouseup', onLayoutMouseUp);
+
+  document.addEventListener('mousemove', onLayoutMouseMove, true);
+  document.addEventListener('mouseup', onLayoutMouseUp, true);
   e.preventDefault();
+  e.stopPropagation();
 }
 
 function onLayoutMouseMove(e) {
   if (!layoutSelected) return;
   const dx = e.clientX - layoutDragStartX;
   const dy = e.clientY - layoutDragStartY;
-  if (!layoutDragging && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+  if (!layoutDragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
     layoutDragging = true;
     layoutSelected.classList.add('layout-dragging');
   }
   if (!layoutDragging) return;
-  const key = layoutSelected.dataset.layoutKey;
+  const key = layoutSelected.dataset.moveKey;
   const d = layoutData[key];
   d.x = layoutElemStartX + dx;
   d.y = layoutElemStartY + dy;
   layoutSelected.style.transform = `translate(${d.x}px,${d.y}px) scale(${d.scale||1})`;
-  document.getElementById('layoutPanelPos').textContent = `x: ${Math.round(d.x)}  y: ${Math.round(d.y)}`;
+  const pos = document.getElementById('layoutPanelPos');
+  if (pos) pos.textContent = `x: ${Math.round(d.x)}  y: ${Math.round(d.y)}`;
+  e.preventDefault();
 }
 
-function onLayoutMouseUp() {
+function onLayoutMouseUp(e) {
   if (layoutSelected) {
     layoutSelected.classList.remove('layout-dragging');
-    if (layoutDragging) {
-      localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
-    }
+    if (layoutDragging) localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
   }
   layoutDragging = false;
-  document.removeEventListener('mousemove', onLayoutMouseMove);
-  document.removeEventListener('mouseup', onLayoutMouseUp);
+  document.removeEventListener('mousemove', onLayoutMouseMove, true);
+  document.removeEventListener('mouseup', onLayoutMouseUp, true);
 }
 
 function onLayoutScale(val) {
   if (!layoutSelected) return;
-  const key = layoutSelected.dataset.layoutKey;
-  const d = layoutData[key] || {x:0, y:0, scale:1};
+  const key = layoutSelected.dataset.moveKey;
+  if (!layoutData[key]) layoutData[key] = {x:0, y:0, scale:1};
+  const d = layoutData[key];
   d.scale = parseFloat(val);
-  layoutData[key] = d;
   layoutSelected.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale})`;
-  document.getElementById('layoutScaleVal').textContent = d.scale.toFixed(2) + 'x';
+  const sv = document.getElementById('layoutScaleVal');
+  if (sv) sv.textContent = d.scale.toFixed(2) + 'x';
   localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
 }
 
 function updateLayoutPanel(key, d) {
-  document.getElementById('layoutPanelTitle').textContent = key;
-  document.getElementById('layoutPanelPos').textContent = `x: ${Math.round(d.x||0)}  y: ${Math.round(d.y||0)}`;
-  document.getElementById('layoutScaleSlider').value = d.scale || 1;
-  document.getElementById('layoutScaleVal').textContent = (d.scale||1).toFixed(2) + 'x';
-  document.getElementById('layoutPanelReset').onclick = () => {
+  const title = document.getElementById('layoutPanelTitle');
+  const pos   = document.getElementById('layoutPanelPos');
+  const slider= document.getElementById('layoutScaleSlider');
+  const sv    = document.getElementById('layoutScaleVal');
+  const reset = document.getElementById('layoutPanelReset');
+  if (title)  title.textContent  = key;
+  if (pos)    pos.textContent    = `x: ${Math.round(d.x||0)}  y: ${Math.round(d.y||0)}`;
+  if (slider) slider.value       = d.scale || 1;
+  if (sv)     sv.textContent     = (d.scale||1).toFixed(2) + 'x';
+  if (reset)  reset.onclick = () => {
     layoutData[key] = {x:0, y:0, scale:1};
     localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
-    if (layoutSelected && layoutSelected.dataset.layoutKey === key) {
-      layoutSelected.style.transform = '';
+    if (layoutSelected && layoutSelected.dataset.moveKey === key) {
+      layoutSelected.style.transform = 'translate(0px,0px) scale(1)';
       updateLayoutPanel(key, {x:0, y:0, scale:1});
     }
-    showToast('Element reset', 'success');
+    showToast('Element reset to original position', 'success');
   };
 }
 
@@ -1756,17 +1859,17 @@ let searchMatches = [];
 let searchCurrentIdx = -1;
 
 function toggleSearch() {
-  const wrap = document.getElementById('searchBarWrap');
-  const btn  = document.getElementById('navSearchBtn');
-  const isOpen = wrap.classList.contains('open');
+  const nav = document.getElementById('topnav');
+  const btn = document.getElementById('navSearchBtn');
+  const isOpen = nav.classList.contains('search-open');
   if (isOpen) {
     clearSearchState();
-    wrap.classList.remove('open');
-    btn.classList.remove('active');
+    nav.classList.remove('search-open');
+    if (btn) btn.classList.remove('active');
   } else {
-    wrap.classList.add('open');
-    btn.classList.add('active');
-    setTimeout(() => document.getElementById('searchInput').focus(), 150);
+    nav.classList.add('search-open');
+    if (btn) btn.classList.add('active');
+    setTimeout(() => { const inp = document.getElementById('searchInput'); if (inp) inp.focus(); }, 80);
   }
 }
 
