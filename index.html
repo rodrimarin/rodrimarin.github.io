@@ -389,21 +389,39 @@ body.layout-edit-active [data-move-key].layout-dragging{cursor:grabbing !importa
 /* =============================================
    TYPOGRAPHY TOOLBAR
    ============================================= */
-.typo-toolbar{position:fixed;z-index:9300;background:var(--bg2);border:1px solid var(--accent);padding:8px 12px;display:none;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.7);pointer-events:auto;flex-wrap:wrap;max-width:420px}
+.typo-toolbar{position:fixed;z-index:9300;background:var(--bg2);border:1px solid var(--accent);box-shadow:0 10px 40px rgba(0,0,0,.85);min-width:560px;display:none;flex-direction:column;overflow:hidden;border-radius:2px}
 .typo-toolbar.visible{display:flex}
-.typo-font-select{background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:10px;padding:5px 8px;cursor:pointer;outline:none;min-width:140px;transition:border-color var(--tr)}
+.typo-titlebar{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(232,255,71,.06);border-bottom:1px solid var(--border);cursor:grab;user-select:none;gap:10px}
+.typo-titlebar:active{cursor:grabbing}
+.typo-titlebar-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);flex:1;text-align:center}
+.typo-drag-dots{display:flex;gap:3px;align-items:center;flex-shrink:0}
+.typo-drag-dots span{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+.typo-row{display:flex;align-items:center;gap:10px;padding:12px 16px;flex-wrap:wrap}
+.typo-row+.typo-row{border-top:1px solid var(--border)}
+.typo-font-select{background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:10px;padding:8px 10px;cursor:pointer;outline:none;min-width:160px;transition:border-color var(--tr)}
 .typo-font-select:focus{border-color:var(--accent)}
 .typo-font-select option{background:var(--bg2);color:var(--white)}
-.typo-size-wrap{display:flex;align-items:center;gap:4px}
+.typo-size-wrap{display:flex;align-items:center;gap:6px}
 .typo-size-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap}
-.typo-size-input{width:54px;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:11px;padding:5px 8px;outline:none;text-align:center;transition:border-color var(--tr)}
+.typo-size-input{width:60px;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:11px;padding:8px 8px;outline:none;text-align:center;transition:border-color var(--tr)}
 .typo-size-input:focus{border-color:var(--accent)}
-.typo-size-range{width:72px;accent-color:var(--accent);cursor:pointer}
-.typo-sep{width:1px;height:22px;background:var(--border);flex-shrink:0}
-.typo-btn{background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;font-weight:700;transition:all var(--tr);flex-shrink:0}
+.typo-size-range{width:90px;accent-color:var(--accent);cursor:pointer}
+.typo-sep{width:1px;height:28px;background:var(--border);flex-shrink:0}
+.typo-btn{background:none;border:1px solid var(--border);color:var(--muted);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:700;transition:all var(--tr);flex-shrink:0}
 .typo-btn:hover{border-color:var(--accent);color:var(--accent)}
 .typo-btn.on{border-color:var(--accent);color:var(--accent);background:rgba(232,255,71,.08)}
-.typo-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 2px;transition:color var(--tr);margin-left:4px}
+.typo-color-wrap{display:flex;align-items:center;gap:6px}
+.typo-color-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap}
+.typo-color-swatch{width:34px;height:34px;border:1px solid var(--border);cursor:pointer;background:none;position:relative;overflow:hidden;transition:border-color var(--tr);flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0}
+.typo-color-swatch:hover{border-color:var(--accent)}
+.typo-color-swatch input[type=color]{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);border:none;cursor:pointer;opacity:0}
+.typo-color-preview{position:absolute;inset:4px;pointer-events:none;border-radius:1px}
+.typo-align-group{display:flex;gap:3px}
+.typo-lh-wrap,.typo-ls-wrap{display:flex;align-items:center;gap:6px}
+.typo-lh-label,.typo-ls-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap}
+.typo-lh-input,.typo-ls-input{width:60px;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:11px;padding:8px 8px;outline:none;text-align:center;transition:border-color var(--tr)}
+.typo-lh-input:focus,.typo-ls-input:focus{border-color:var(--accent)}
+.typo-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:2px 4px;transition:color var(--tr);line-height:1;flex-shrink:0}
 .typo-close:hover{color:var(--danger)}
 /* style-edit: show outline on focused text element in text-edit mode */
 body.edit-mode-active [data-editable]:focus,
@@ -562,29 +580,65 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
 
 <!-- Typography toolbar (shows when editing a text element) -->
 <div class="typo-toolbar" id="typoToolbar">
-  <select class="typo-font-select" id="typoFont" onchange="typoApplyFont(this.value)">
-    <option value="">— Font —</option>
-    <option value="'Bebas Neue',sans-serif">Bebas Neue</option>
-    <option value="'DM Sans',sans-serif">DM Sans</option>
-    <option value="'Space Mono',monospace">Space Mono</option>
-    <option value="'Playfair Display',serif">Playfair Display</option>
-    <option value="'Oswald',sans-serif">Oswald</option>
-    <option value="'Raleway',sans-serif">Raleway</option>
-    <option value="'Syne',sans-serif">Syne</option>
-    <option value="'Anton',sans-serif">Anton</option>
-    <option value="'Roboto Mono',monospace">Roboto Mono</option>
-  </select>
-  <div class="typo-sep"></div>
-  <div class="typo-size-wrap">
-    <span class="typo-size-label">Size</span>
-    <input type="number" class="typo-size-input" id="typoSizeInput" min="8" max="300" placeholder="px" oninput="typoApplySize(this.value)">
-    <input type="range" class="typo-size-range" id="typoSizeRange" min="8" max="200" value="16" oninput="typoSyncRange(this.value)">
+  <!-- Drag handle / title bar -->
+  <div class="typo-titlebar" id="typoTitlebar">
+    <div class="typo-drag-dots">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <span class="typo-titlebar-label">Typography</span>
+    <button class="typo-close" onclick="hideTypoToolbar()" title="Close">&#xD7;</button>
   </div>
-  <div class="typo-sep"></div>
-  <button class="typo-btn" id="typoBlod" onclick="typoToggle('fontWeight','700','400')" title="Bold"><b>B</b></button>
-  <button class="typo-btn" id="typoItalic" onclick="typoToggle('fontStyle','italic','normal')" title="Italic"><i>I</i></button>
-  <button class="typo-btn" id="typoUpper" onclick="typoToggle('textTransform','uppercase','none')" title="UPPERCASE">AA</button>
-  <button class="typo-close" onclick="hideTypoToolbar()" title="Close">&#xD7;</button>
+  <!-- Row 1: Font + Size -->
+  <div class="typo-row">
+    <select class="typo-font-select" id="typoFont" onchange="typoApplyFont(this.value)">
+      <option value="">— Font —</option>
+      <option value="'Bebas Neue',sans-serif">Bebas Neue</option>
+      <option value="'DM Sans',sans-serif">DM Sans</option>
+      <option value="'Space Mono',monospace">Space Mono</option>
+      <option value="'Playfair Display',serif">Playfair Display</option>
+      <option value="'Oswald',sans-serif">Oswald</option>
+      <option value="'Raleway',sans-serif">Raleway</option>
+      <option value="'Syne',sans-serif">Syne</option>
+      <option value="'Anton',sans-serif">Anton</option>
+      <option value="'Roboto Mono',monospace">Roboto Mono</option>
+    </select>
+    <div class="typo-sep"></div>
+    <div class="typo-size-wrap">
+      <span class="typo-size-label">Size</span>
+      <input type="number" class="typo-size-input" id="typoSizeInput" min="8" max="300" placeholder="px" oninput="typoApplySize(this.value)">
+      <input type="range" class="typo-size-range" id="typoSizeRange" min="8" max="200" value="16" oninput="typoSyncRange(this.value)">
+    </div>
+  </div>
+  <!-- Row 2: Style + Color + Align + Line-height + Letter-spacing -->
+  <div class="typo-row">
+    <button class="typo-btn" id="typoBlod" onclick="typoToggle('fontWeight','700','400')" title="Bold"><b>B</b></button>
+    <button class="typo-btn" id="typoItalic" onclick="typoToggle('fontStyle','italic','normal')" title="Italic"><i>I</i></button>
+    <button class="typo-btn" id="typoUpper" onclick="typoToggle('textTransform','uppercase','none')" title="UPPERCASE">AA</button>
+    <div class="typo-sep"></div>
+    <div class="typo-color-wrap">
+      <span class="typo-color-label">Color</span>
+      <div class="typo-color-swatch" title="Text color">
+        <div class="typo-color-preview" id="typoColorPreview" style="background:#e8e8e0"></div>
+        <input type="color" id="typoColor" value="#e8e8e0" oninput="typoApplyColor(this.value)">
+      </div>
+    </div>
+    <div class="typo-sep"></div>
+    <div class="typo-align-group">
+      <button class="typo-btn" id="typoAlignL" onclick="typoSetAlign('left')" title="Align left">&#8676;</button>
+      <button class="typo-btn" id="typoAlignC" onclick="typoSetAlign('center')" title="Center">&#8596;</button>
+      <button class="typo-btn" id="typoAlignR" onclick="typoSetAlign('right')" title="Align right">&#8677;</button>
+    </div>
+    <div class="typo-sep"></div>
+    <div class="typo-lh-wrap">
+      <span class="typo-lh-label">LH</span>
+      <input type="number" class="typo-lh-input" id="typoLH" min="0.5" max="5" step="0.1" placeholder="1.5" oninput="typoApplyLineH(this.value)" title="Line height">
+    </div>
+    <div class="typo-ls-wrap">
+      <span class="typo-ls-label">LS</span>
+      <input type="number" class="typo-ls-input" id="typoLS" min="-5" max="30" step="0.05" placeholder="0" oninput="typoApplyLetterSpacing(this.value)" title="Letter spacing (em)">
+    </div>
+  </div>
 </div>
 
 <!-- Layout panel (hero free move/scale) -->
@@ -998,6 +1052,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadProjects().then(() => {
     if (isLoggedIn) showAdminBar();
   });
+  initTypoToolbarDrag();
   // Search input listener
   document.getElementById('searchInput').addEventListener('input', e => searchSite(e.target.value));
   document.addEventListener('keydown', e => {
@@ -1924,34 +1979,90 @@ function updateLayoutPanel(key, d) {
 // TYPOGRAPHY TOOLBAR
 // =============================================
 let typoTarget = null; // currently focused editable element
+let _tybDrag = null;   // toolbar drag state
+
+function initTypoToolbarDrag() {
+  const tb  = document.getElementById('typoToolbar');
+  const bar = document.getElementById('typoTitlebar');
+  if (!bar) return;
+  bar.addEventListener('mousedown', e => {
+    if (e.target.tagName === 'BUTTON') return;
+    e.preventDefault();
+    const rect = tb.getBoundingClientRect();
+    _tybDrag = { ox: e.clientX - rect.left, oy: e.clientY - rect.top };
+    document.addEventListener('mousemove', _typoMove);
+    document.addEventListener('mouseup', _typoUp, { once: true });
+  });
+}
+function _typoMove(e) {
+  if (!_tybDrag) return;
+  const tb = document.getElementById('typoToolbar');
+  const x = Math.max(0, Math.min(window.innerWidth  - tb.offsetWidth,  e.clientX - _tybDrag.ox));
+  const y = Math.max(0, Math.min(window.innerHeight - tb.offsetHeight, e.clientY - _tybDrag.oy));
+  tb.style.left = x + 'px';
+  tb.style.top  = y + 'px';
+  tb.dataset.dragged = '1';
+}
+function _typoUp() { _tybDrag = null; document.removeEventListener('mousemove', _typoMove); }
 
 function showTypoToolbar(el) {
   typoTarget = el;
   const tb = document.getElementById('typoToolbar');
-  // Position above the element
-  const rect = el.getBoundingClientRect();
-  const top = Math.max(60, rect.top + window.scrollY - 54);
-  const left = Math.min(window.innerWidth - 430, Math.max(8, rect.left));
-  tb.style.top  = top + 'px';
-  tb.style.left = left + 'px';
+  // Position near the element if not manually dragged yet
+  if (!tb.dataset.dragged) {
+    const rect = el.getBoundingClientRect();
+    const top  = Math.max(60, rect.top + window.scrollY - tb.offsetHeight - 10);
+    const left = Math.min(window.innerWidth - 580, Math.max(8, rect.left));
+    tb.style.top  = top + 'px';
+    tb.style.left = left + 'px';
+  }
   tb.classList.add('visible');
 
-  // Sync controls to current element styles
-  const cs = window.getComputedStyle(el);
+  // Sync all controls to current element styles
+  const cs  = window.getComputedStyle(el);
   const fontSel = document.getElementById('typoFont');
   const sizeInp = document.getElementById('typoSizeInput');
   const sizeRng = document.getElementById('typoSizeRange');
-  // match font family
-  const ff = el.style.fontFamily || cs.fontFamily;
-  fontSel.value = matchFontOption(fontSel, ff);
-  // match size
+
+  fontSel.value = matchFontOption(fontSel, el.style.fontFamily || cs.fontFamily);
+
   const sz = parseInt(el.style.fontSize || cs.fontSize) || 16;
   sizeInp.value = sz;
   sizeRng.value = Math.min(200, sz);
-  // match toggles
-  document.getElementById('typoBlod').classList.toggle('on', (el.style.fontWeight||cs.fontWeight) === '700' || parseInt(el.style.fontWeight||cs.fontWeight) >= 700);
-  document.getElementById('typoItalic').classList.toggle('on', (el.style.fontStyle||cs.fontStyle) === 'italic');
-  document.getElementById('typoUpper').classList.toggle('on', (el.style.textTransform||cs.textTransform) === 'uppercase');
+
+  document.getElementById('typoBlod').classList.toggle('on',
+    parseInt(el.style.fontWeight || cs.fontWeight) >= 700);
+  document.getElementById('typoItalic').classList.toggle('on',
+    (el.style.fontStyle || cs.fontStyle) === 'italic');
+  document.getElementById('typoUpper').classList.toggle('on',
+    (el.style.textTransform || cs.textTransform) === 'uppercase');
+
+  // Color
+  const col = el.style.color || cs.color;
+  const hexCol = rgbToHex(col) || '#e8e8e0';
+  document.getElementById('typoColor').value = hexCol;
+  document.getElementById('typoColorPreview').style.background = hexCol;
+
+  // Line-height
+  const lhRaw = el.style.lineHeight || cs.lineHeight;
+  document.getElementById('typoLH').value = lhRaw && lhRaw !== 'normal' ? parseFloat(lhRaw) : '';
+
+  // Letter-spacing
+  const lsRaw = el.style.letterSpacing || cs.letterSpacing;
+  document.getElementById('typoLS').value = lsRaw && lsRaw !== 'normal' ? parseFloat(lsRaw) : '';
+
+  // Alignment
+  const ta = el.style.textAlign || cs.textAlign;
+  ['L','C','R'].forEach(a => {
+    const map = {L:'left', C:'center', R:'right'};
+    document.getElementById('typoAlign'+a).classList.toggle('on', ta === map[a]);
+  });
+}
+
+function rgbToHex(rgb) {
+  const m = (rgb || '').match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  if (!m) return null;
+  return '#' + [m[1],m[2],m[3]].map(n => parseInt(n).toString(16).padStart(2,'0')).join('');
 }
 
 function matchFontOption(sel, ff) {
@@ -1962,7 +2073,9 @@ function matchFontOption(sel, ff) {
 }
 
 function hideTypoToolbar() {
-  document.getElementById('typoToolbar').classList.remove('visible');
+  const tb = document.getElementById('typoToolbar');
+  tb.classList.remove('visible');
+  tb.dataset.dragged = '';
   typoTarget = null;
 }
 
@@ -1992,10 +2105,38 @@ function typoToggle(prop, onVal, offVal) {
   const cur = typoTarget.style[prop] || cs[prop];
   const isOn = cur === onVal || (prop === 'fontWeight' && parseInt(cur) >= 700 && onVal === '700');
   typoTarget.style[prop] = isOn ? offVal : onVal;
-  // update button state
-  const btnMap = {fontWeight:'typoBlod', fontStyle:'typoItalic', textTransform:'typoUpper'};
+  const btnMap = { fontWeight:'typoBlod', fontStyle:'typoItalic', textTransform:'typoUpper' };
   const btn = document.getElementById(btnMap[prop]);
   if (btn) btn.classList.toggle('on', !isOn);
+  saveTypoStyle(typoTarget);
+}
+
+function typoApplyColor(val) {
+  if (!typoTarget || !val) return;
+  typoTarget.style.color = val;
+  document.getElementById('typoColorPreview').style.background = val;
+  saveTypoStyle(typoTarget);
+}
+
+function typoSetAlign(val) {
+  if (!typoTarget) return;
+  typoTarget.style.textAlign = val;
+  ['L','C','R'].forEach(a => {
+    const map = {L:'left', C:'center', R:'right'};
+    document.getElementById('typoAlign'+a).classList.toggle('on', val === map[a]);
+  });
+  saveTypoStyle(typoTarget);
+}
+
+function typoApplyLineH(val) {
+  if (!typoTarget) return;
+  typoTarget.style.lineHeight = val ? parseFloat(val) : '';
+  saveTypoStyle(typoTarget);
+}
+
+function typoApplyLetterSpacing(val) {
+  if (!typoTarget) return;
+  typoTarget.style.letterSpacing = val !== '' ? parseFloat(val) + 'em' : '';
   saveTypoStyle(typoTarget);
 }
 
@@ -2008,12 +2149,15 @@ function saveTypoStyle(el) {
     fontWeight:    el.style.fontWeight    || '',
     fontStyle:     el.style.fontStyle     || '',
     textTransform: el.style.textTransform || '',
+    color:         el.style.color         || '',
+    textAlign:     el.style.textAlign     || '',
+    lineHeight:    el.style.lineHeight    || '',
+    letterSpacing: el.style.letterSpacing || '',
   };
   localStorage.setItem('rg_editdata', JSON.stringify(editData));
 }
 
 function loadTypoStyles() {
-  // Re-apply saved typography styles to all elements
   document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => {
     const key = el.dataset.key || el.dataset.editId;
     if (!key) return;
@@ -2024,6 +2168,10 @@ function loadTypoStyles() {
     if (s.fontWeight)    el.style.fontWeight     = s.fontWeight;
     if (s.fontStyle)     el.style.fontStyle      = s.fontStyle;
     if (s.textTransform) el.style.textTransform  = s.textTransform;
+    if (s.color)         el.style.color          = s.color;
+    if (s.textAlign)     el.style.textAlign      = s.textAlign;
+    if (s.lineHeight)    el.style.lineHeight     = s.lineHeight;
+    if (s.letterSpacing) el.style.letterSpacing  = s.letterSpacing;
   });
 }
 
