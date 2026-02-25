@@ -9,7 +9,7 @@
 <meta property="og:description" content="Game Designer and Level Designer with 4 years of experience.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600&family=Raleway:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Anton&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 /* =============================================
    VARIABLES & RESET
@@ -386,6 +386,29 @@ body.layout-edit-active [data-move-key]{cursor:grab;transition:outline .15s;user
 body.layout-edit-active [data-move-key]:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:6px}
 body.layout-edit-active [data-move-key].layout-selected{outline:2px solid var(--accent) !important;outline-offset:6px;z-index:50}
 body.layout-edit-active [data-move-key].layout-dragging{cursor:grabbing !important;opacity:.85;z-index:200}
+/* =============================================
+   TYPOGRAPHY TOOLBAR
+   ============================================= */
+.typo-toolbar{position:fixed;z-index:9300;background:var(--bg2);border:1px solid var(--accent);padding:8px 12px;display:none;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.7);pointer-events:auto;flex-wrap:wrap;max-width:420px}
+.typo-toolbar.visible{display:flex}
+.typo-font-select{background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:10px;padding:5px 8px;cursor:pointer;outline:none;min-width:140px;transition:border-color var(--tr)}
+.typo-font-select:focus{border-color:var(--accent)}
+.typo-font-select option{background:var(--bg2);color:var(--white)}
+.typo-size-wrap{display:flex;align-items:center;gap:4px}
+.typo-size-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap}
+.typo-size-input{width:54px;background:var(--surface);border:1px solid var(--border);color:var(--white);font-family:'Space Mono',monospace;font-size:11px;padding:5px 8px;outline:none;text-align:center;transition:border-color var(--tr)}
+.typo-size-input:focus{border-color:var(--accent)}
+.typo-size-range{width:72px;accent-color:var(--accent);cursor:pointer}
+.typo-sep{width:1px;height:22px;background:var(--border);flex-shrink:0}
+.typo-btn{background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;font-weight:700;transition:all var(--tr);flex-shrink:0}
+.typo-btn:hover{border-color:var(--accent);color:var(--accent)}
+.typo-btn.on{border-color:var(--accent);color:var(--accent);background:rgba(232,255,71,.08)}
+.typo-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 2px;transition:color var(--tr);margin-left:4px}
+.typo-close:hover{color:var(--danger)}
+/* style-edit: show outline on focused text element in text-edit mode */
+body.edit-mode-active [data-editable]:focus,
+body.edit-mode-active [data-edit-id]:focus{outline:2px solid var(--accent);outline-offset:3px}
+
 .layout-panel{position:fixed;bottom:90px;right:28px;z-index:9200;background:var(--bg2);border:1px solid var(--accent);padding:16px 18px;width:210px;display:none;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
 .layout-panel.visible{display:flex}
 .layout-panel-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
@@ -537,6 +560,33 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
   </div>
 </nav>
 
+<!-- Typography toolbar (shows when editing a text element) -->
+<div class="typo-toolbar" id="typoToolbar">
+  <select class="typo-font-select" id="typoFont" onchange="typoApplyFont(this.value)">
+    <option value="">— Font —</option>
+    <option value="'Bebas Neue',sans-serif">Bebas Neue</option>
+    <option value="'DM Sans',sans-serif">DM Sans</option>
+    <option value="'Space Mono',monospace">Space Mono</option>
+    <option value="'Playfair Display',serif">Playfair Display</option>
+    <option value="'Oswald',sans-serif">Oswald</option>
+    <option value="'Raleway',sans-serif">Raleway</option>
+    <option value="'Syne',sans-serif">Syne</option>
+    <option value="'Anton',sans-serif">Anton</option>
+    <option value="'Roboto Mono',monospace">Roboto Mono</option>
+  </select>
+  <div class="typo-sep"></div>
+  <div class="typo-size-wrap">
+    <span class="typo-size-label">Size</span>
+    <input type="number" class="typo-size-input" id="typoSizeInput" min="8" max="300" placeholder="px" oninput="typoApplySize(this.value)">
+    <input type="range" class="typo-size-range" id="typoSizeRange" min="8" max="200" value="16" oninput="typoSyncRange(this.value)">
+  </div>
+  <div class="typo-sep"></div>
+  <button class="typo-btn" id="typoBlod" onclick="typoToggle('fontWeight','700','400')" title="Bold"><b>B</b></button>
+  <button class="typo-btn" id="typoItalic" onclick="typoToggle('fontStyle','italic','normal')" title="Italic"><i>I</i></button>
+  <button class="typo-btn" id="typoUpper" onclick="typoToggle('textTransform','uppercase','none')" title="UPPERCASE">AA</button>
+  <button class="typo-close" onclick="hideTypoToolbar()" title="Close">&#xD7;</button>
+</div>
+
 <!-- Layout panel (hero free move/scale) -->
 <div class="layout-panel" id="layoutPanel">
   <span class="layout-panel-title" id="layoutPanelTitle">Select an element</span>
@@ -604,7 +654,7 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
       <div class="hero-shape shape-2"></div>
       <div class="hero-shape shape-3"></div>
       <div class="hero-overlay-text">
-        <p class="hero-overlay-label" data-editable data-key="hero_overlay_label">// Invictus Games Studio</p>
+        <p class="hero-overlay-label" data-editable data-key="hero_overlay_label">// Rodrigo Giliberti</p>
         <p class="hero-overlay-big" data-editable data-key="hero_overlay_big">GAME<br>DESIGN</p>
       </div>
     </div>
@@ -941,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillBars();
   initCounter();
   initAutoEditIds();   // assign auto IDs before loadEditData restores content
-  loadEditData();
+  loadEditData();      // restores text content + typo styles
   loadLayoutData();
   loadHeroMedia();
   loadEngineBadges();
@@ -1135,7 +1185,9 @@ function disableAllEditModes() {
     el.contentEditable = 'false';
     el.classList.remove('editing');
     el.removeEventListener('blur', onEditableBlur);
+    el.removeEventListener('focus', onTextEditFocus);
   });
+  hideTypoToolbar();
   // Image overlays (project cards)
   document.querySelectorAll('.img-edit-overlay').forEach(o => o.remove());
   // Skill handles
@@ -1186,22 +1238,22 @@ function initAutoEditIds() {
 }
 
 function enableTextEdit() {
-  // All elements matching the broad selector list
-  document.querySelectorAll(ALL_TEXT_SELECTORS).forEach(el => {
-    // skip elements inside .admin-bar or .topnav chrome (except search overlay)
+  const allEls = new Set();
+  document.querySelectorAll(ALL_TEXT_SELECTORS + ',[data-editable]').forEach(el => {
     if (el.closest('.admin-bar') || el.closest('.side-nav')) return;
+    allEls.add(el);
+  });
+  allEls.forEach(el => {
     el.contentEditable = 'true';
     el.classList.add('editing');
     el.addEventListener('blur', onEditableBlur);
-    el.addEventListener('focus', function(){ this.classList.add('editing'); });
+    el.addEventListener('focus', onTextEditFocus);
   });
-  // Also cover any existing [data-editable] not caught above
-  document.querySelectorAll('[data-editable]').forEach(el => {
-    if (el.closest('.admin-bar') || el.closest('.side-nav')) return;
-    el.contentEditable = 'true';
-    el.classList.add('editing');
-    el.addEventListener('blur', onEditableBlur);
-  });
+}
+
+function onTextEditFocus(e) {
+  e.target.classList.add('editing');
+  showTypoToolbar(e.target);
 }
 
 function onEditableBlur(e) {
@@ -1359,6 +1411,8 @@ function loadEditData() {
       const pct = editData[`skill_${idx+1}_pct`];
       if (pct !== undefined) fill.dataset.width = pct;
     });
+    // Restore typography styles
+    loadTypoStyles();
   }
 }
 
@@ -1468,7 +1522,7 @@ function renderProjects() {
 }
 
 // =============================================
-// SAVE & DOWNLOAD
+// SAVE & DOWNLOAD 
 // =============================================
 function saveAndDownload() {
   // Collect all editable text
@@ -1736,13 +1790,27 @@ function enableLayoutEdit() {
   document.body.classList.add('layout-edit-active');
   moveableEls = Array.from(document.querySelectorAll(MOVEABLE_QUERY));
   moveableEls.forEach(el => {
-    // Apply any saved transform
+    // CRITICAL FIX: Freeze CSS animations so they don't override inline transform.
+    // animation-fill-mode:forwards can block our style.transform in some browsers.
+    const cs = window.getComputedStyle(el);
+    if (cs.animationName && cs.animationName !== 'none') {
+      el.style.opacity  = cs.opacity;   // preserve current opacity
+      el.style.animation = 'none';       // kill animation (it already played)
+    }
+    // Also freeze reveal transitions
+    if (el.classList.contains('reveal') || el.classList.contains('visible')) {
+      el.style.opacity = cs.opacity;
+    }
+    // Apply saved position OR set explicit starting transform (removes animation-layer transform)
     const d = layoutData[el.dataset.moveKey];
-    if (d) el.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`;
+    el.style.transform = d
+      ? `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`
+      : 'translate(0px,0px) scale(1)';
+
     el.addEventListener('mousedown', onLayoutMouseDown, true);
   });
   document.getElementById('layoutPanel').classList.add('visible');
-  showToast('Click any element to select, then drag to move', 'success');
+  showToast('Click element → drag to move • Scale slider to resize', 'success');
 }
 
 function disableLayoutEdit() {
@@ -1850,6 +1918,113 @@ function updateLayoutPanel(key, d) {
     }
     showToast('Element reset to original position', 'success');
   };
+}
+
+// =============================================
+// TYPOGRAPHY TOOLBAR
+// =============================================
+let typoTarget = null; // currently focused editable element
+
+function showTypoToolbar(el) {
+  typoTarget = el;
+  const tb = document.getElementById('typoToolbar');
+  // Position above the element
+  const rect = el.getBoundingClientRect();
+  const top = Math.max(60, rect.top + window.scrollY - 54);
+  const left = Math.min(window.innerWidth - 430, Math.max(8, rect.left));
+  tb.style.top  = top + 'px';
+  tb.style.left = left + 'px';
+  tb.classList.add('visible');
+
+  // Sync controls to current element styles
+  const cs = window.getComputedStyle(el);
+  const fontSel = document.getElementById('typoFont');
+  const sizeInp = document.getElementById('typoSizeInput');
+  const sizeRng = document.getElementById('typoSizeRange');
+  // match font family
+  const ff = el.style.fontFamily || cs.fontFamily;
+  fontSel.value = matchFontOption(fontSel, ff);
+  // match size
+  const sz = parseInt(el.style.fontSize || cs.fontSize) || 16;
+  sizeInp.value = sz;
+  sizeRng.value = Math.min(200, sz);
+  // match toggles
+  document.getElementById('typoBlod').classList.toggle('on', (el.style.fontWeight||cs.fontWeight) === '700' || parseInt(el.style.fontWeight||cs.fontWeight) >= 700);
+  document.getElementById('typoItalic').classList.toggle('on', (el.style.fontStyle||cs.fontStyle) === 'italic');
+  document.getElementById('typoUpper').classList.toggle('on', (el.style.textTransform||cs.textTransform) === 'uppercase');
+}
+
+function matchFontOption(sel, ff) {
+  for (const opt of sel.options) {
+    if (opt.value && ff.includes(opt.value.replace(/'/g,'').split(',')[0].trim())) return opt.value;
+  }
+  return '';
+}
+
+function hideTypoToolbar() {
+  document.getElementById('typoToolbar').classList.remove('visible');
+  typoTarget = null;
+}
+
+function typoApplyFont(val) {
+  if (!typoTarget || !val) return;
+  typoTarget.style.fontFamily = val;
+  saveTypoStyle(typoTarget);
+}
+
+function typoApplySize(val) {
+  if (!typoTarget || !val) return;
+  const sz = Math.max(8, Math.min(300, parseInt(val)));
+  typoTarget.style.fontSize = sz + 'px';
+  document.getElementById('typoSizeRange').value = Math.min(200, sz);
+  document.getElementById('typoSizeInput').value = sz;
+  saveTypoStyle(typoTarget);
+}
+
+function typoSyncRange(val) {
+  document.getElementById('typoSizeInput').value = val;
+  typoApplySize(val);
+}
+
+function typoToggle(prop, onVal, offVal) {
+  if (!typoTarget) return;
+  const cs = window.getComputedStyle(typoTarget);
+  const cur = typoTarget.style[prop] || cs[prop];
+  const isOn = cur === onVal || (prop === 'fontWeight' && parseInt(cur) >= 700 && onVal === '700');
+  typoTarget.style[prop] = isOn ? offVal : onVal;
+  // update button state
+  const btnMap = {fontWeight:'typoBlod', fontStyle:'typoItalic', textTransform:'typoUpper'};
+  const btn = document.getElementById(btnMap[prop]);
+  if (btn) btn.classList.toggle('on', !isOn);
+  saveTypoStyle(typoTarget);
+}
+
+function saveTypoStyle(el) {
+  const key = el.dataset.key || el.dataset.editId;
+  if (!key) return;
+  editData[key + '__style'] = {
+    fontFamily:    el.style.fontFamily    || '',
+    fontSize:      el.style.fontSize      || '',
+    fontWeight:    el.style.fontWeight    || '',
+    fontStyle:     el.style.fontStyle     || '',
+    textTransform: el.style.textTransform || '',
+  };
+  localStorage.setItem('rg_editdata', JSON.stringify(editData));
+}
+
+function loadTypoStyles() {
+  // Re-apply saved typography styles to all elements
+  document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => {
+    const key = el.dataset.key || el.dataset.editId;
+    if (!key) return;
+    const s = editData[key + '__style'];
+    if (!s) return;
+    if (s.fontFamily)    el.style.fontFamily    = s.fontFamily;
+    if (s.fontSize)      el.style.fontSize      = s.fontSize;
+    if (s.fontWeight)    el.style.fontWeight     = s.fontWeight;
+    if (s.fontStyle)     el.style.fontStyle      = s.fontStyle;
+    if (s.textTransform) el.style.textTransform  = s.textTransform;
+  });
 }
 
 // =============================================
