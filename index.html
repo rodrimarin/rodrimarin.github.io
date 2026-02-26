@@ -484,9 +484,95 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
 @keyframes searchPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,.5)}60%{box-shadow:0 0 0 12px rgba(232,255,71,0)}}
 .search-active-box{animation:searchPulse 1.6s ease infinite}
 @media(max-width:900px){.nav-search-mode{margin-left:8px}.search-count{display:none}}
+
+/* =============================================
+   GRAIN TEXTURE
+   ============================================= */
+body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:300px 300px}
+
+/* =============================================
+   LOADING SCREEN
+   ============================================= */
+#loadScreen{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s ease,visibility .6s ease}
+#loadScreen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.ls-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,255,71,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,255,71,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.ls-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,58px);color:var(--white);letter-spacing:.06em;position:relative;z-index:1}
+.ls-logo em{color:var(--accent);font-style:normal}
+.ls-bar-wrap{width:min(340px,80vw);height:2px;background:var(--border);overflow:hidden;position:relative;z-index:1}
+.ls-bar{height:100%;width:0%;background:var(--accent);box-shadow:0 0 10px rgba(232,255,71,.6);transition:width .06s linear}
+.ls-text{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);min-height:1.2em;position:relative;z-index:1}
+
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+body.has-cursor,body.has-cursor *{cursor:none !important}
+#cursorDot{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99997;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .12s}
+#cursorRing{position:fixed;width:34px;height:34px;border:1.5px solid rgba(232,255,71,.45);border-radius:50%;pointer-events:none;z-index:99996;transform:translate(-50%,-50%);transition:width .18s,height .18s,border-color .18s,background .18s}
+body.cursor-hover #cursorDot{width:8px;height:8px;background:#fff}
+body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);background:rgba(232,255,71,.05)}
+@media(max-width:900px){#cursorDot,#cursorRing{display:none}}
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+#scrollProg{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:9099;pointer-events:none;box-shadow:0 0 8px rgba(232,255,71,.5)}
+
+/* =============================================
+   GLITCH ANIMATION
+   ============================================= */
+@keyframes glitchFlicker{
+  0%,87%,100%{text-shadow:none}
+  88%{text-shadow:-3px 0 rgba(255,0,68,.85),3px 0 rgba(0,255,200,.75)}
+  90%{text-shadow:3px 0 rgba(255,0,68,.75),-3px 0 rgba(0,255,200,.85)}
+  92%{text-shadow:-2px 0 rgba(255,0,68,.6),2px 0 rgba(0,255,200,.6)}
+  93%,95%{text-shadow:none}
+  94%{text-shadow:-1px 0 rgba(255,0,68,.5),1px 0 rgba(0,255,200,.5)}
+  96%{text-shadow:2px 0 rgba(255,0,68,.4),-2px 0 rgba(0,255,200,.4)}
+  98%{text-shadow:none}
+}
+
+/* =============================================
+   HERO PARTICLE CANVAS
+   ============================================= */
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+/* =============================================
+   RPG SKILL BARS
+   ============================================= */
+.skill-bar-track{height:6px !important;background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) calc(25% - 1px),rgba(10,10,11,.6) calc(25% - 1px),rgba(10,10,11,.6) 25%) !important}
+.skill-xp-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid;margin-left:8px;vertical-align:middle}
+.skill-xp-tag.lv1{color:var(--muted);border-color:var(--border)}
+.skill-xp-tag.lv2{color:#60a5fa;border-color:rgba(96,165,250,.3)}
+.skill-xp-tag.lv3{color:#a78bfa;border-color:rgba(167,139,250,.3)}
+.skill-xp-tag.lv4{color:var(--accent);border-color:rgba(232,255,71,.4);box-shadow:0 0 6px rgba(232,255,71,.12)}
+
+/* =============================================
+   PROJECT CARD SHINE SWEEP
+   ============================================= */
+.project-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.055) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .65s ease;pointer-events:none;z-index:1}
+.project-card:hover::after{background-position:-50% 0}
+
+/* playing card shine */
+.playing-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(232,255,71,.04) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .7s ease;pointer-events:none;z-index:1}
+.playing-card:hover::after{background-position:-50% 0}
 </style>
 </head>
 <body>
+
+<!-- Loading Screen -->
+<div id="loadScreen">
+  <div class="ls-grid"></div>
+  <div class="ls-logo">RG<em>.</em>PORTFOLIO</div>
+  <div class="ls-bar-wrap"><div class="ls-bar" id="lsBar"></div></div>
+  <div class="ls-text" id="lsText">INITIALIZING...</div>
+</div>
+
+<!-- Custom Cursor -->
+<div id="cursorDot"></div>
+<div id="cursorRing"></div>
+
+<!-- Scroll Progress -->
+<div id="scrollProg"></div>
 
 <!-- =============================================
      SIDE NAV
@@ -708,6 +794,7 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
   </div>
   <div class="hero-right">
     <div class="hero-visual">
+      <canvas id="heroCanvas"></canvas>
       <div class="hero-grid-bg"></div>
       <div class="hero-glow-el"></div>
       <div class="hero-shape shape-1"></div>
@@ -2307,6 +2394,212 @@ function clearSearchState() {
   document.getElementById('searchInput').value = '';
   document.getElementById('searchCount').textContent = '';
 }
+
+// =============================================
+// LOADING SCREEN
+// =============================================
+(function initLoadScreen() {
+  const screen = document.getElementById('loadScreen');
+  const bar    = document.getElementById('lsBar');
+  const text   = document.getElementById('lsText');
+  const steps  = ['INITIALIZING...','LOADING ASSETS...','COMPILING WORLDS...','READY.'];
+  let progress = 0, stepIdx = 0;
+  function tick() {
+    progress += Math.random() * 14 + 5;
+    if (progress > 100) progress = 100;
+    bar.style.width = progress + '%';
+    const si = Math.min(steps.length - 1, Math.floor(progress / (100 / steps.length)));
+    if (si !== stepIdx) { stepIdx = si; text.textContent = steps[stepIdx]; }
+    if (progress < 100) {
+      setTimeout(tick, 70 + Math.random() * 90);
+    } else {
+      text.textContent = 'READY.';
+      setTimeout(() => {
+        screen.classList.add('hidden');
+        // activate glitch on title after screen fades
+        setTimeout(() => {
+          const title = document.querySelector('.hero-title');
+          if (title) {
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+            title.style.animation = 'glitchFlicker 8s ease-in-out infinite';
+          }
+        }, 650);
+      }, 500);
+    }
+  }
+  setTimeout(tick, 200);
+})();
+
+// =============================================
+// CUSTOM CURSOR
+// =============================================
+(function initCursor() {
+  if (window.matchMedia('(max-width:900px)').matches) return;
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+  document.body.classList.add('has-cursor');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+  (function lerpRing() {
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+  const hoverSel = 'a,button,[data-editable],[data-edit-id],.project-card,.skill-tag,.playing-card,.lesson-card,.social-link';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover');
+  });
+})();
+
+// =============================================
+// SCROLL PROGRESS BAR
+// =============================================
+(function initScrollProg() {
+  const bar = document.getElementById('scrollProg');
+  if (!bar) return;
+  function update() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// =============================================
+// HERO MOUSE PARALLAX
+// =============================================
+(function initHeroParallax() {
+  const hero   = document.getElementById('hero');
+  if (!hero) return;
+  const shape1 = hero.querySelector('.shape-1');
+  const shape2 = hero.querySelector('.shape-2');
+  const shape3 = hero.querySelector('.shape-3');
+  const glow   = hero.querySelector('.hero-glow-el');
+  let t1={x:0,y:0},t2={x:0,y:0},t3={x:0,y:0},tg={x:0,y:0};
+  let c1={x:0,y:0},c2={x:0,y:0},c3={x:0,y:0},cg={x:0,y:0};
+  document.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    const ox = (e.clientX / window.innerWidth  - .5) * 2;
+    const oy = (e.clientY / window.innerHeight - .5) * 2;
+    t1 = { x: ox * 20,  y: oy * 14 };
+    t2 = { x:-ox * 28,  y:-oy * 18 };
+    t3 = { x: ox * 9,   y: oy * 6  };
+    tg = { x: ox * 16,  y: oy * 11 };
+  });
+  const L = (a, b) => a + (b - a) * .06;
+  (function loop() {
+    c1.x=L(c1.x,t1.x); c1.y=L(c1.y,t1.y);
+    c2.x=L(c2.x,t2.x); c2.y=L(c2.y,t2.y);
+    c3.x=L(c3.x,t3.x); c3.y=L(c3.y,t3.y);
+    cg.x=L(cg.x,tg.x); cg.y=L(cg.y,tg.y);
+    if(shape1) shape1.style.transform = `translate(${c1.x}px,${c1.y}px) rotate(${c1.x*.3}deg)`;
+    if(shape2) shape2.style.transform = `translate(${c2.x}px,${c2.y}px) rotate(${-c2.x*.4}deg)`;
+    if(shape3) shape3.style.transform = `translate(${c3.x}px,${c3.y}px) rotate(${c3.x*.2}deg)`;
+    if(glow)   glow.style.transform   = `translate(calc(-50% + ${cg.x}px),calc(-50% + ${cg.y}px))`;
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// =============================================
+// HERO PARTICLE CANVAS (blueprint nodes)
+// =============================================
+(function initParticles() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0;
+  const pts = [];
+  let mouse = { x: -999, y: -999 };
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+    H = canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+  }
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+
+  for (let i = 0; i < 65; i++) {
+    pts.push({
+      x:  Math.random() * 800, y:  Math.random() * 900,
+      vx: (Math.random() - .5) * .45, vy: (Math.random() - .5) * .45,
+      r:  Math.random() * 1.5 + .5,   ph: Math.random() * Math.PI * 2,
+    });
+  }
+
+  const hero = document.getElementById('hero');
+  if (hero) {
+    hero.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.x = mouse.y = -999; });
+  }
+
+  (function draw() {
+    if (!W || !H) { resize(); requestAnimationFrame(draw); return; }
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const dm = Math.hypot(dx, dy);
+      if (dm < 170 && dm > 0) { p.vx += dx/dm*.003; p.vy += dy/dm*.003; }
+      p.vx *= .984; p.vy *= .984;
+      p.x  += p.vx;  p.y  += p.vy; p.ph += .018;
+      if (p.x < 0) p.x = W; else if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; else if (p.y > H) p.y = 0;
+      for (let j = i + 1; j < pts.length; j++) {
+        const q  = pts[j];
+        const dd = Math.hypot(q.x - p.x, q.y - p.y);
+        if (dd < 115) {
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(232,255,71,${(1 - dd/115) * .17})`;
+          ctx.lineWidth = .5; ctx.stroke();
+        }
+      }
+      const a = .3 + Math.sin(p.ph) * .18;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r + Math.sin(p.ph) * .4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(232,255,71,${a})`; ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+
+// =============================================
+// RPG XP SKILL TAGS
+// =============================================
+(function initSkillXP() {
+  document.querySelectorAll('.skill-bar-item').forEach(item => {
+    const fill = item.querySelector('.skill-bar-fill');
+    if (!fill) return;
+    const pct = parseInt(fill.dataset.width) || 0;
+    let lv, tag;
+    if      (pct >= 80) { lv = 'lv4'; tag = '▲ Master'; }
+    else if (pct >= 60) { lv = 'lv3'; tag = '▲ Expert'; }
+    else if (pct >= 40) { lv = 'lv2'; tag = '▲ Skilled'; }
+    else                { lv = 'lv1'; tag = '▲ Apprentice'; }
+    const meta = item.querySelector('.skill-bar-meta');
+    if (meta) {
+      const badge = document.createElement('span');
+      badge.className = `skill-xp-tag ${lv}`;
+      badge.textContent = tag;
+      meta.appendChild(badge);
+    }
+  });
+})();
 </script>
 </body>
 </html>
