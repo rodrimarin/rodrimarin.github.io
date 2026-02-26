@@ -538,6 +538,10 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
     Add Project
   </button>
   <div class="admin-bar-spacer"></div>
+  <button class="admin-bar-btn" onclick="resetAllTypography()" title="Remove all saved typography styles from every element" style="color:var(--danger)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109 9"/><polyline points="3 3 3 12 12 12"/></svg>
+    Reset Styles
+  </button>
   <button class="admin-bar-save-btn" onclick="saveAndDownload()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Save & Download
@@ -638,6 +642,8 @@ body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
       <span class="typo-ls-label">LS</span>
       <input type="number" class="typo-ls-input" id="typoLS" min="-5" max="30" step="0.05" placeholder="0" oninput="typoApplyLetterSpacing(this.value)" title="Letter spacing (em)">
     </div>
+    <div class="typo-sep"></div>
+    <button class="typo-btn" onclick="typoResetElement()" title="Reset all styles for this element" style="color:var(--danger);border-color:var(--danger);min-width:34px;font-size:15px">↺</button>
   </div>
 </div>
 
@@ -1978,8 +1984,9 @@ function updateLayoutPanel(key, d) {
 // =============================================
 // TYPOGRAPHY TOOLBAR
 // =============================================
-let typoTarget = null; // currently focused editable element
-let _tybDrag = null;   // toolbar drag state
+let typoTarget   = null; // currently focused editable element
+let _tybDrag     = null; // toolbar drag state
+let _savedRange  = null; // saved text selection before color picker steals focus
 
 function initTypoToolbarDrag() {
   const tb  = document.getElementById('typoToolbar');
@@ -1993,6 +2000,18 @@ function initTypoToolbarDrag() {
     document.addEventListener('mousemove', _typoMove);
     document.addEventListener('mouseup', _typoUp, { once: true });
   });
+  // Save selection before color picker steals focus from the text element
+  const colorSwatch = document.querySelector('.typo-color-swatch');
+  if (colorSwatch) {
+    colorSwatch.addEventListener('mousedown', () => {
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+        _savedRange = sel.getRangeAt(0).cloneRange();
+      } else {
+        _savedRange = null;
+      }
+    });
+  }
 }
 function _typoMove(e) {
   if (!_tybDrag) return;
@@ -2112,10 +2131,22 @@ function typoToggle(prop, onVal, offVal) {
 }
 
 function typoApplyColor(val) {
-  if (!typoTarget || !val) return;
-  typoTarget.style.color = val;
+  if (!val) return;
   document.getElementById('typoColorPreview').style.background = val;
-  saveTypoStyle(typoTarget);
+  document.getElementById('typoColor').value = val;
+  // If user had text selected inside the element, apply only to that selection
+  if (_savedRange && typoTarget && typoTarget.contains(_savedRange.commonAncestorContainer)) {
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(_savedRange);
+    document.execCommand('foreColor', false, val);
+    _savedRange = null;
+    if (typoTarget) saveTypoStyle(typoTarget);
+  } else if (typoTarget) {
+    // No selection — apply to whole element
+    typoTarget.style.color = val;
+    saveTypoStyle(typoTarget);
+  }
 }
 
 function typoSetAlign(val) {
@@ -2138,6 +2169,20 @@ function typoApplyLetterSpacing(val) {
   if (!typoTarget) return;
   typoTarget.style.letterSpacing = val !== '' ? parseFloat(val) + 'em' : '';
   saveTypoStyle(typoTarget);
+}
+
+function typoResetElement() {
+  if (!typoTarget) return;
+  ['fontFamily','fontSize','fontWeight','fontStyle','textTransform',
+   'color','textAlign','lineHeight','letterSpacing'].forEach(p => {
+    typoTarget.style[p] = '';
+  });
+  const key = typoTarget.dataset.key || typoTarget.dataset.editId;
+  if (key) {
+    delete editData[key + '__style'];
+    localStorage.setItem('rg_editdata', JSON.stringify(editData));
+  }
+  showTypoToolbar(typoTarget); // refresh controls to reflect reset
 }
 
 function saveTypoStyle(el) {
@@ -2173,6 +2218,20 @@ function loadTypoStyles() {
     if (s.lineHeight)    el.style.lineHeight     = s.lineHeight;
     if (s.letterSpacing) el.style.letterSpacing  = s.letterSpacing;
   });
+}
+
+function resetAllTypography() {
+  if (!confirm('Reset ALL typography styles on every element? This will remove all saved font/color/size changes.')) return;
+  // Remove all __style keys from saved data
+  Object.keys(editData).forEach(k => { if (k.endsWith('__style')) delete editData[k]; });
+  localStorage.setItem('rg_editdata', JSON.stringify(editData));
+  // Remove inline styles from all elements on the page
+  const STYLE_PROPS = ['fontFamily','fontSize','fontWeight','fontStyle','textTransform',
+                       'color','textAlign','lineHeight','letterSpacing'];
+  document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => {
+    STYLE_PROPS.forEach(p => { el.style[p] = ''; });
+  });
+  hideTypoToolbar();
 }
 
 // =============================================
