@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rodrigo Giliberti — Game Designer & Level Designer</title>
-<meta name="description" content="Game Designer and Level Designer with 4 years of experience. Unity & Unreal Engine 5. Buenos Aires, Argentina.">
-<meta property="og:title" content="Rodrigo Giliberti — Game Designer & Level Designer">
+<title>Rodrigo Giliberti — Game Designer &amp; Level Designer</title>
+<meta name="description" content="Game Designer and Level Designer with 4 years of experience. Unity &amp; Unreal Engine 5. Buenos Aires, Argentina.">
+<meta property="og:title" content="Rodrigo Giliberti — Game Designer &amp; Level Designer">
 <meta property="og:description" content="Game Designer and Level Designer with 4 years of experience.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600&family=Raleway:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Anton&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 /* =============================================
-   VARIABLES & RESETT
+   VARIABLES & RESET
    ============================================= */
 :root {
   --bg:#0a0a0b; --bg2:#111114; --surface:#18181d;
@@ -29,28 +29,12 @@ img{max-width:100%;display:block}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* =============================================
-   SIDE NAV
-   ============================================= */
-.side-nav{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:200}
-.side-nav-line{position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);pointer-events:none}
-.side-nav-list{list-style:none;display:flex;flex-direction:column;padding:8px 0}
-.side-nav-link{display:flex;align-items:center;padding:10px 0;text-decoration:none}
-.side-nav-dot{width:3px;height:24px;border-radius:0 2px 2px 0;background:var(--border);transition:background var(--tr),height var(--tr),box-shadow var(--tr);flex-shrink:0;z-index:1}
-.side-nav-link:hover .side-nav-dot{background:rgba(232,255,71,.5);height:36px}
-.side-nav-link.active .side-nav-dot{background:var(--accent);height:40px;box-shadow:2px 0 12px rgba(232,255,71,.6)}
-.side-nav-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);opacity:0;transform:translateX(-4px);transition:opacity var(--tr),transform var(--tr),color var(--tr);white-space:nowrap;pointer-events:none;margin-left:12px;background:rgba(10,10,11,.92);padding:4px 10px;border:1px solid var(--border)}
-.side-nav-label em{color:var(--accent);font-style:normal;margin-right:6px}
-.side-nav-link:hover .side-nav-label,.side-nav-link.active .side-nav-label{opacity:1;transform:translateX(0);color:var(--white)}
-.side-nav-link.active .side-nav-label{border-color:rgba(232,255,71,.3);color:var(--accent)}
-@media(max-width:1100px){.side-nav{display:none}}
-
-/* =============================================
    TOP NAV
    ============================================= */
 .topnav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;justify-content:space-between;align-items:center;padding:28px 48px;transition:padding var(--tr),background var(--tr),border-color var(--tr);border-bottom:1px solid transparent}
 .topnav.scrolled{padding:14px 48px;background:rgba(10,10,11,.95);backdrop-filter:blur(12px);border-bottom-color:var(--border)}
 .nav-logo{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
-.nav-links{display:flex;gap:40px;list-style:none;align-items:center}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
 .nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color var(--tr)}
 .nav-links a:hover{color:var(--white)}
 .nav-resume-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:10px 20px;transition:background var(--tr),transform var(--tr)}
@@ -58,74 +42,77 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .nav-resume-btn svg{width:12px;height:12px;flex-shrink:0}
 
 /* =============================================
-   HERO
+   HERO — wireframe layout
    ============================================= */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
-.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px 64px;position:relative;z-index:2}
-.hero-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .8s forwards .2s}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,10vw,140px);line-height:.92;letter-spacing:.01em;color:var(--white);opacity:0;animation:fadeUp .9s forwards .4s}
-.hero-title em{color:var(--accent);font-style:normal}
-.hero-desc{margin-top:32px;font-size:15px;line-height:1.7;color:var(--muted);max-width:380px;opacity:0;animation:fadeUp .9s forwards .6s}
-.hero-desc strong{color:var(--text);font-weight:500}
-.hero-cta{margin-top:48px;display:flex;gap:20px;align-items:center;opacity:0;animation:fadeUp .9s forwards .8s}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:16px 32px;font-weight:700;transition:background var(--tr),transform var(--tr)}
-.btn-primary:hover{background:#fff;transform:translateY(-2px)}
-.btn-ghost{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color var(--tr),border-color var(--tr)}
-.btn-ghost:hover{color:var(--white);border-color:var(--white)}
-.hero-stats{margin-top:80px;display:flex;gap:48px;opacity:0;animation:fadeUp .9s forwards 1s}
-.stat-item{display:flex;flex-direction:column;gap:4px}
-.stat-number{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:1}
-.stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-.engine-logo-row{display:flex;gap:12px;align-items:center;margin-bottom:6px}
-.engine-badge{width:52px;height:52px;border:1px solid rgba(232,255,71,.3);display:flex;align-items:center;justify-content:center;background:var(--surface);font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.05em;color:rgba(232,255,71,.7);text-align:center;transition:border-color var(--tr)}
-.engine-badge:hover{border-color:var(--accent)}
-.hero-right{position:relative;overflow:hidden}
-.hero-visual{position:absolute;inset:0;background:var(--surface)}
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:150px 48px 90px}
+.hero-bgfx{position:absolute;inset:0;z-index:0}
 .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(232,255,71,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,255,71,.04) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite}
 @keyframes gridDrift{0%{background-position:0 0}100%{background-position:60px 60px}}
-.hero-shape{position:absolute;border:1px solid rgba(232,255,71,.15)}
-.shape-1{width:180px;height:180px;top:20%;left:20%;animation:floatRotate 12s ease-in-out infinite}
-.shape-2{width:80px;height:80px;top:55%;left:60%;border-color:rgba(255,107,53,.2);animation:floatRotate 8s ease-in-out infinite reverse}
-.shape-3{width:320px;height:320px;top:-10%;right:-10%;border-color:rgba(232,255,71,.06);animation:floatRotate 20s ease-in-out infinite}
+.hero-shape{position:absolute;border:1px solid rgba(232,255,71,.12)}
+.shape-1{width:220px;height:220px;top:12%;left:8%;animation:floatRotate 12s ease-in-out infinite}
+.shape-2{width:100px;height:100px;top:65%;left:82%;border-color:rgba(255,107,53,.16);animation:floatRotate 8s ease-in-out infinite reverse}
+.shape-3{width:360px;height:360px;top:-12%;right:-8%;border-color:rgba(232,255,71,.05);animation:floatRotate 20s ease-in-out infinite}
 @keyframes floatRotate{0%,100%{transform:rotate(0deg) translateY(0)}33%{transform:rotate(8deg) translateY(-15px)}66%{transform:rotate(-4deg) translateY(8px)}}
-.hero-glow-el{position:absolute;top:50%;left:40%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(232,255,71,.06) 0%,transparent 70%);pointer-events:none}
-.hero-overlay-text{position:absolute;bottom:80px;left:48px;right:48px}
-.hero-overlay-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.3em;color:rgba(232,255,71,.4);text-transform:uppercase;margin-bottom:8px}
-.hero-overlay-big{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:rgba(255,255,255,.04);letter-spacing:.05em}
-.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s forwards 1.4s}
-.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--muted),transparent);animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
-.scroll-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;writing-mode:vertical-rl}
+.hero-glow-el{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,255,71,.05) 0%,transparent 70%);pointer-events:none}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+.hero-fg{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;max-width:1100px;width:100%}
+.hero-title-main{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,8vw,108px);line-height:.95;letter-spacing:.01em;color:var(--white);opacity:0;animation:fadeUp .9s forwards .2s}
+.hero-subtitle{font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vw,13px);letter-spacing:.35em;text-transform:uppercase;color:var(--accent);opacity:0;animation:fadeUp .8s forwards .45s}
+
+.category-row{display:flex;gap:32px;width:100%;justify-content:center;margin-top:44px;opacity:0;animation:fadeUp .9s forwards .65s}
+.category-box-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;flex:1;max-width:340px}
+.category-box{position:relative;width:100%;aspect-ratio:3/4;border:1px solid var(--border);background:var(--surface);overflow:hidden;cursor:pointer;transition:border-color var(--tr),transform var(--tr)}
+.category-box:hover{border-color:var(--accent);transform:translateY(-4px)}
+.category-box::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.055) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .65s ease;pointer-events:none;z-index:1}
+.category-box:hover::after{background-position:-50% 0}
+.category-box .cbox-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.7) saturate(.7);transition:filter .4s,transform .4s;display:none}
+.category-box.has-img .cbox-img{display:block}
+.category-box:hover .cbox-img{filter:brightness(.85) saturate(.9);transform:scale(1.04)}
+.category-box-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text);text-align:center}
+
+.bottom-row{display:flex;gap:20px;width:100%;margin-top:36px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .9s forwards .85s}
+.bottom-box{flex:1;min-width:180px;border:1px solid var(--border);background:var(--surface);padding:26px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:border-color var(--tr),background var(--tr);text-align:center}
+.bottom-box:hover{border-color:var(--accent);background:#1e1e24}
+.bottom-box-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text)}
+.social-box{cursor:default}
+.social-lines{display:flex;flex-direction:column;gap:9px;width:100%}
+.social-line{display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.social-line a{color:var(--muted);transition:color var(--tr)}
+.social-line a:hover{color:var(--accent)}
+.social-edit-btn{display:none;background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;line-height:1;padding:0}
+.social-edit-btn:hover{color:var(--accent)}
+body.edit-mode-active .social-edit-btn{display:inline-flex}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .category-row{flex-direction:column;align-items:center}
+  .category-box-wrap{max-width:280px}
+  .hero{padding:130px 24px 70px}
+}
 
 /* =============================================
-   MARQUEE
-   ============================================= */
-.marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:16px 0;background:var(--bg2)}
-.marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content}
-.marquee-item{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.15em;color:var(--muted);padding:0 40px;white-space:nowrap}
-.marquee-item span{color:var(--accent);margin-right:40px}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* =============================================
-   SECTION LABEL
+   SECTION LABEL (reused inside panels)
    ============================================= */
 .section-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;gap:16px}
 .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* =============================================
-   ABOUT
+   ABOUT (reused inside "My Games" panel)
    ============================================= */
-.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.about-left{padding:100px 48px;border-right:1px solid var(--border)}
-.about-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,6vw,80px);line-height:.95;color:var(--white);margin-bottom:32px}
-.about-body{font-size:15px;line-height:1.8;color:var(--muted);max-width:440px}
+.about{display:grid;grid-template-columns:1fr 1fr}
+.about-left{padding:0 40px 0 0;border-right:1px solid var(--border)}
+.about-right{padding:0 0 0 40px}
+.about-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);line-height:.95;color:var(--white);margin-bottom:28px}
+.about-body{font-size:15px;line-height:1.8;color:var(--muted);max-width:520px}
 .about-body strong{color:var(--text);font-weight:500}
-.skill-bars{margin-top:40px;display:flex;flex-direction:column;gap:20px}
+.skill-bars{margin-top:36px;display:flex;flex-direction:column;gap:20px}
 .skill-bar-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .skill-bar-name{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text)}
 .skill-bar-meta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted)}
-.skill-bar-track{height:3px;background:var(--border);overflow:visible;position:relative}
-.skill-bar-fill{height:100%;width:0%;background:var(--accent);transition:width 1.2s cubic-bezier(.16,1,.3,1);position:relative}
+.skill-bar-track{height:6px !important;background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) calc(25% - 1px),rgba(10,10,11,.6) calc(25% - 1px),rgba(10,10,11,.6) 25%) !important;position:relative}
+.skill-bar-fill{height:100%;width:0%;background:var(--accent);transition:width 1s cubic-bezier(.16,1,.3,1);position:relative}
 .skill-bar-fill::after{content:'';position:absolute;right:0;top:-3px;width:3px;height:9px;background:inherit;opacity:.6}
 .skill-bar-item:nth-child(3) .skill-bar-fill{background:#ff6b35}
 .skill-bar-item:nth-child(4) .skill-bar-fill{background:#a78bfa}
@@ -137,14 +124,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .skill-bar-item:nth-child(5) .skill-bar-fill::after{background:#60a5fa}
 .skill-bar-item:nth-child(6) .skill-bar-fill::after{background:#34d399}
 .skill-bar-item:nth-child(7) .skill-bar-fill::after{background:#f472b6}
-/* Editable skill bar handle */
-.skill-bar-track.edit-mode{overflow:visible;cursor:pointer}
+.skill-bar-track.edit-mode{cursor:pointer}
 .skill-bar-handle{position:absolute;top:-6px;width:14px;height:14px;background:var(--accent);border:2px solid var(--bg);border-radius:50%;cursor:ew-resize;transform:translateX(-7px);display:none;z-index:10;box-shadow:0 0 0 2px rgba(232,255,71,.3)}
 .edit-mode-active .skill-bar-track .skill-bar-handle{display:block}
+.skill-xp-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid;margin-left:8px;vertical-align:middle}
+.skill-xp-tag.lv1{color:var(--muted);border-color:var(--border)}
+.skill-xp-tag.lv2{color:#60a5fa;border-color:rgba(96,165,250,.3)}
+.skill-xp-tag.lv3{color:#a78bfa;border-color:rgba(167,139,250,.3)}
+.skill-xp-tag.lv4{color:var(--accent);border-color:rgba(232,255,71,.4);box-shadow:0 0 6px rgba(232,255,71,.12)}
 .skills-tags-row{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
 .skill-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:10px 16px;transition:border-color var(--tr),color var(--tr)}
 .skill-tag:hover{border-color:var(--accent);color:var(--accent)}
-.about-right{padding:100px 48px;display:flex;flex-direction:column;justify-content:space-between}
 .timeline{display:flex;flex-direction:column}
 .timeline-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border)}
 .timeline-item:last-child{border-bottom:none}
@@ -153,53 +143,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .timeline-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* =============================================
-   PROJECTS
+   LESSONS (reused inside "Level Design" panel)
    ============================================= */
-.projects{padding:100px 48px;border-bottom:1px solid var(--border)}
-.projects-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px}
-.projects-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,6vw,80px);line-height:.95;color:var(--white)}
-.projects-count{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;padding-bottom:8px}
-.projects-grid{display:flex;flex-direction:column;gap:2px}
-.project-card{display:grid;grid-template-columns:320px 1fr auto;align-items:center;gap:48px;padding:40px 48px;background:var(--surface);border:1px solid var(--border);text-decoration:none;transition:background var(--tr),border-color var(--tr);position:relative;overflow:hidden}
-.project-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transition:transform var(--tr)}
-.project-card:hover{background:#1e1e24;border-color:rgba(232,255,71,.2)}
-.project-card:hover::before{transform:scaleY(1)}
-.project-thumb{width:320px;height:180px;background:var(--bg2);overflow:hidden;position:relative;flex-shrink:0}
-.project-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:brightness(.8) saturate(.7)}
-.project-card:hover .project-thumb img{transform:scale(1.05);filter:brightness(.9) saturate(.9)}
-.project-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a22,#22222e);font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--border);text-align:center;line-height:1.2}
-.project-tags{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.project-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px}
-.project-tag.highlight{border-color:rgba(232,255,71,.3);color:var(--accent)}
-.project-name{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--white);letter-spacing:.02em;margin-bottom:12px;transition:color var(--tr)}
-.project-card:hover .project-name{color:var(--accent)}
-.project-desc{font-size:13px;line-height:1.7;color:var(--muted);max-width:480px}
-.project-meta{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0;min-width:100px}
-.project-year{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--border)}
-.project-arrow{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color var(--tr),background var(--tr),transform var(--tr)}
-.project-card:hover .project-arrow{border-color:var(--accent);background:var(--accent);transform:rotate(45deg)}
-.project-arrow svg{width:16px;height:16px;stroke:var(--muted);transition:stroke var(--tr)}
-.project-card:hover .project-arrow svg{stroke:#0a0a0b}
-/* Drag handle (edit mode) */
-.drag-handle{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:20px;height:32px;display:none;flex-direction:column;justify-content:center;gap:4px;cursor:grab;padding:4px;opacity:.4;transition:opacity var(--tr)}
-.drag-handle:hover{opacity:1}
-.drag-handle span{display:block;width:12px;height:2px;background:var(--accent);border-radius:1px}
-.edit-mode-active .project-card .drag-handle{display:flex}
-.edit-mode-active .project-card{padding-left:44px}
-.project-card.drag-over{border-color:var(--accent);background:rgba(232,255,71,.04)}
-.project-card.dragging{opacity:.4}
-
-/* =============================================
-   LESSONS
-   ============================================= */
-.lessons-section{border-bottom:1px solid var(--border);background:var(--bg);padding:100px 48px}
-.lessons-inner{max-width:1200px}
-.lessons-header{margin-bottom:72px}
-.lessons-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,96px);line-height:.92;color:var(--white);margin-bottom:20px}
-.lessons-title em{color:var(--accent);font-style:normal}
-.lessons-intro{font-size:15px;color:var(--muted);max-width:480px;line-height:1.7}
 .lessons-grid{display:flex;flex-direction:column;gap:2px}
-.lesson-card{display:grid;grid-template-columns:80px 1fr;gap:40px;align-items:start;padding:40px 48px;background:var(--surface);border:1px solid var(--border);transition:border-color var(--tr),background var(--tr);position:relative;overflow:hidden}
+.lesson-card{display:grid;grid-template-columns:80px 1fr;gap:40px;align-items:start;padding:40px 44px;background:var(--surface);border:1px solid var(--border);transition:border-color var(--tr),background var(--tr);position:relative;overflow:hidden}
 .lesson-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent2);transform:scaleY(0);transition:transform var(--tr)}
 .lesson-card:hover{border-color:rgba(255,107,53,.2);background:#1c1a19}
 .lesson-card:hover::before{transform:scaleY(1)}
@@ -213,60 +160,55 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .lesson-col p{font-size:13px;line-height:1.75;color:var(--muted);margin-top:10px}
 
 /* =============================================
-   CURRENTLY PLAYING
+   CURRENTLY PLAYING (reused inside "Game Design" panel)
    ============================================= */
-.playing-section{border-bottom:1px solid var(--border);padding:64px 48px;background:var(--bg2)}
-.playing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:48px}
+.playing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
 .playing-card{background:var(--surface);border:1px solid var(--border);padding:20px 22px;position:relative;transition:border-color var(--tr),background var(--tr);overflow:hidden}
 .playing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform var(--tr);transform-origin:left}
 .playing-card:hover{border-color:rgba(232,255,71,.15);background:#1c1c22}
 .playing-card:hover::before{transform:scaleX(1)}
+.playing-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(232,255,71,.04) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .7s ease;pointer-events:none;z-index:1}
+.playing-card:hover::after{background-position:-50% 0}
 .playing-type{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .playing-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);line-height:1.1;margin-bottom:8px;letter-spacing:.02em}
 .playing-desc{font-size:11px;line-height:1.6;color:var(--muted)}
 .playing-tag{display:inline-block;margin-top:16px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 10px}
+@media(max-width:1200px){.playing-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.playing-grid{grid-template-columns:1fr}}
 
 /* =============================================
-   CONTACT
+   CONTACT (reused inside "Contact" panel)
    ============================================= */
 .contact{display:grid;grid-template-columns:1fr 1fr}
-.contact-left{padding:100px 48px;border-right:1px solid var(--border);background:var(--accent);display:flex;flex-direction:column;justify-content:space-between}
-.contact-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8vw,110px);line-height:.92;color:#0a0a0b;letter-spacing:.01em}
+.contact-left{padding:64px 44px;border-right:1px solid var(--border);background:var(--accent);display:flex;flex-direction:column;justify-content:space-between}
+.contact-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,7vw,90px);line-height:.92;color:#0a0a0b;letter-spacing:.01em}
 .contact-sub{font-size:14px;color:rgba(10,10,11,.6);max-width:320px;line-height:1.7}
-.contact-right{padding:100px 48px;display:flex;flex-direction:column;justify-content:center}
+.contact-right{padding:64px 44px;display:flex;flex-direction:column;justify-content:center}
 .contact-info{display:flex;flex-direction:column;gap:32px}
 .contact-item-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .contact-item-value{font-size:15px;color:var(--white);border-bottom:1px solid var(--border);padding-bottom:8px;display:block;transition:border-color var(--tr),color var(--tr)}
 .contact-item-value:hover{border-color:var(--accent);color:var(--accent)}
-.social-links{margin-top:48px;display:flex;gap:16px}
+.social-links{margin-top:48px;display:flex;gap:16px;flex-wrap:wrap}
 .social-link{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:12px 20px;transition:all var(--tr)}
 .social-link:hover{color:var(--accent);border-color:var(--accent)}
+@media(max-width:900px){.contact{grid-template-columns:1fr}.contact-left,.contact-right{padding:44px 24px}}
 
 /* =============================================
    FOOTER
    ============================================= */
-footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;background:var(--bg);position:relative;z-index:2}
 .footer-copy{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted)}
 .footer-right{display:flex;align-items:center;gap:24px}
 .footer-credit{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted)}
+@media(max-width:900px){footer{padding:20px 24px;flex-direction:column;gap:12px;text-align:center}}
 
 /* =============================================
-   ANIMATIONS & REVEAL
+   ADMIN SYSTEM
    ============================================= */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* =============================================
-   ★ ADMIN SYSTEM
-   ============================================= */
-
-/* Lock button */
 .admin-lock-btn{position:fixed;bottom:28px;right:28px;z-index:9000;width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all var(--tr);box-shadow:0 4px 16px rgba(0,0,0,.4)}
 .admin-lock-btn:hover{border-color:var(--accent);color:var(--accent)}
 .admin-lock-btn svg{width:16px;height:16px}
 
-/* Login popup */
 .admin-login-popup{position:fixed;bottom:84px;right:28px;z-index:9000;background:var(--bg2);border:1px solid var(--border);padding:20px;width:280px;display:none;box-shadow:0 8px 32px rgba(0,0,0,.6)}
 .admin-login-popup.open{display:block}
 .admin-login-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
@@ -276,116 +218,61 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify
 .admin-login-submit:hover{background:#fff}
 .admin-login-error{font-family:'Space Mono',monospace;font-size:9px;color:var(--danger);margin-top:8px;display:none}
 
-/* Admin floating bar */
-.admin-bar{position:fixed;top:0;left:0;right:0;z-index:9100;height:52px;background:rgba(10,10,11,.97);border-bottom:2px solid var(--accent);display:none;align-items:center;gap:0;padding:0 16px;box-shadow:0 4px 24px rgba(232,255,71,.1)}
+.admin-bar{position:fixed;top:0;left:0;right:0;z-index:9100;height:52px;background:rgba(10,10,11,.97);border-bottom:2px solid var(--accent);display:none;align-items:center;gap:0;padding:0 16px;box-shadow:0 4px 24px rgba(232,255,71,.1);overflow-x:auto}
 .admin-bar.visible{display:flex}
-.admin-bar-logo{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap}
-.admin-bar-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 14px;border:none;background:none;cursor:pointer;transition:color var(--tr),background var(--tr);white-space:nowrap;height:52px;position:relative}
+.admin-bar-logo{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-right:20px;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0}
+.admin-bar-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 14px;border:none;background:none;cursor:pointer;transition:color var(--tr),background var(--tr);white-space:nowrap;height:52px;position:relative;flex-shrink:0}
 .admin-bar-btn:hover{color:var(--white);background:rgba(255,255,255,.04)}
 .admin-bar-btn.active{color:var(--accent);background:rgba(232,255,71,.06)}
 .admin-bar-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent)}
 .admin-bar-btn svg{width:13px;height:13px;flex-shrink:0}
 .admin-bar-sep{width:1px;height:28px;background:var(--border);margin:0 4px;flex-shrink:0}
-.admin-bar-spacer{flex:1}
-.admin-bar-save-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:8px 20px;cursor:pointer;border:none;transition:background var(--tr);white-space:nowrap;height:36px;margin-right:8px}
+.admin-bar-spacer{flex:1;min-width:8px}
+.admin-bar-save-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0a0a0b;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:8px 20px;cursor:pointer;border:none;transition:background var(--tr);white-space:nowrap;height:36px;margin-right:8px;flex-shrink:0}
 .admin-bar-save-btn:hover{background:#fff}
-.admin-bar-logout{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border:1px solid var(--border);cursor:pointer;background:none;transition:all var(--tr)}
+.admin-bar-logout{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border:1px solid var(--border);cursor:pointer;background:none;transition:all var(--tr);flex-shrink:0}
 .admin-bar-logout:hover{color:var(--danger);border-color:var(--danger)}
 
-/* Edit mode body offset */
 body.edit-mode-active .topnav{top:52px}
 body.edit-mode-active{padding-top:52px}
 
-/* Editable element styles */
 [data-editable]{position:relative;transition:outline var(--tr)}
 body.edit-mode-active [data-editable]:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:3px;cursor:text}
 body.edit-mode-active [data-editable]:focus{outline:2px solid var(--accent);outline-offset:3px;cursor:text}
 body.edit-mode-active [data-editable].editing{outline:2px solid var(--accent) !important;outline-offset:3px;background:rgba(232,255,71,.03)}
+body.edit-mode-active [data-editable]:focus,
+body.edit-mode-active [data-edit-id]:focus{outline:2px solid var(--accent);outline-offset:3px}
 
-/* Image edit overlay */
 .img-edit-overlay{position:absolute;inset:0;background:rgba(10,10,11,.7);display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;z-index:10}
 .img-edit-overlay svg{width:28px;height:28px;color:var(--accent)}
 .img-edit-overlay span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
-body.edit-mode-active .project-thumb:hover .img-edit-overlay{display:flex}
+body.mode-images .category-box:hover .img-edit-overlay{display:flex}
 .img-edit-overlay input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
 
-/* Skill bar edit cursor */
 body.edit-mode-active .skill-bar-track{cursor:ew-resize}
 
-/* Toast */
 .toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;background:var(--surface);border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;padding:12px 24px;opacity:0;transition:all .3s ease;white-space:nowrap;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.success{border-color:rgba(68,255,136,.4);color:var(--success)}
 .toast.error{border-color:rgba(255,68,85,.4);color:var(--danger)}
 
 /* =============================================
-   RESPONSIVE
-   ============================================= */
-@media(max-width:1200px){.playing-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:900px){
-  .topnav{padding:20px 24px}
-  .nav-links{display:none}
-  .hero{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .hero-left{padding:120px 24px 80px}
-  .about,.contact{grid-template-columns:1fr}
-  .about-left{border-right:none;border-bottom:1px solid var(--border);padding:60px 24px}
-  .about-right{padding:60px 24px}
-  .projects{padding:60px 24px}
-  .project-card{grid-template-columns:1fr;padding:28px 24px}
-  .project-thumb{width:100%}
-  .project-meta{flex-direction:row;justify-content:space-between}
-  .contact-left,.contact-right{padding:60px 24px}
-  .lessons-section{padding:60px 24px}
-  .lesson-card{grid-template-columns:1fr;gap:16px;padding:28px 24px}
-  .lesson-split{grid-template-columns:1fr}
-  .playing-section{padding:48px 24px}
-  .playing-grid{grid-template-columns:1fr 1fr}
-  footer{padding:20px 24px;flex-direction:column;gap:12px;text-align:center}
-  .admin-bar{overflow-x:auto}
-}
-@media(max-width:600px){.playing-grid{grid-template-columns:1fr}}
-
-/* =============================================
-   HERO MEDIA BOX
-   ============================================= */
-.hero-media-box{position:absolute;inset:40px;z-index:5;pointer-events:none}
-.hero-media-content{width:100%;height:100%;position:relative;background:#000;overflow:hidden;border:1px solid var(--border);display:none;pointer-events:auto}
-.hero-media-content.loaded{display:block}
-.hero-media-content img,.hero-media-content video{width:100%;height:100%;object-fit:cover;display:block}
-.hero-media-text-overlay{position:absolute;bottom:56px;left:0;right:0;padding:14px 18px;color:var(--white);font-size:14px;line-height:1.6;text-shadow:0 1px 4px rgba(0,0,0,.9);min-height:20px;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(0,0,0,.5))}
-body.edit-mode-active .hero-media-text-overlay{pointer-events:auto;cursor:text;border:1px dashed transparent;transition:border-color .2s}
-body.edit-mode-active .hero-media-text-overlay:hover{border-color:rgba(232,255,71,.3)}
-body.edit-mode-active .hero-media-text-overlay:focus{border-color:var(--accent);outline:none}
-.hero-media-controls{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.88));display:flex;align-items:center;gap:10px;opacity:0;transition:opacity .3s;z-index:3;box-sizing:border-box}
-.hero-media-content:hover .hero-media-controls{opacity:1}
-.mc-btn{background:none;border:none;color:var(--white);font-size:14px;cursor:pointer;padding:2px 4px;transition:color var(--tr);flex-shrink:0;line-height:1}
-.mc-btn:hover{color:var(--accent)}
-.mc-progress-wrap{flex:1;height:4px;background:rgba(255,255,255,.2);cursor:pointer;position:relative;border-radius:2px}
-.mc-progress-fill{height:100%;background:var(--accent);border-radius:2px;width:0%}
-.mc-time{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,.6);white-space:nowrap;min-width:32px}
-.mc-vol-slider{width:52px;cursor:pointer;accent-color:var(--accent);flex-shrink:0}
-.mc-quality{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--accent);border:1px solid rgba(232,255,71,.35);padding:2px 6px}
-.hero-media-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:2px dashed rgba(232,255,71,.35);cursor:pointer;background:rgba(10,10,11,.4);transition:background var(--tr);z-index:10;pointer-events:auto}
-.hero-media-placeholder:hover{background:rgba(10,10,11,.6)}
-.hero-media-placeholder input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.hero-media-placeholder svg{width:32px;height:32px;color:var(--accent)}
-.hero-media-placeholder span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
-body.edit-mode-active .hero-media-box{pointer-events:auto}
-body.edit-mode-active .hero-media-box:not(.has-media) .hero-media-placeholder{display:flex}
-.hero-media-change-btn{position:absolute;top:10px;right:10px;width:36px;height:36px;background:rgba(10,10,11,.85);border:1px solid var(--accent);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
-.hero-media-change-btn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.hero-media-change-btn svg{width:16px;height:16px;color:var(--accent)}
-body.edit-mode-active .hero-media-box.has-media .hero-media-change-btn{display:flex}
-body.edit-mode-active .hero-media-box.has-media .hero-media-placeholder{display:none}
-
-/* =============================================
-   LAYOUT EDIT MODE (all moveable elements)
+   LAYOUT EDIT MODE
    ============================================= */
 body.layout-edit-active [data-move-key]{cursor:grab;transition:outline .15s;user-select:none;position:relative}
 body.layout-edit-active [data-move-key]:hover{outline:2px dashed rgba(232,255,71,.4);outline-offset:6px}
 body.layout-edit-active [data-move-key].layout-selected{outline:2px solid var(--accent) !important;outline-offset:6px;z-index:50}
 body.layout-edit-active [data-move-key].layout-dragging{cursor:grabbing !important;opacity:.85;z-index:200}
+
+.layout-panel{position:fixed;bottom:90px;right:28px;z-index:9200;background:var(--bg2);border:1px solid var(--accent);padding:16px 18px;width:210px;display:none;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
+.layout-panel.visible{display:flex}
+.layout-panel-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.layout-panel-pos{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)}
+.layout-panel label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.layout-panel input[type=range]{width:100%;accent-color:var(--accent);margin-top:4px}
+.layout-panel-reset{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px;background:none;cursor:pointer;width:100%;text-align:center;transition:all var(--tr)}
+.layout-panel-reset:hover{color:var(--danger);border-color:var(--danger)}
+
 /* =============================================
    TYPOGRAPHY TOOLBAR
    ============================================= */
@@ -423,67 +310,66 @@ body.layout-edit-active [data-move-key].layout-dragging{cursor:grabbing !importa
 .typo-lh-input:focus,.typo-ls-input:focus{border-color:var(--accent)}
 .typo-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:2px 4px;transition:color var(--tr);line-height:1;flex-shrink:0}
 .typo-close:hover{color:var(--danger)}
-/* style-edit: show outline on focused text element in text-edit mode */
-body.edit-mode-active [data-editable]:focus,
-body.edit-mode-active [data-edit-id]:focus{outline:2px solid var(--accent);outline-offset:3px}
-
-.layout-panel{position:fixed;bottom:90px;right:28px;z-index:9200;background:var(--bg2);border:1px solid var(--accent);padding:16px 18px;width:210px;display:none;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
-.layout-panel.visible{display:flex}
-.layout-panel-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
-.layout-panel-pos{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)}
-.layout-panel label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.layout-panel input[type=range]{width:100%;accent-color:var(--accent);margin-top:4px}
-.layout-panel-reset{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px;background:none;cursor:pointer;width:100%;text-align:center;transition:all var(--tr)}
-.layout-panel-reset:hover{color:var(--danger);border-color:var(--danger)}
 
 /* =============================================
-   MARQUEE EDIT PANEL
+   CATEGORY / CONTACT PANELS
    ============================================= */
-.marquee-edit-panel{background:var(--bg2);border-bottom:2px solid var(--accent);padding:14px 48px;display:none;flex-wrap:wrap;gap:8px;align-items:center}
-.marquee-edit-panel.open{display:flex}
-.marquee-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);padding:6px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--text);transition:border-color var(--tr)}
-.marquee-chip:focus-within{border-color:var(--accent)}
-.marquee-chip-text{outline:none;min-width:60px;color:var(--text)}
-.marquee-chip-del{color:var(--muted);cursor:pointer;font-size:13px;line-height:1;transition:color var(--tr);flex-shrink:0}
-.marquee-chip-del:hover{color:var(--danger)}
-.marquee-chip-add{background:none;border:1px dashed rgba(232,255,71,.4);padding:6px 16px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);cursor:pointer;transition:all var(--tr)}
-.marquee-chip-add:hover{border-color:var(--accent);background:rgba(232,255,71,.06)}
-@media(max-width:900px){.marquee-edit-panel{padding:14px 24px}}
+.cat-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:600;background:var(--bg);overflow-y:auto}
+.cat-panel.open{display:block;animation:panelIn .45s cubic-bezier(.16,1,.3,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+body.edit-mode-active .cat-panel{top:52px}
+body.panel-open{overflow:hidden}
+.panel-topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:16px;padding:22px 48px;background:rgba(10,10,11,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.panel-back{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:color var(--tr)}
+.panel-back:hover{color:var(--accent)}
+.panel-back svg{width:14px;height:14px}
+.panel-topbar-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:.03em}
+.panel-body{padding:64px 48px 100px;max-width:1200px;margin:0 auto}
+.panel-body .cs-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,60px);line-height:.95;color:var(--white);margin-bottom:24px}
+.panel-intro{font-size:15px;line-height:1.85;color:var(--muted);max-width:720px;margin-bottom:56px}
+.panel-intro strong{color:var(--text);font-weight:500}
+.panel-intro p+p{margin-top:14px}
+.panel-body .about{margin-top:8px;padding-top:56px;border-top:1px solid var(--border)}
+.panel-body .lessons-inner,.panel-body .playing-inner{margin-top:8px;padding-top:56px;border-top:1px solid var(--border)}
+@media(max-width:900px){
+  .panel-topbar{padding:16px 24px}
+  .panel-body{padding:40px 24px 70px}
+  .about{grid-template-columns:1fr}
+  .about-left{border-right:none;padding:0 0 40px}
+  .about-right{padding:0}
+}
 
 /* =============================================
-   ENGINE BADGE IMAGE
+   GALLERY + LIGHTBOX (used inside category panels)
    ============================================= */
-.engine-badge{position:relative;overflow:hidden}
-.engine-badge img.badge-img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;padding:6px}
-.engine-badge-overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,10,11,.75);cursor:pointer;z-index:2}
-.engine-badge-overlay input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.engine-badge-overlay svg{width:16px;height:16px;color:var(--accent)}
-body.edit-mode-active .engine-badge:hover .engine-badge-overlay{display:flex}
+.cg-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:20px}
+.cg-slot{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--border)}
+.cg-slot.filled{cursor:zoom-in}
+.cg-slot.filled img{width:100%;height:100%;object-fit:cover;filter:brightness(.78) saturate(.65);transition:filter .28s,transform .28s;display:block}
+.cg-slot.filled:hover img{filter:brightness(1) saturate(.9);transform:scale(1.04)}
+.cg-slot.filled:hover .gexpand{opacity:1}
+.gexpand{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .22s;background:rgba(10,10,11,.28);pointer-events:none}
+.gexpand svg{color:var(--accent);width:26px;height:26px}
+.gdel{display:none;position:absolute;top:7px;right:7px;z-index:10;background:var(--danger);color:#fff;width:22px;height:22px;align-items:center;justify-content:center;font-size:13px;cursor:pointer;border-radius:2px;border:none}
+body.mode-images .cg-slot.filled .gdel{display:flex}
+.cg-slot.empty{display:none}
+body.mode-images .cg-slot.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed rgba(232,255,71,.18);cursor:pointer;transition:border-color var(--tr),background var(--tr)}
+body.mode-images .cg-slot.empty:hover{border-color:var(--accent);background:rgba(232,255,71,.03)}
+.gempty-icon{color:var(--border)}
+.gempty-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cg-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:5}
+.cg-add-slot{display:none;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px dashed rgba(232,255,71,.35);padding:8px 16px;background:none;cursor:pointer;margin-bottom:56px}
+body.mode-images .cg-add-slot{display:inline-flex}
 
-/* =============================================
-   SEARCH BAR (inside topnav)
-   ============================================= */
-.nav-search-btn{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr);flex-shrink:0;padding:0}
-.nav-search-btn:hover,.nav-search-btn.active{border-color:var(--accent);color:var(--accent)}
-.nav-search-btn svg{width:14px;height:14px}
-/* search mode replaces nav-links inside the same fixed topnav */
-.nav-search-mode{display:none;flex:1;align-items:center;gap:10px;margin-left:24px}
-.topnav.search-open .nav-links{display:none}
-.topnav.search-open .nav-search-mode{display:flex}
-.nav-search-icon{color:var(--muted);flex-shrink:0;display:flex}
-.nav-search-icon svg{width:14px;height:14px}
-.nav-search-input{flex:1;background:var(--surface);border:1px solid var(--accent);color:var(--white);font-family:'Space Mono',monospace;font-size:12px;padding:8px 14px;outline:none;max-width:500px}
-.nav-search-input::placeholder{color:var(--muted)}
-.search-count{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;min-width:60px}
-.search-nav-btn{background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;transition:all var(--tr);flex-shrink:0}
-.search-nav-btn:hover{border-color:var(--accent);color:var(--accent)}
-.nav-search-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 4px;transition:color var(--tr);flex-shrink:0}
-.nav-search-close:hover{color:var(--danger)}
-/* highlight found element */
-.search-active-box{outline:2px solid var(--accent) !important;outline-offset:8px !important}
-@keyframes searchPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,.5)}60%{box-shadow:0 0 0 12px rgba(232,255,71,0)}}
-.search-active-box{animation:searchPulse 1.6s ease infinite}
-@media(max-width:900px){.nav-search-mode{margin-left:8px}.search-count{display:none}}
+.lb{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain;border:1px solid var(--border);display:block}
+.lb-close{position:fixed;top:18px;right:22px;background:none;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+.lb-close:hover{color:var(--white);border-color:var(--white)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(10,10,11,.7);border:1px solid var(--border);color:var(--muted);width:46px;height:46px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+.lb-nav:hover{color:var(--accent);border-color:var(--accent)}
+.lb-prev{left:10px}.lb-next{right:10px}
+.lb-count{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--muted)}
 
 /* =============================================
    GRAIN TEXTURE
@@ -532,29 +418,12 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
 }
 
 /* =============================================
-   HERO PARTICLE CANVAS
+   RESPONSIVE
    ============================================= */
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-
-/* =============================================
-   RPG SKILL BARS
-   ============================================= */
-.skill-bar-track{height:6px !important;background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) calc(25% - 1px),rgba(10,10,11,.6) calc(25% - 1px),rgba(10,10,11,.6) 25%) !important}
-.skill-xp-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid;margin-left:8px;vertical-align:middle}
-.skill-xp-tag.lv1{color:var(--muted);border-color:var(--border)}
-.skill-xp-tag.lv2{color:#60a5fa;border-color:rgba(96,165,250,.3)}
-.skill-xp-tag.lv3{color:#a78bfa;border-color:rgba(167,139,250,.3)}
-.skill-xp-tag.lv4{color:var(--accent);border-color:rgba(232,255,71,.4);box-shadow:0 0 6px rgba(232,255,71,.12)}
-
-/* =============================================
-   PROJECT CARD SHINE SWEEP
-   ============================================= */
-.project-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.055) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .65s ease;pointer-events:none;z-index:1}
-.project-card:hover::after{background-position:-50% 0}
-
-/* playing card shine */
-.playing-card::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(232,255,71,.04) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;transition:background-position .7s ease;pointer-events:none;z-index:1}
-.playing-card:hover::after{background-position:-50% 0}
+@media(max-width:900px){
+  .topnav{padding:20px 24px}
+  .nav-links{display:none}
+}
 </style>
 </head>
 <body>
@@ -567,33 +436,15 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
   <div class="ls-text" id="lsText">INITIALIZING...</div>
 </div>
 
-<!-- Custom Cursor -->
 <div id="cursorDot"></div>
 <div id="cursorRing"></div>
-
-<!-- Scroll Progress -->
 <div id="scrollProg"></div>
-
-<!-- =============================================
-     SIDE NAV
-     ============================================= -->
-<nav class="side-nav" id="sideNav">
-  <div class="side-nav-line"></div>
-  <ul class="side-nav-list">
-    <li><a href="#hero"     class="side-nav-link active" data-section="hero"><span class="side-nav-dot"></span><span class="side-nav-label"><em>01</em> Home</span></a></li>
-    <li><a href="#about"    class="side-nav-link" data-section="about"><span class="side-nav-dot"></span><span class="side-nav-label"><em>02</em> About</span></a></li>
-    <li><a href="#projects" class="side-nav-link" data-section="projects"><span class="side-nav-dot"></span><span class="side-nav-label"><em>03</em> Projects</span></a></li>
-    <li><a href="#lessons"  class="side-nav-link" data-section="lessons"><span class="side-nav-dot"></span><span class="side-nav-label"><em>04</em> Errors & Lessons</span></a></li>
-    <li><a href="#playing"  class="side-nav-link" data-section="playing"><span class="side-nav-dot"></span><span class="side-nav-label"><em>05</em> Currently Playing</span></a></li>
-    <li><a href="#contact"  class="side-nav-link" data-section="contact"><span class="side-nav-dot"></span><span class="side-nav-label"><em>06</em> Contact</span></a></li>
-  </ul>
-</nav>
 
 <!-- =============================================
      ADMIN FLOATING BAR
      ============================================= -->
 <div class="admin-bar" id="adminBar">
-  <span class="admin-bar-logo">⬡ Edit Mode</span>
+  <span class="admin-bar-logo">◆ Edit Mode</span>
   <button class="admin-bar-btn active" id="btn-edit-text" onclick="toggleEditMode('text')" title="Edit texts">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
     Edit Texts
@@ -606,22 +457,9 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
     Skill Bars
   </button>
-  <button class="admin-bar-btn" id="btn-edit-drag" onclick="toggleEditMode('drag')" title="Reorder projects">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-    Reorder
-  </button>
-  <button class="admin-bar-btn" id="btn-edit-layout" onclick="toggleEditMode('layout')" title="Move & scale hero elements">
+  <button class="admin-bar-btn" id="btn-edit-layout" onclick="toggleEditMode('layout')" title="Move &amp; scale elements">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
     Layout
-  </button>
-  <button class="admin-bar-btn" id="btn-edit-marquee" onclick="toggleEditMode('marquee')" title="Edit marquee items">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg>
-    Marquee
-  </button>
-  <div class="admin-bar-sep"></div>
-  <button class="admin-bar-btn" onclick="addNewProject()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    Add Project
   </button>
   <div class="admin-bar-spacer"></div>
   <button class="admin-bar-btn" onclick="resetAllTypography()" title="Remove all saved typography styles from every element" style="color:var(--danger)">
@@ -630,7 +468,7 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
   </button>
   <button class="admin-bar-save-btn" onclick="saveAndDownload()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    Save & Download
+    Save &amp; Download
   </button>
   <button class="admin-bar-logout" onclick="logout()">Logout</button>
 </div>
@@ -639,12 +477,12 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
      TOP NAV
      ============================================= -->
 <nav class="topnav" id="topnav">
-  <a href="#hero" class="nav-logo">Rodrigo Giliberti</a>
-  <!-- Normal nav links -->
+  <a href="#" onclick="event.preventDefault();closePanel()" class="nav-logo">Rodrigo Giliberti</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#projects">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="event.preventDefault();handleBoxClick('gamedesign')">Game Design</a></li>
+    <li><a href="#" onclick="event.preventDefault();handleBoxClick('leveldesign')">Level Design</a></li>
+    <li><a href="#" onclick="event.preventDefault();handleBoxClick('mygames')">My Games</a></li>
+    <li><a href="#" onclick="event.preventDefault();handleBoxClick('contact')">Contact</a></li>
     <li>
       <a href="resume.pdf" target="_blank" class="nav-resume-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -652,34 +490,28 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
       </a>
     </li>
     <li>
-      <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" title="Search site">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <button class="nav-search-btn" id="navSearchBtn" onclick="toggleSearch()" title="Search site" style="background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
     </li>
   </ul>
-  <!-- Search mode (replaces nav links, inside same fixed nav) -->
-  <div class="nav-search-mode" id="navSearchMode">
-    <span class="nav-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-    <input type="text" class="nav-search-input" id="searchInput" placeholder="Search anything on this site..." autocomplete="off">
-    <span class="search-count" id="searchCount"></span>
-    <button class="search-nav-btn" onclick="cycleMatch(-1)" title="Previous">&#8593;</button>
-    <button class="search-nav-btn" onclick="cycleMatch(1)" title="Next">&#8595;</button>
-    <button class="nav-search-close" onclick="toggleSearch()" title="Close">&times;</button>
+  <div class="nav-search-mode" id="navSearchMode" style="display:none;flex:1;align-items:center;gap:10px;margin-left:24px">
+    <span style="color:var(--muted);display:flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <input type="text" id="searchInput" placeholder="Search anything on this site..." autocomplete="off" style="flex:1;background:var(--surface);border:1px solid var(--accent);color:var(--white);font-family:'Space Mono',monospace;font-size:12px;padding:8px 14px;outline:none;max-width:500px">
+    <span id="searchCount" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;min-width:60px"></span>
+    <button onclick="cycleMatch(-1)" title="Previous" style="background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;">&#8593;</button>
+    <button onclick="cycleMatch(1)" title="Next" style="background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;">&#8595;</button>
+    <button onclick="toggleSearch()" title="Close" style="background:none;border:none;color:var(--muted);font-size:20px;">&times;</button>
   </div>
 </nav>
 
-<!-- Typography toolbar (shows when editing a text element) -->
+<!-- Typography toolbar -->
 <div class="typo-toolbar" id="typoToolbar">
-  <!-- Drag handle / title bar -->
   <div class="typo-titlebar" id="typoTitlebar">
-    <div class="typo-drag-dots">
-      <span></span><span></span><span></span>
-      <span></span><span></span><span></span>
-    </div>
+    <div class="typo-drag-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <span class="typo-titlebar-label">Typography</span>
     <button class="typo-close" onclick="hideTypoToolbar()" title="Close">&#xD7;</button>
   </div>
-  <!-- Row 1: Font + Size -->
   <div class="typo-row">
     <select class="typo-font-select" id="typoFont" onchange="typoApplyFont(this.value)">
       <option value="">— Font —</option>
@@ -700,7 +532,6 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
       <input type="range" class="typo-size-range" id="typoSizeRange" min="8" max="200" value="16" oninput="typoSyncRange(this.value)">
     </div>
   </div>
-  <!-- Row 2: Style + Color + Align + Line-height + Letter-spacing -->
   <div class="typo-row">
     <button class="typo-btn" id="typoBlod" onclick="typoToggle('fontWeight','700','400')" title="Bold"><b>B</b></button>
     <button class="typo-btn" id="typoItalic" onclick="typoToggle('fontStyle','italic','normal')" title="Italic"><i>I</i></button>
@@ -733,7 +564,7 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
   </div>
 </div>
 
-<!-- Layout panel (hero free move/scale) -->
+<!-- Layout panel -->
 <div class="layout-panel" id="layoutPanel">
   <span class="layout-panel-title" id="layoutPanelTitle">Select an element</span>
   <div class="layout-panel-pos" id="layoutPanelPos">x: 0 &nbsp; y: 0</div>
@@ -745,342 +576,325 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
 </div>
 
 <!-- =============================================
-     HERO
+     HERO — title, subtitle, 3 category boxes, bottom row
      ============================================= -->
 <section class="hero" id="hero">
-  <div class="hero-left">
-    <p class="hero-tag" data-editable data-key="hero_tag">// Game Designer &amp; Level Designer</p>
-    <h1 class="hero-title">
-      <span data-editable data-key="hero_name_line1">RODRIGO</span><br>
-      <em><span data-editable data-key="hero_name_line2">GILIBERTI</span></em>
-    </h1>
-    <p class="hero-desc" data-editable data-key="hero_desc">
-      Crafting <strong>worlds, systems, and experiences</strong> that players can't put down.
-      4 years shaping gameplay from concept to final environment.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary" data-editable data-key="hero_cta_primary">View My Work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      <a href="#contact" class="btn-ghost" data-editable data-key="hero_cta_ghost">Get In Touch</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number counter" data-target="4" data-editable data-key="stat_years">4</span>
-        <span class="stat-label" data-editable data-key="stat_label_years">Years Exp.</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" id="project-count">3</span>
-        <span class="stat-label" data-editable data-key="stat_label_projects">Projects</span>
-      </div>
-      <div class="stat-item">
-        <div class="engine-logo-row">
-          <div class="engine-badge" data-badge-idx="0">
-            <span class="badge-text" data-editable data-key="engine_badge_1">UNITY</span>
-            <div class="engine-badge-overlay">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <input type="file" accept="image/*">
-            </div>
-          </div>
-          <div class="engine-badge" data-badge-idx="1">
-            <span class="badge-text" data-editable data-key="engine_badge_2">UE5</span>
-            <div class="engine-badge-overlay">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <input type="file" accept="image/*">
-            </div>
+  <div class="hero-bgfx">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow-el"></div>
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+  </div>
+
+  <div class="hero-fg">
+    <h1 class="hero-title-main" data-editable data-key="hero_name">RODRIGO GILIBERTI</h1>
+    <p class="hero-subtitle" data-editable data-key="hero_subtitle">— GAME PRODUCER &amp; GAME DESIGNER —</p>
+
+    <div class="category-row">
+      <div class="category-box-wrap">
+        <div class="category-box" data-box-id="gamedesign" onclick="handleBoxClick('gamedesign')">
+          <img class="cbox-img" alt="Game Design Projects">
+          <div class="img-edit-overlay" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Change Image</span>
+            <input type="file" accept="image/*">
           </div>
         </div>
-        <span class="stat-label" data-editable data-key="stat_label_engines">Engines</span>
+        <p class="category-box-label" data-editable data-key="box_gamedesign_label">GAME DESIGN PROJECTS</p>
       </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-visual">
-      <canvas id="heroCanvas"></canvas>
-      <div class="hero-grid-bg"></div>
-      <div class="hero-glow-el"></div>
-      <div class="hero-shape shape-1"></div>
-      <div class="hero-shape shape-2"></div>
-      <div class="hero-shape shape-3"></div>
-      <div class="hero-overlay-text">
-        <p class="hero-overlay-label" data-editable data-key="hero_overlay_label">// Rodrigo Giliberti</p>
-        <p class="hero-overlay-big" data-editable data-key="hero_overlay_big">GAME<br>DESIGN</p>
-      </div>
-    </div>
-    <!-- Media box: image / video upload -->
-    <div class="hero-media-box" id="heroMediaBox">
-      <!-- placeholder (shown in admin when no media) -->
-      <div class="hero-media-placeholder" id="heroMediaPlaceholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/><rect x="2" y="3" width="10" height="7" rx="1" opacity=".4"/></svg>
-        <span>Upload Image or Video</span>
-        <input type="file" id="heroMediaInput" accept="image/*,video/*">
-      </div>
-      <!-- media content area -->
-      <div class="hero-media-content" id="heroMediaContent">
-        <img id="heroMediaImg" alt="Hero media" style="display:none">
-        <video id="heroMediaVideo" playsinline style="display:none"></video>
-        <!-- overlay text (editable in text-edit mode) -->
-        <div class="hero-media-text-overlay" id="heroMediaTextOverlay" data-editable data-key="hero_media_text" contenteditable="false"></div>
-        <!-- video controls -->
-        <div class="hero-media-controls" id="heroMediaControls">
-          <button class="mc-btn" id="mcPlay" title="Play/Pause">&#9654;</button>
-          <div class="mc-progress-wrap" id="mcProgressWrap"><div class="mc-progress-fill" id="mcProgressFill"></div></div>
-          <span class="mc-time" id="mcTime">0:00</span>
-          <button class="mc-btn" id="mcVol" title="Mute">&#128266;</button>
-          <input type="range" class="mc-vol-slider" id="mcVolSlider" min="0" max="1" step="0.05" value="1">
-          <span class="mc-quality">HD</span>
-          <button class="mc-btn" id="mcFs" title="Fullscreen">&#x26F6;</button>
+      <div class="category-box-wrap">
+        <div class="category-box" data-box-id="leveldesign" onclick="handleBoxClick('leveldesign')">
+          <img class="cbox-img" alt="Level Design Projects">
+          <div class="img-edit-overlay" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Change Image</span>
+            <input type="file" accept="image/*">
+          </div>
         </div>
-        <!-- change media button (admin mode) -->
-        <label class="hero-media-change-btn" id="heroMediaChangeBtn" title="Change media">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <input type="file" id="heroMediaChangeInput" accept="image/*,video/*" style="display:none">
-        </label>
+        <p class="category-box-label" data-editable data-key="box_leveldesign_label">LEVEL DESIGN PROJECTS</p>
+      </div>
+      <div class="category-box-wrap">
+        <div class="category-box" data-box-id="mygames" onclick="handleBoxClick('mygames')">
+          <img class="cbox-img" alt="My Games">
+          <div class="img-edit-overlay" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Change Image</span>
+            <input type="file" accept="image/*">
+          </div>
+        </div>
+        <p class="category-box-label" data-editable data-key="box_mygames_label">MY GAMES</p>
       </div>
     </div>
+
+    <div class="bottom-row">
+      <div class="bottom-box contact-box" onclick="handleBoxClick('contact')">
+        <span class="bottom-box-label" data-editable data-key="contact_box_label">CONTACT ME</span>
+      </div>
+      <div class="bottom-box social-box">
+        <div class="social-lines">
+          <div class="social-line" data-social="instagram"><a href="https://instagram.com/rodrigiliberti" target="_blank" data-editable data-key="social_instagram_label">INSTAGRAM</a><button class="social-edit-btn" onclick="event.stopPropagation();editSocialLink('instagram')" title="Edit link">&#9998;</button></div>
+          <div class="social-line" data-social="x"><a href="#" target="_blank" data-editable data-key="social_x_label">X</a><button class="social-edit-btn" onclick="event.stopPropagation();editSocialLink('x')" title="Edit link">&#9998;</button></div>
+          <div class="social-line" data-social="facebook"><a href="#" target="_blank" data-editable data-key="social_facebook_label">FACEBOOK</a><button class="social-edit-btn" onclick="event.stopPropagation();editSocialLink('facebook')" title="Edit link">&#9998;</button></div>
+          <div class="social-line" data-social="whatsapp"><a href="https://wa.me/541165208496" target="_blank" data-editable data-key="social_whatsapp_label">WHATSAPP</a><button class="social-edit-btn" onclick="event.stopPropagation();editSocialLink('whatsapp')" title="Edit link">&#9998;</button></div>
+        </div>
+      </div>
+      <a href="resume.pdf" target="_blank" class="bottom-box resume-box">
+        <span class="bottom-box-label" data-editable data-key="resume_box_label">RESUME</span>
+      </a>
+    </div>
   </div>
-  <div class="scroll-indicator"><div class="scroll-line"></div><span class="scroll-label">Scroll</span></div>
 </section>
 
 <!-- =============================================
-     MARQUEE
+     PANEL: GAME DESIGN PROJECTS
      ============================================= -->
-<div class="marquee-edit-panel" id="marqueeEditPanel"></div>
-<div class="marquee-section">
-  <div class="marquee-track" id="marqueeTrack">
-    <span class="marquee-item"><span>✦</span> GAME DESIGN</span>
-    <span class="marquee-item"><span>✦</span> LEVEL DESIGN</span>
-    <span class="marquee-item"><span>✦</span> UNREAL ENGINE 5</span>
-    <span class="marquee-item"><span>✦</span> UNITY</span>
-    <span class="marquee-item"><span>✦</span> BLOCKOUT</span>
-    <span class="marquee-item"><span>✦</span> WHITEBOX</span>
-    <span class="marquee-item"><span>✦</span> SYSTEMS DESIGN</span>
-    <span class="marquee-item"><span>✦</span> ENVIRONMENT ART</span>
-    <span class="marquee-item"><span>✦</span> NARRATIVE DESIGN</span>
-    <span class="marquee-item"><span>✦</span> GDD · LDD</span>
-    <span class="marquee-item"><span>✦</span> PACING DESIGN</span>
-    <span class="marquee-item"><span>✦</span> ENCOUNTER DESIGN</span>
-    <span class="marquee-item"><span>✦</span> AI BEHAVIOR</span>
+<div class="cat-panel" id="panel-gamedesign">
+  <div class="panel-topbar">
+    <span class="panel-back" onclick="closePanel()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</span>
+    <span class="panel-topbar-title">Game Design Projects</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-label">Overview</div>
+    <h2 class="cs-title" data-editable data-key="gd_title">Game Design Projects</h2>
+    <div class="panel-intro" data-editable data-key="gd_intro">
+      <p>Game design work spanning mechanics, systems, and player experience — from GDDs and prototypes to fully playtested features.</p>
+      <p>This is where the "why" behind each design decision lives: player goals, core loops, and the systems that support them. Click "Edit Texts" to write your own case studies here.</p>
+    </div>
+    <div class="cg-gallery" id="gallery-gamedesign"></div>
+    <button class="cg-add-slot" onclick="addGallerySlot('gamedesign')">+ Add Image Slot</button>
+
+    <div class="playing-inner">
+      <div class="section-label">Design Inspirations</div>
+      <div class="playing-grid">
+        <div class="playing-card"><p class="playing-type">// Now Playing</p><h3 class="playing-title">DAYZ</h3><p class="playing-desc">Open-world survival with emergent player stories. Studying how scarcity and tension shape player behavior without scripted events.</p><span class="playing-tag">Open World Design</span></div>
+        <div class="playing-card"><p class="playing-type">// Always Playing</p><h3 class="playing-title">RUNESCAPE</h3><p class="playing-desc">A living world built over decades — analyzing quest design, progression systems, and how long-term player investment is sustained.</p><span class="playing-tag">Systems &amp; Progression</span></div>
+        <div class="playing-card"><p class="playing-type">// Design Study</p><h3 class="playing-title">DARK SOULS</h3><p class="playing-desc">Enemy placement, environmental storytelling, and how architecture communicates danger without UI. A masterclass in spatial design.</p><span class="playing-tag">Level Design Ref</span></div>
+        <div class="playing-card"><p class="playing-type">// Horror Ref</p><h3 class="playing-title">OUTLAST 1</h3><p class="playing-desc">How lighting, sound design, and restricted player agency create sustained dread. No combat — pure environmental terror.</p><span class="playing-tag">Atmosphere &amp; Tension</span></div>
+        <div class="playing-card"><p class="playing-type">// Horror Ref</p><h3 class="playing-title">OUTLAST 2</h3><p class="playing-desc">How open environments change horror pacing compared to linear corridors. Scale and vulnerability used as design tools.</p><span class="playing-tag">Environmental Horror</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- =============================================
-     ABOUT
+     PANEL: LEVEL DESIGN PROJECTS
      ============================================= -->
-<section class="about" id="about">
-  <div class="about-left reveal">
-    <div class="section-label">02 — About</div>
-    <h2 class="about-heading">WHO<br>I AM</h2>
-    <p class="about-body" data-editable data-key="about_bio">
-      I'm a <strong>Game Designer and Level Designer</strong> with 4 years of experience building
-      immersive video game worlds. Based in Buenos Aires, Argentina, I work with
-      <strong>Unity and Unreal Engine 5</strong> to craft environments, mechanics, and systems that feel alive.<br><br>
-      My approach follows a <strong>structured design pipeline</strong> — from GDDs and LDDs through
-      blockouts to polished final scenes — treating every project as a real studio brief.
-    </p>
-    <div class="skill-bars" id="skill-bars-container">
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_1_name">Level Design (LDD)</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_1_meta">4 years · Advanced</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="0"><div class="skill-bar-fill" data-width="85"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_2_name">Game Design (GDD)</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_2_meta">4 years · Advanced</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="1"><div class="skill-bar-fill" data-width="82"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_3_name">Unity</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_3_meta">6 years · Expert</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="2"><div class="skill-bar-fill" data-width="93"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_4_name">Unreal Engine 5</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_4_meta">2 years · Intermediate</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="3"><div class="skill-bar-fill" data-width="62"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_5_name">Blueprint / Visual Scripting</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_5_meta">1 year · Beginner</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="4"><div class="skill-bar-fill" data-width="38"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_6_name">Environment Art</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_6_meta">4 years · Advanced</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="5"><div class="skill-bar-fill" data-width="80"><div class="skill-bar-handle"></div></div></div>
-      </div>
-      <div class="skill-bar-item">
-        <div class="skill-bar-header">
-          <span class="skill-bar-name" data-editable data-key="skill_7_name">Narrative Design</span>
-          <span class="skill-bar-meta" data-editable data-key="skill_7_meta">4 years · Advanced</span>
-        </div>
-        <div class="skill-bar-track" data-skill-index="6"><div class="skill-bar-fill" data-width="78"><div class="skill-bar-handle"></div></div></div>
-      </div>
-    </div>
-    <div class="skills-tags-row">
-      <span class="skill-tag">Systems Design</span><span class="skill-tag">Blockout</span>
-      <span class="skill-tag">Whitebox</span><span class="skill-tag">Pacing Design</span>
-      <span class="skill-tag">AI Behavior</span><span class="skill-tag">Encounter Design</span>
-      <span class="skill-tag">GDD Writing</span><span class="skill-tag">LDD Writing</span>
-      <span class="skill-tag">Playtesting</span>
-    </div>
+<div class="cat-panel" id="panel-leveldesign">
+  <div class="panel-topbar">
+    <span class="panel-back" onclick="closePanel()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</span>
+    <span class="panel-topbar-title">Level Design Projects</span>
   </div>
-
-  <div class="about-right reveal">
-    <div class="section-label">Experience</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <span class="timeline-year" data-editable data-key="exp_1_year">2024</span>
-        <div>
-          <p class="timeline-title" data-editable data-key="exp_1_title">Invictus Games Studio — Lead Designer</p>
-          <p class="timeline-desc" data-editable data-key="exp_1_desc">Full pipeline environment and level design. Layouts, blockouts and final scene production.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <span class="timeline-year" data-editable data-key="exp_2_year">2022</span>
-        <div>
-          <p class="timeline-title" data-editable data-key="exp_2_title">Click to add title...</p>
-          <p class="timeline-desc" data-editable data-key="exp_2_desc">Click to add description...</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <span class="timeline-year" data-editable data-key="exp_3_year">2019</span>
-        <div>
-          <p class="timeline-title" data-editable data-key="exp_3_title">Click to add title...</p>
-          <p class="timeline-desc" data-editable data-key="exp_3_desc">Click to add description...</p>
-        </div>
-      </div>
+  <div class="panel-body">
+    <div class="section-label">Overview</div>
+    <h2 class="cs-title" data-editable data-key="ld_title">Level Design Projects</h2>
+    <div class="panel-intro" data-editable data-key="ld_intro">
+      <p>Level design case studies covering blockouts, encounter design, and pacing — the spatial and moment-to-moment craft of building playable spaces.</p>
+      <p>From paper sketches and greybox layouts to fully dressed, playtested levels. Click "Edit Texts" to write your own case studies here.</p>
     </div>
-  </div>
-</section>
+    <div class="cg-gallery" id="gallery-leveldesign"></div>
+    <button class="cg-add-slot" onclick="addGallerySlot('leveldesign')">+ Add Image Slot</button>
 
-<!-- =============================================
-     PROJECTS
-     ============================================= -->
-<section class="projects" id="projects">
-  <div class="projects-header reveal">
-    <div>
-      <div class="section-label">03 — Selected Work</div>
-      <h2 class="projects-title">PROJECTS</h2>
-    </div>
-    <span class="projects-count" id="projects-count-label">Loading...</span>
-  </div>
-  <div class="projects-grid" id="projects-grid"></div>
-</section>
-
-<!-- =============================================
-     LESSONS
-     ============================================= -->
-<section class="lessons-section" id="lessons">
-  <div class="lessons-inner">
-    <div class="lessons-header reveal">
-      <div class="section-label">04 — Growth</div>
-      <h2 class="lessons-title">ERRORS &amp;<br><em>LESSONS</em></h2>
-      <p class="lessons-intro">Every project breaks something. Here's what I learned from the wreckage.</p>
-    </div>
-    <div class="lessons-grid">
-      <div class="lesson-card reveal">
-        <div class="lesson-number">01</div>
-        <div class="lesson-content">
-          <h3 class="lesson-title">Chasing art before planning the blockout</h3>
-          <div class="lesson-split">
-            <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>Early on I focused on making things look good before figuring out what the level actually needed to do. I'd spend hours on art and atmosphere, then hit a wall — no clear structure, no flow.</p></div>
-            <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>Now I never open the engine without a blockout on paper first. Sketch the layout by hand — rooms, paths, pacing beats — and only then bring it into the engine as a grey box.</p></div>
+    <div class="lessons-inner">
+      <div class="section-label">Errors &amp; Lessons</div>
+      <div class="lessons-grid">
+        <div class="lesson-card">
+          <div class="lesson-number">01</div>
+          <div class="lesson-content">
+            <h3 class="lesson-title">Chasing art before planning the blockout</h3>
+            <div class="lesson-split">
+              <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>Early on I focused on making things look good before figuring out what the level actually needed to do. I'd spend hours on art and atmosphere, then hit a wall — no clear structure, no flow.</p></div>
+              <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>Now I never open the engine without a blockout on paper first. Sketch the layout by hand — rooms, paths, pacing beats — and only then bring it into the engine as a grey box.</p></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="lesson-card reveal">
-        <div class="lesson-number">02</div>
-        <div class="lesson-content">
-          <h3 class="lesson-title">Designing without playtesting</h3>
-          <div class="lesson-split">
-            <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>I spent weeks building a combat encounter that felt great in my head — but the first time a fresh player tried it, they got lost immediately.</p></div>
-            <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>I now schedule playtests at every stage. If someone who hasn't seen the level can't figure out where to go, the level failed — not the player.</p></div>
+        <div class="lesson-card">
+          <div class="lesson-number">02</div>
+          <div class="lesson-content">
+            <h3 class="lesson-title">Designing without playtesting</h3>
+            <div class="lesson-split">
+              <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>I spent weeks building a combat encounter that felt great in my head — but the first time a fresh player tried it, they got lost immediately.</p></div>
+              <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>I now schedule playtests at every stage. If someone who hasn't seen the level can't figure out where to go, the level failed — not the player.</p></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="lesson-card reveal">
-        <div class="lesson-number">03</div>
-        <div class="lesson-content">
-          <h3 class="lesson-title">Over-engineering systems early</h3>
-          <div class="lesson-split">
-            <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>On an early Unity project I built a complex AI behavior system before the core loop even worked. When the design changed, everything broke.</p></div>
-            <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>Prototype the feel first, build the systems after. A bad mechanic with good code is still a bad mechanic.</p></div>
+        <div class="lesson-card">
+          <div class="lesson-number">03</div>
+          <div class="lesson-content">
+            <h3 class="lesson-title">Over-engineering systems early</h3>
+            <div class="lesson-split">
+              <div class="lesson-col"><span class="lesson-label error">✕ The mistake</span><p>On an early Unity project I built a complex AI behavior system before the core loop even worked. When the design changed, everything broke.</p></div>
+              <div class="lesson-col"><span class="lesson-label fix">✓ The fix</span><p>Prototype the feel first, build the systems after. A bad mechanic with good code is still a bad mechanic.</p></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- =============================================
-     CURRENTLY PLAYING
+     PANEL: MY GAMES
      ============================================= -->
-<section class="playing-section reveal" id="playing">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;">
-    <div>
-      <div class="section-label">05 — Inspirations</div>
-      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--white);line-height:.95;">CURRENTLY<br>PLAYING</h2>
+<div class="cat-panel" id="panel-mygames">
+  <div class="panel-topbar">
+    <span class="panel-back" onclick="closePanel()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</span>
+    <span class="panel-topbar-title">My Games</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-label">Personal Projects</div>
+    <h2 class="cs-title" data-editable data-key="mg_title">My Games</h2>
+    <div class="panel-intro" data-editable data-key="mg_intro">
+      <p>Personal and self-directed game projects — the work I make on my own time to explore ideas outside a client brief.</p>
     </div>
-    <p style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;padding-bottom:6px;">What inspires my design thinking</p>
+    <div class="cg-gallery" id="gallery-mygames"></div>
+    <button class="cg-add-slot" onclick="addGallerySlot('mygames')">+ Add Image Slot</button>
+
+    <div class="about">
+      <div class="about-left">
+        <div class="section-label">Who I Am</div>
+        <h2 class="about-heading">WHO<br>I AM</h2>
+        <p class="about-body" data-editable data-key="about_bio">
+          I'm a <strong>Game Designer and Level Designer</strong> with 4 years of experience building
+          immersive video game worlds. Based in Buenos Aires, Argentina, I work with
+          <strong>Unity and Unreal Engine 5</strong> to craft environments, mechanics, and systems that feel alive.<br><br>
+          My approach follows a <strong>structured design pipeline</strong> — from GDDs and LDDs through
+          blockouts to polished final scenes — treating every project as a real studio brief.
+        </p>
+        <div class="skill-bars" id="skill-bars-container">
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_1_name">Level Design (LDD)</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_1_meta">4 years · Advanced</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="0"><div class="skill-bar-fill" data-width="85"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_2_name">Game Design (GDD)</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_2_meta">4 years · Advanced</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="1"><div class="skill-bar-fill" data-width="82"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_3_name">Unity</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_3_meta">6 years · Expert</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="2"><div class="skill-bar-fill" data-width="93"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_4_name">Unreal Engine 5</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_4_meta">2 years · Intermediate</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="3"><div class="skill-bar-fill" data-width="62"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_5_name">Blueprint / Visual Scripting</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_5_meta">1 year · Beginner</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="4"><div class="skill-bar-fill" data-width="38"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_6_name">Environment Art</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_6_meta">4 years · Advanced</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="5"><div class="skill-bar-fill" data-width="80"><div class="skill-bar-handle"></div></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-header">
+              <span class="skill-bar-name" data-editable data-key="skill_7_name">Narrative Design</span>
+              <span class="skill-bar-meta" data-editable data-key="skill_7_meta">4 years · Advanced</span>
+            </div>
+            <div class="skill-bar-track" data-skill-index="6"><div class="skill-bar-fill" data-width="78"><div class="skill-bar-handle"></div></div></div>
+          </div>
+        </div>
+        <div class="skills-tags-row">
+          <span class="skill-tag">Systems Design</span><span class="skill-tag">Blockout</span>
+          <span class="skill-tag">Whitebox</span><span class="skill-tag">Pacing Design</span>
+          <span class="skill-tag">AI Behavior</span><span class="skill-tag">Encounter Design</span>
+          <span class="skill-tag">GDD Writing</span><span class="skill-tag">LDD Writing</span>
+          <span class="skill-tag">Playtesting</span>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="section-label">Experience</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year" data-editable data-key="exp_1_year">2024</span>
+            <div>
+              <p class="timeline-title" data-editable data-key="exp_1_title">Level Designer &amp; Game Designer — Invictus Game Studio</p>
+              <p class="timeline-desc" data-editable data-key="exp_1_desc">Designed and shipped two production-ready levels end-to-end in Unity — full pipeline from blockout to final delivery, including level scripting, encounter design, and playtesting.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year" data-editable data-key="exp_2_year">2023</span>
+            <div>
+              <p class="timeline-title" data-editable data-key="exp_2_title">Level Designer — Kitusumon</p>
+              <p class="timeline-desc" data-editable data-key="exp_2_desc">Designed and delivered a playable level for a commercial title, applying professional blockout workflows from concept to final pass.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year" data-editable data-key="exp_3_year">2022</span>
+            <div>
+              <p class="timeline-title" data-editable data-key="exp_3_title">Graphic Designer — Infobae</p>
+              <p class="timeline-desc" data-editable data-key="exp_3_desc">Produced visual assets for one of Latin America's largest news platforms (30M+ monthly users), working cross-functionally with editorial and product teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="playing-grid">
-    <div class="playing-card"><p class="playing-type">// Now Playing</p><h3 class="playing-title">DAYZ</h3><p class="playing-desc">Open-world survival with emergent player stories. Studying how scarcity and tension shape player behavior without scripted events.</p><span class="playing-tag">Open World Design</span></div>
-    <div class="playing-card"><p class="playing-type">// Always Playing</p><h3 class="playing-title">RUNESCAPE</h3><p class="playing-desc">A living world built over decades — analyzing quest design, progression systems, and how long-term player investment is sustained.</p><span class="playing-tag">Systems & Progression</span></div>
-    <div class="playing-card"><p class="playing-type">// Design Study</p><h3 class="playing-title">DARK SOULS</h3><p class="playing-desc">Enemy placement, environmental storytelling, and how architecture communicates danger without UI. A masterclass in spatial design.</p><span class="playing-tag">Level Design Ref</span></div>
-    <div class="playing-card"><p class="playing-type">// Horror Ref</p><h3 class="playing-title">OUTLAST 1</h3><p class="playing-desc">How lighting, sound design, and restricted player agency create sustained dread. No combat — pure environmental terror.</p><span class="playing-tag">Atmosphere & Tension</span></div>
-    <div class="playing-card"><p class="playing-type">// Horror Ref</p><h3 class="playing-title">OUTLAST 2</h3><p class="playing-desc">How open environments change horror pacing compared to linear corridors. Scale and vulnerability used as design tools.</p><span class="playing-tag">Environmental Horror</span></div>
-  </div>
-</section>
+</div>
 
 <!-- =============================================
-     CONTACT
+     PANEL: CONTACT
      ============================================= -->
-<section class="contact" id="contact">
-  <div class="contact-left reveal">
-    <div>
-      <p style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(10,10,11,.5);margin-bottom:20px;">06 — Contact</p>
-      <h2 class="contact-big">LET'S<br>BUILD<br>WORLDS</h2>
-    </div>
-    <p class="contact-sub">Available for full-time positions, contracts, and collaborations. Let's talk about your next project.</p>
+<div class="cat-panel" id="panel-contact">
+  <div class="panel-topbar">
+    <span class="panel-back" onclick="closePanel()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back</span>
+    <span class="panel-topbar-title">Contact</span>
   </div>
-  <div class="contact-right reveal">
-    <div class="section-label">Get In Touch</div>
-    <div class="contact-info">
-      <div class="contact-item">
-        <p class="contact-item-label">Email</p>
-        <a href="mailto:rodrigo@rodrigogiliberti.com" class="contact-item-value" data-editable data-key="contact_email">rodrigo@rodrigogiliberti.com</a>
+  <div class="panel-body" style="padding:0;max-width:none">
+    <div class="contact">
+      <div class="contact-left">
+        <div>
+          <p style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(10,10,11,.5);margin-bottom:20px;">Get In Touch</p>
+          <h2 class="contact-big" data-editable data-key="contact_big">LET'S<br>BUILD<br>WORLDS</h2>
+        </div>
+        <p class="contact-sub" data-editable data-key="contact_sub">Available for full-time positions, contracts, and collaborations. Let's talk about your next project.</p>
       </div>
-      <div class="contact-item">
-        <p class="contact-item-label">Phone</p>
-        <a href="tel:+541116520849" class="contact-item-value" data-editable data-key="contact_phone">+54 11 165208496</a>
+      <div class="contact-right">
+        <div class="section-label">Contact Info</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <p class="contact-item-label">Email</p>
+            <a href="mailto:rodrigo@rodrigogiliberti.com" class="contact-item-value" data-editable data-key="contact_email">rodrigo@rodrigogiliberti.com</a>
+          </div>
+          <div class="contact-item">
+            <p class="contact-item-label">Phone</p>
+            <a href="tel:+541116520849" class="contact-item-value" data-editable data-key="contact_phone">+54 11 165208496</a>
+          </div>
+          <div class="contact-item">
+            <p class="contact-item-label">Location</p>
+            <span class="contact-item-value" data-editable data-key="contact_location">Buenos Aires, Argentina</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com/rodrigiliberti" target="_blank" class="social-link">Instagram</a>
+          <a href="resume.pdf" target="_blank" class="social-link">Resume</a>
+        </div>
       </div>
-      <div class="contact-item">
-        <p class="contact-item-label">Location</p>
-        <span class="contact-item-value" data-editable data-key="contact_location">Buenos Aires, Argentina</span>
-      </div>
-    </div>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/rodrigo-giliberti-35a445228/" target="_blank" class="social-link">LinkedIn</a>
-      <a href="https://instagram.com/rodrigiliberti" target="_blank" class="social-link">Instagram</a>
-      <a href="resume.pdf" target="_blank" class="social-link">Resume</a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- =============================================
-     FOOTER
-     ============================================= -->
+<!-- FOOTER -->
 <footer>
   <span class="footer-copy">© 2025 Rodrigo Giliberti — Game Designer</span>
   <div class="footer-right">
@@ -1088,9 +902,7 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
   </div>
 </footer>
 
-<!-- =============================================
-     ADMIN LOCK BUTTON
-     ============================================= -->
+<!-- ADMIN LOCK BUTTON -->
 <button class="admin-lock-btn" id="adminLockBtn" onclick="toggleLoginPopup()" title="Admin login">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
 </button>
@@ -1102,11 +914,17 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
   <div class="admin-login-error" id="adminLoginError">Wrong password</div>
 </div>
 
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="lbClose()">
+  <button class="lb-nav lb-prev" onclick="event.stopPropagation();lbStep(-1)">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="" onclick="event.stopPropagation()">
+  <button class="lb-nav lb-next" onclick="event.stopPropagation();lbStep(1)">›</button>
+  <button class="lb-close" onclick="lbClose()">×</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
-
-<!-- Hidden image input -->
-<input type="file" id="globalImageInput" accept="image/*" style="display:none">
 
 <script>
 // =============================================
@@ -1122,136 +940,75 @@ async function sha256(str) {
 // =============================================
 // STATE
 // =============================================
-let isLoggedIn   = sessionStorage.getItem('rg_admin') === '1';
-let editMode     = null; // 'text'|'images'|'skills'|'drag'|'layout'|'marquee'
-let projects     = [];
-let editData     = {};
-let dragSrcIndex = null;
+let isLoggedIn  = sessionStorage.getItem('rg_admin') === '1';
+let editMode    = null; // 'text'|'images'|'skills'|'layout'
+let editData    = {};
+let galleries   = { gamedesign:[null,null,null], leveldesign:[null,null,null], mygames:[null,null,null] };
+let socialLinks = { instagram:'https://instagram.com/rodrigiliberti', x:'', facebook:'', whatsapp:'https://wa.me/541165208496' };
+let lbGalleryId = null, lbIndex = 0;
 
 // =============================================
 // BOOT
 // =============================================
-document.addEventListener('DOMContentLoaded', () => {
-  initMarquee();
+document.addEventListener('DOMContentLoaded', async () => {
   initNavScroll();
-  initReveal();
-  initSkillBars();
-  initCounter();
-  initAutoEditIds();   // assign auto IDs before loadEditData restores content
-  loadEditData();      // restores text content + typo styles
-  loadLayoutData();
-  loadHeroMedia();
-  loadEngineBadges();
-  loadProjects().then(() => {
-    if (isLoggedIn) showAdminBar();
-  });
+  initAutoEditIds();
+  loadEditData();
+  loadGalleries();
+  loadBoxImages();
+  loadSocialLinksLS();
+  await hydrateFromServerIfNeeded();
+  bindBoxImageInputs();
+  assignMoveKeys();
+  applyLayoutData();
   initTypoToolbarDrag();
-  // Search input listener
   document.getElementById('searchInput').addEventListener('input', e => searchSite(e.target.value));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       if (document.getElementById('topnav').classList.contains('search-open')) toggleSearch();
       if (document.getElementById('adminLoginPopup').classList.contains('open'))
         document.getElementById('adminLoginPopup').classList.remove('open');
+      if (document.getElementById('lb').classList.contains('open')) lbClose();
+      if (document.querySelector('.cat-panel.open')) closePanel();
     }
     if (e.key === 'Enter' && document.getElementById('adminLoginPopup').classList.contains('open')) attemptLogin();
+    if (e.key === 'ArrowLeft'  && document.getElementById('lb').classList.contains('open')) lbStep(-1);
+    if (e.key === 'ArrowRight' && document.getElementById('lb').classList.contains('open')) lbStep(1);
   });
-  // Hero media file inputs
-  document.getElementById('heroMediaInput').addEventListener('change', function(){ handleHeroMediaUpload(this.files[0]); });
-  document.getElementById('heroMediaChangeInput').addEventListener('change', function(){ handleHeroMediaUpload(this.files[0]); });
+  if (isLoggedIn) showAdminBar();
 });
 
-// =============================================
-// MARQUEE DATA
-// =============================================
-const DEFAULT_MARQUEE = [
-  'GAME DESIGN','LEVEL DESIGN','UNREAL ENGINE 5','UNITY','BLOCKOUT','WHITEBOX',
-  'SYSTEMS DESIGN','ENVIRONMENT ART','NARRATIVE DESIGN','GDD · LDD','PACING DESIGN',
-  'ENCOUNTER DESIGN','AI BEHAVIOR'
-];
-function getMarqueeItems() {
-  const s = localStorage.getItem('rg_marquee');
-  return s ? JSON.parse(s) : DEFAULT_MARQUEE;
-}
-function saveMarqueeItems(items) { localStorage.setItem('rg_marquee', JSON.stringify(items)); }
-
-function initMarquee() {
-  const t = document.getElementById('marqueeTrack');
-  if (!t) return;
-  const items = getMarqueeItems();
-  const html = items.map(text => `<span class="marquee-item"><span>✦</span> ${text}</span>`).join('');
-  t.innerHTML = html + html;
-}
-
-// =============================================
-// TOP NAV SCROLL
-// =============================================
 function initNavScroll() {
   const nav = document.getElementById('topnav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive:true });
-
-  const sections = ['hero','about','projects','lessons','playing','contact'];
-  const links = {};
-  sections.forEach(id => { links[id] = document.querySelector(`[data-section="${id}"]`); });
-
-  function updateSideNav() {
-    const y = window.scrollY + window.innerHeight * .35;
-    let cur = 'hero';
-    sections.forEach(id => { const el=document.getElementById(id); if(el && el.offsetTop<=y) cur=id; });
-    sections.forEach(id => links[id]?.classList.remove('active'));
-    links[cur]?.classList.add('active');
-  }
-  window.addEventListener('scroll', updateSideNav, { passive:true });
-  updateSideNav();
 }
 
 // =============================================
-// REVEAL
+// PANELS
 // =============================================
-function initReveal() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e,i) => {
-      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i*80); obs.unobserve(e.target); }
-    });
-  }, { threshold:.1 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+function openPanel(id) {
+  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('open'));
+  const panel = document.getElementById('panel-' + id);
+  if (!panel) return;
+  panel.classList.add('open');
+  panel.scrollTop = 0;
+  document.body.classList.add('panel-open');
+  if (id === 'mygames') applySkillBarWidths();
 }
-
-// =============================================
-// SKILL BARS
-// =============================================
-function initSkillBars() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e,i) => {
-      if (e.isIntersecting) {
-        const bar = e.target;
-        setTimeout(() => {
-          bar.style.width = bar.dataset.width + '%';
-          const handle = bar.querySelector('.skill-bar-handle');
-          if (handle) handle.style.left = bar.dataset.width + '%';
-        }, i*150+200);
-        obs.unobserve(bar);
-      }
-    });
-  }, { threshold:.3 });
-  document.querySelectorAll('.skill-bar-fill').forEach(bar => obs.observe(bar));
+function closePanel() {
+  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('open'));
+  document.body.classList.remove('panel-open');
 }
-
-// =============================================
-// COUNTER
-// =============================================
-function initCounter() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const el=e.target, target=parseInt(el.dataset.target||el.textContent)||0;
-        let cur=0; const step=target/(1400/16);
-        const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=Math.floor(cur);},16);
-        obs.unobserve(el);
-      }
-    });
-  }, { threshold:.5 });
-  document.querySelectorAll('.counter').forEach(el => obs.observe(el));
+function handleBoxClick(id) {
+  if (editMode) return;
+  openPanel(id);
+}
+function applySkillBarWidths() {
+  document.querySelectorAll('#panel-mygames .skill-bar-fill').forEach(bar => {
+    bar.style.width = bar.dataset.width + '%';
+    const h = bar.querySelector('.skill-bar-handle');
+    if (h) h.style.left = bar.dataset.width + '%';
+  });
 }
 
 // =============================================
@@ -1274,7 +1031,6 @@ async function attemptLogin() {
     document.getElementById('adminLoginError').style.display = 'none';
     showAdminBar();
     showToast('Logged in — Edit mode ready','success');
-    // Change lock icon to unlocked
     document.getElementById('adminLockBtn').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg>`;
     document.getElementById('adminLockBtn').style.borderColor='var(--accent)';
     document.getElementById('adminLockBtn').style.color='var(--accent)';
@@ -1311,15 +1067,13 @@ function toggleEditMode(mode) {
   disableAllEditModes();
   if (!wasActive) {
     editMode = mode;
-    const btnMap = {text:'btn-edit-text',images:'btn-edit-images',skills:'btn-edit-skills',drag:'btn-edit-drag',layout:'btn-edit-layout',marquee:'btn-edit-marquee'};
+    const btnMap = {text:'btn-edit-text',images:'btn-edit-images',skills:'btn-edit-skills',layout:'btn-edit-layout'};
     const btn = document.getElementById(btnMap[mode]);
     if (btn) btn.classList.add('active');
-    if (mode==='text')    enableTextEdit();
-    if (mode==='images')  enableImageEdit();
-    if (mode==='skills')  enableSkillEdit();
-    if (mode==='drag')    enableDragEdit();
-    if (mode==='layout')  enableLayoutEdit();
-    if (mode==='marquee') enableMarqueeEdit();
+    if (mode==='text')   enableTextEdit();
+    if (mode==='images') document.body.classList.add('mode-images');
+    if (mode==='skills') enableSkillEdit();
+    if (mode==='layout') enableLayoutEdit();
     showToast(`${mode.charAt(0).toUpperCase()+mode.slice(1)} editing on`, 'success');
   } else {
     editMode = null;
@@ -1328,7 +1082,6 @@ function toggleEditMode(mode) {
 }
 
 function disableAllEditModes() {
-  // Text — clear ALL editable elements (both data-editable and auto-assigned)
   document.querySelectorAll('[data-editable],[data-edit-id],' + ALL_TEXT_SELECTORS).forEach(el => {
     el.contentEditable = 'false';
     el.classList.remove('editing');
@@ -1336,51 +1089,28 @@ function disableAllEditModes() {
     el.removeEventListener('focus', onTextEditFocus);
   });
   hideTypoToolbar();
-  // Image overlays (project cards)
-  document.querySelectorAll('.img-edit-overlay').forEach(o => o.remove());
-  // Skill handles
   document.querySelectorAll('.skill-bar-track').forEach(t => t.classList.remove('edit-mode'));
   document.querySelectorAll('.skill-bar-handle').forEach(h => h.style.display='none');
-  // Drag
-  document.querySelectorAll('.project-card').forEach(c => { c.draggable=false; });
-  // Layout
   disableLayoutEdit();
-  // Marquee panel
-  document.getElementById('marqueeEditPanel').classList.remove('open');
-  // Reset all admin bar btns
+  document.body.classList.remove('mode-text','mode-images','mode-skills');
   document.querySelectorAll('.admin-bar-btn').forEach(b => b.classList.remove('active'));
 }
 
-// ---- TEXT EDIT — covers ALL content text ----
-// Sections + selectors for every visible text element
+// ---- TEXT EDIT ----
 const ALL_TEXT_SELECTORS = [
-  // Hero
-  '.hero-tag','.hero-title span','.hero-title em span','.hero-desc',
-  '.btn-primary','.btn-ghost',
-  '.stat-number','.stat-label','.badge-text',
-  '.hero-overlay-label','.hero-overlay-big','.hero-media-text-overlay',
-  // About
-  '.about-heading','.about-body',
-  '.skill-bar-name','.skill-bar-meta','.skill-tag',
+  '.about-heading','.about-body','.skill-bar-name','.skill-bar-meta','.skill-tag',
   '.section-label','.timeline-year','.timeline-title','.timeline-desc',
-  // Projects (dynamic, handled via data-editable on render)
-  '.project-name','.project-desc','.project-tag',
-  // Lessons
-  '.lessons-title','.lessons-intro','.lesson-title','.lesson-col p',
-  // Playing
+  '.cs-title','.lesson-title','.lesson-col p',
   '.playing-type','.playing-title','.playing-desc','.playing-tag',
-  // Contact
   '.contact-big','.contact-sub','.contact-item-label','.contact-item-value',
-  // Footer
+  '.panel-topbar-title','.category-box-label','.bottom-box-label',
   '.footer-copy','.footer-credit',
 ].join(',');
 
 function initAutoEditIds() {
   let idx = 0;
   document.querySelectorAll(ALL_TEXT_SELECTORS).forEach(el => {
-    if (!el.dataset.key && !el.dataset.editId) {
-      el.dataset.editId = `auto_${idx}`;
-    }
+    if (!el.dataset.key && !el.dataset.editId) el.dataset.editId = `auto_${idx}`;
     idx++;
   });
 }
@@ -1388,7 +1118,7 @@ function initAutoEditIds() {
 function enableTextEdit() {
   const allEls = new Set();
   document.querySelectorAll(ALL_TEXT_SELECTORS + ',[data-editable]').forEach(el => {
-    if (el.closest('.admin-bar') || el.closest('.side-nav')) return;
+    if (el.closest('.admin-bar')) return;
     allEls.add(el);
   });
   allEls.forEach(el => {
@@ -1399,68 +1129,23 @@ function enableTextEdit() {
   });
 }
 
-function onTextEditFocus(e) {
-  e.target.classList.add('editing');
-  showTypoToolbar(e.target);
-}
+function onTextEditFocus(e) { e.target.classList.add('editing'); showTypoToolbar(e.target); }
 
 function onEditableBlur(e) {
   const key = e.target.dataset.key || e.target.dataset.editId;
-  if (key) {
-    editData[key] = e.target.innerHTML;
-    localStorage.setItem('rg_editdata', JSON.stringify(editData));
-  }
-}
-
-// ---- IMAGE EDIT ----
-function enableImageEdit() {
-  document.querySelectorAll('.project-thumb').forEach((thumb, idx) => {
-    const ov = document.createElement('div');
-    ov.className = 'img-edit-overlay';
-    ov.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Change Image</span>
-      <input type="file" accept="image/*" data-project-index="${idx}">
-    `;
-    ov.querySelector('input').addEventListener('change', function() {
-      const file = this.files[0]; if (!file) return;
-      const projIdx = parseInt(this.dataset.projectIndex);
-      const reader = new FileReader();
-      reader.onload = e => {
-        projects[projIdx]._imageDataUrl = e.target.result;
-        projects[projIdx]._imageFile = file.name;
-        const img = thumb.querySelector('img') || document.createElement('img');
-        img.src = e.target.result;
-        if (!thumb.querySelector('img')) {
-          thumb.querySelector('.project-thumb-placeholder').style.display='none';
-          thumb.appendChild(img);
-        }
-        img.style.filter='brightness(.8) saturate(.7)';
-        localStorage.setItem('rg_projects', JSON.stringify(projects));
-        showToast(`Image updated — remember to upload ${file.name} to images/projects/`, 'success');
-      };
-      reader.readAsDataURL(file);
-    });
-    thumb.appendChild(ov);
-    ov.style.display='flex';
-  });
+  if (key) { editData[key] = e.target.innerHTML; localStorage.setItem('rg_editdata', JSON.stringify(editData)); }
 }
 
 // ---- SKILL BAR EDIT ----
 function enableSkillEdit() {
-  document.querySelectorAll('.skill-bar-track').forEach((track, idx) => {
+  document.querySelectorAll('.skill-bar-track').forEach(track => {
     track.classList.add('edit-mode');
     const fill = track.querySelector('.skill-bar-fill');
     const handle = fill.querySelector('.skill-bar-handle');
-    if (handle) {
-      handle.style.display = 'block';
-      handle.style.left = fill.dataset.width + '%';
-    }
-
+    if (handle) { handle.style.display='block'; handle.style.left = fill.dataset.width + '%'; }
     track.addEventListener('mousedown', startSkillDrag);
   });
 }
-
 let activeSkillTrack = null, activeSkillFill = null;
 function startSkillDrag(e) {
   if (editMode !== 'skills') return;
@@ -1489,222 +1174,221 @@ function endSkillDrag() {
   document.removeEventListener('mouseup', endSkillDrag);
 }
 
-// ---- DRAG REORDER ----
-function enableDragEdit() {
-  document.querySelectorAll('.project-card').forEach((card, idx) => {
-    card.draggable = true;
-    card.dataset.dragIndex = idx;
-    card.addEventListener('dragstart', onDragStart);
-    card.addEventListener('dragover',  onDragOver);
-    card.addEventListener('drop',      onDrop);
-    card.addEventListener('dragend',   onDragEnd);
+// =============================================
+// LOAD EDIT DATA (text/typography)
+// =============================================
+function applyEditData() {
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    const key = el.dataset.key;
+    if (key && editData[key] !== undefined) el.innerHTML = editData[key];
   });
+  document.querySelectorAll('[data-edit-id]').forEach(el => {
+    const key = el.dataset.editId;
+    if (key && editData[key] !== undefined) el.innerHTML = editData[key];
+  });
+  document.querySelectorAll('.skill-bar-fill').forEach((fill, idx) => {
+    const pct = editData[`skill_${idx+1}_pct`];
+    if (pct !== undefined) fill.dataset.width = pct;
+  });
+  loadTypoStyles();
 }
-
-function onDragStart(e) { dragSrcIndex = parseInt(e.currentTarget.dataset.dragIndex); e.currentTarget.classList.add('dragging'); }
-function onDragOver(e) { e.preventDefault(); document.querySelectorAll('.project-card').forEach(c=>c.classList.remove('drag-over')); e.currentTarget.classList.add('drag-over'); }
-function onDragEnd(e) { e.currentTarget.classList.remove('dragging'); document.querySelectorAll('.project-card').forEach(c=>c.classList.remove('drag-over')); }
-function onDrop(e) {
-  e.preventDefault();
-  const targetIdx = parseInt(e.currentTarget.dataset.dragIndex);
-  if (dragSrcIndex === targetIdx) return;
-  const moved = projects.splice(dragSrcIndex, 1)[0];
-  projects.splice(targetIdx, 0, moved);
-  localStorage.setItem('rg_projects', JSON.stringify(projects));
-  renderProjects();
-  setTimeout(() => enableDragEdit(), 100);
-  showToast('Projects reordered', 'success');
-}
-
-// =============================================
-// ADD PROJECT
-// =============================================
-function addNewProject() {
-  const title = prompt('Project title:');
-  if (!title) return;
-  const newProject = {
-    title: title.toUpperCase(),
-    type: 'Level Design',
-    tags: ['UE5'],
-    description: 'Click edit texts to update this description.',
-    image: '',
-    url: `project.html?id=${projects.length}`,
-    year: new Date().getFullYear().toString()
-  };
-  projects.push(newProject);
-  localStorage.setItem('rg_projects', JSON.stringify(projects));
-  renderProjects();
-  showToast('Project added — edit it now', 'success');
-}
-
-// =============================================
-// LOAD EDIT DATA
-// =============================================
 function loadEditData() {
   const saved = localStorage.getItem('rg_editdata');
-  if (saved) {
-    editData = JSON.parse(saved);
-    // Restore data-key elements
-    document.querySelectorAll('[data-editable]').forEach(el => {
-      const key = el.dataset.key;
-      if (key && editData[key] !== undefined) el.innerHTML = editData[key];
-    });
-    // Restore auto-edit-id elements
-    document.querySelectorAll('[data-edit-id]').forEach(el => {
-      const key = el.dataset.editId;
-      if (key && editData[key] !== undefined) el.innerHTML = editData[key];
-    });
-    // Restore skill bar percentages
-    document.querySelectorAll('.skill-bar-fill').forEach((fill, idx) => {
-      const pct = editData[`skill_${idx+1}_pct`];
-      if (pct !== undefined) fill.dataset.width = pct;
-    });
-    // Restore typography styles
-    loadTypoStyles();
-  }
+  if (saved) { editData = JSON.parse(saved); applyEditData(); }
 }
 
 // =============================================
-// LOAD & RENDER PROJECTS
+// GALLERIES
 // =============================================
-async function loadProjects() {
-  const local = localStorage.getItem('rg_projects');
-  if (local) { projects = JSON.parse(local); renderProjects(); return; }
-  try {
-    const res = await fetch('projects.json');
-    if (res.ok) { projects = await res.json(); localStorage.setItem('rg_projects', JSON.stringify(projects)); }
-  } catch(e) { projects = getDefaultProjects(); }
-  renderProjects();
+function loadGalleries() {
+  const s = localStorage.getItem('rg_galleries');
+  if (s) galleries = JSON.parse(s);
+  renderAllGalleries();
 }
+function renderAllGalleries() { ['gamedesign','leveldesign','mygames'].forEach(renderGallery); }
+function saveGalleries() { localStorage.setItem('rg_galleries', JSON.stringify(galleries)); }
 
-function getDefaultProjects() {
-  return [
-    { title:'ENDLESS SKIES', type:'Level Design', tags:['Blockout','UE5'], description:'A complete environment design showcase featuring layout, blockout, and final scene production. Demonstrating end-to-end design pipeline from concept to polished environment.', image:'', url:'project.html?id=0', year:'2024' },
-    { title:'PROJECT 02', type:'Game Design', tags:['Systems','UE5'], description:'Click edit texts to add your project description. What did you design, what was your role, what engine.', image:'', url:'project.html?id=1', year:'2024' },
-    { title:'PROJECT 03', type:'Level Design', tags:['Narrative','UE5'], description:'Click edit texts to add your project description. What did you design, what was your role, what engine.', image:'', url:'project.html?id=2', year:'2023' }
-  ];
-}
-
-function renderProjects() {
-  const grid = document.getElementById('projects-grid');
-  const label = document.getElementById('projects-count-label');
-  const counter = document.getElementById('project-count');
-  if (label) label.textContent = `Showing ${projects.length} of ${projects.length}`;
-  if (counter) counter.textContent = projects.length;
-  if (!projects.length) { grid.innerHTML='<p style="color:var(--muted);padding:40px;font-family:Space Mono,monospace;font-size:11px;">No projects yet. Click "+ Add Project" in the admin bar.</p>'; return; }
-
-  grid.innerHTML = projects.map((p,i) => `
-    <a href="${p.url||'#'}" class="project-card reveal" data-drag-index="${i}">
-      <div class="drag-handle"><span></span><span></span><span></span></div>
-      <div class="project-thumb">
-        ${(p._imageDataUrl||p.image) ? `<img src="${p._imageDataUrl||p.image}" alt="${p.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
-        <div class="project-thumb-placeholder" style="${(p._imageDataUrl||p.image)?'display:none':''}">
-          ${p.title.split(' ').slice(0,2).join('<br>')}
-        </div>
-        <div class="img-edit-overlay" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;color:var(--accent)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)">Change Image</span>
-          <input type="file" accept="image/*" data-project-index="${i}" style="position:absolute;inset:0;opacity:0;cursor:pointer">
-        </div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags">
-          <span class="project-tag highlight">${p.type||'Level Design'}</span>
-          ${(p.tags||[]).map(t=>`<span class="project-tag">${t}</span>`).join('')}
-        </div>
-        <h3 class="project-name">${p.title}</h3>
-        <p class="project-desc">${p.description}</p>
-      </div>
-      <div class="project-meta">
-        <span class="project-year">${p.year||'2024'}</span>
-        <div class="project-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </div>
-    </a>
-  `).join('');
-
-  // Re-init reveal for new cards
-  document.querySelectorAll('.project-card.reveal').forEach(el => {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
-    },{threshold:.05});
-    obs.observe(el);
-  });
-
-  // Re-bind image inputs
-  grid.querySelectorAll('.img-edit-overlay input[type="file"]').forEach(input => {
-    input.addEventListener('change', function() {
-      const file = this.files[0]; if(!file) return;
-      const idx = parseInt(this.dataset.projectIndex);
-      const reader = new FileReader();
-      reader.onload = e => {
-        projects[idx]._imageDataUrl = e.target.result;
-        projects[idx]._imageFile = file.name;
-        localStorage.setItem('rg_projects', JSON.stringify(projects));
-        const thumb = this.closest('.project-thumb');
-        let img = thumb.querySelector('img');
-        if (!img) { img=document.createElement('img'); thumb.querySelector('.project-thumb-placeholder').after(img); }
-        img.src = e.target.result; img.style.cssText='width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(.7)';
-        thumb.querySelector('.project-thumb-placeholder').style.display='none';
-        showToast(`Image set — upload ${file.name} to images/projects/`, 'success');
+function renderGallery(catId) {
+  const el = document.getElementById('gallery-' + catId);
+  if (!el) return;
+  const imgs = galleries[catId] || [];
+  el.innerHTML = imgs.map((img, i) => {
+    if (img) {
+      return `<div class="cg-slot filled" onclick="openLightbox('${catId}',${i})">
+        <img src="${img.src||img}" alt="" onerror="this.closest('.cg-slot').className='cg-slot empty';this.remove()">
+        <div class="gexpand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        <button class="gdel" onclick="event.stopPropagation();removeGalleryImg('${catId}',${i})" title="Remove">×</button>
+      </div>`;
+    }
+    return `<div class="cg-slot empty">
+      <svg class="gempty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:24px;height:24px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span class="gempty-label">Upload Image</span>
+      <input type="file" accept="image/*" data-cat="${catId}" data-idx="${i}">
+    </div>`;
+  }).join('');
+  el.querySelectorAll('.cg-slot.empty input').forEach(inp => {
+    inp.addEventListener('change', function() {
+      const file = this.files[0]; if (!file) return;
+      const cat = this.dataset.cat, idx = parseInt(this.dataset.idx);
+      const r = new FileReader();
+      r.onload = e => {
+        galleries[cat][idx] = { src:e.target.result, file:file.name };
+        saveGalleries(); renderGallery(cat);
+        showToast(`Image added — also upload ${file.name} to images/site/`, 'success');
       };
-      reader.readAsDataURL(file);
+      r.readAsDataURL(file);
     });
   });
-
-  // If image edit mode is active, show overlays
-  if (editMode === 'images') {
-    grid.querySelectorAll('.img-edit-overlay').forEach(o => o.style.display='flex');
-  }
-  // Assign move keys to newly rendered cards & apply saved layout
-  assignMoveKeys();
-  applyLayoutData();
-  // If layout mode is active, re-register new cards
-  if (editMode === 'layout') {
-    grid.querySelectorAll('.project-card[data-move-key]').forEach(el => {
-      el.addEventListener('mousedown', onLayoutMouseDown, true);
-      if (!moveableEls.includes(el)) moveableEls.push(el);
-    });
-  }
+}
+function removeGalleryImg(cat, idx) {
+  if (!confirm('Remove image?')) return;
+  galleries[cat][idx] = null; saveGalleries(); renderGallery(cat);
+}
+function addGallerySlot(cat) {
+  if (!galleries[cat]) galleries[cat] = [];
+  galleries[cat].push(null); saveGalleries(); renderGallery(cat);
+  showToast('Slot added','success');
 }
 
 // =============================================
-// SAVE & DOWNLOAD 
+// LIGHTBOX
+// =============================================
+function openLightbox(cat, startIdx) {
+  const imgs = galleries[cat] || [];
+  const filled = imgs.map((g,i)=>g?i:-1).filter(i=>i>=0);
+  if (!filled.length) return;
+  lbGalleryId = cat;
+  lbIndex = Math.max(0, filled.indexOf(startIdx));
+  showLb(filled);
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function showLb(filled) {
+  filled = filled || (galleries[lbGalleryId]||[]).map((g,i)=>g?i:-1).filter(i=>i>=0);
+  const g = galleries[lbGalleryId][filled[lbIndex]];
+  document.getElementById('lbImg').src = g?.src||g;
+  document.getElementById('lbCount').textContent = `${lbIndex+1} / ${filled.length}`;
+}
+function lbClose() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
+function lbStep(dir) {
+  const filled = (galleries[lbGalleryId]||[]).map((g,i)=>g?i:-1).filter(i=>i>=0);
+  lbIndex = (lbIndex+dir+filled.length)%filled.length;
+  showLb(filled);
+}
+
+// =============================================
+// CATEGORY BOX IMAGES
+// =============================================
+function loadBoxImages() {
+  ['gamedesign','leveldesign','mygames'].forEach(id => {
+    const src = localStorage.getItem('rg_box_img_'+id);
+    if (src) applyBoxImage(id, src);
+  });
+}
+function setBoxImage(id, src) { localStorage.setItem('rg_box_img_'+id, src); applyBoxImage(id, src); }
+function applyBoxImage(id, src) {
+  const box = document.querySelector(`.category-box[data-box-id="${id}"]`);
+  if (!box) return;
+  const img = box.querySelector('img.cbox-img');
+  if (img) img.src = src;
+  box.classList.add('has-img');
+}
+function bindBoxImageInputs() {
+  document.querySelectorAll('.category-box').forEach(box => {
+    const id = box.dataset.boxId;
+    const input = box.querySelector('.img-edit-overlay input[type=file]');
+    if (!input) return;
+    input.addEventListener('change', function() {
+      const file = this.files[0]; if (!file) return;
+      const r = new FileReader();
+      r.onload = e => {
+        setBoxImage(id, e.target.result);
+        showToast(`Box image set — also upload ${file.name} to images/site/`, 'success');
+      };
+      r.readAsDataURL(file);
+    });
+  });
+}
+
+// =============================================
+// SOCIAL LINKS
+// =============================================
+function editSocialLink(key) {
+  const url = prompt('URL for ' + key + ':', socialLinks[key] || '');
+  if (url === null) return;
+  socialLinks[key] = url;
+  saveSocialLinks();
+  applySocialLinks();
+}
+function applySocialLinks() {
+  Object.keys(socialLinks).forEach(k => {
+    const a = document.querySelector(`.social-line[data-social="${k}"] a`);
+    if (a) a.href = socialLinks[k] || '#';
+  });
+}
+function saveSocialLinks() { localStorage.setItem('rg_social_links', JSON.stringify(socialLinks)); }
+function loadSocialLinksLS() {
+  const s = localStorage.getItem('rg_social_links');
+  if (s) socialLinks = JSON.parse(s);
+  applySocialLinks();
+}
+
+// =============================================
+// SERVER FALLBACK (site-data.json) — for first-time visitors with empty localStorage
+// =============================================
+async function hydrateFromServerIfNeeded() {
+  const hasAnyLocal = localStorage.getItem('rg_editdata') || localStorage.getItem('rg_galleries') || localStorage.getItem('rg_social_links');
+  if (hasAnyLocal) return;
+  try {
+    const r = await fetch('site-data.json');
+    if (!r.ok) return;
+    const data = await r.json();
+    if (data.editData)    { editData = data.editData; applyEditData(); }
+    if (data.galleries)   { galleries = data.galleries; renderAllGalleries(); }
+    if (data.boxImages)   { Object.entries(data.boxImages).forEach(([id,src]) => applyBoxImage(id, src)); }
+    if (data.socialLinks) { socialLinks = data.socialLinks; applySocialLinks(); }
+    if (data.layout)      { layoutData = data.layout; applyLayoutData(); }
+  } catch(e) {}
+}
+
+// =============================================
+// SAVE & DOWNLOAD
 // =============================================
 function saveAndDownload() {
-  // Collect all editable text
   document.querySelectorAll('[data-editable]').forEach(el => {
     const key = el.dataset.key;
     if (key) editData[key] = el.innerHTML.trim();
   });
-
-  // Collect skill bar percentages
   document.querySelectorAll('.skill-bar-fill').forEach((fill, idx) => {
     editData[`skill_${idx+1}_pct`] = parseInt(fill.dataset.width) || parseInt(fill.style.width) || 0;
   });
-
   localStorage.setItem('rg_editdata', JSON.stringify(editData));
 
-  // Clean projects (remove base64 data urls before download)
-  const exportProjects = projects.map(p => {
-    const clean = {...p};
-    if (clean._imageDataUrl) {
-      clean.image = `images/projects/${clean._imageFile || 'project-image.jpg'}`;
-      delete clean._imageDataUrl;
-      delete clean._imageFile;
-    }
-    return clean;
+  const exportGalleries = {};
+  Object.keys(galleries).forEach(cat => {
+    exportGalleries[cat] = (galleries[cat]||[]).map(img => {
+      if (!img) return null;
+      if (img.src && img.src.startsWith('data:')) return { src:`images/site/${img.file||'image.jpg'}`, file: img.file };
+      return img;
+    });
   });
 
-  // Download projects.json
-  const blob = new Blob([JSON.stringify(exportProjects, null, 2)], {type:'application/json'});
+  const exportBoxImages = {};
+  ['gamedesign','leveldesign','mygames'].forEach(id => {
+    const raw = localStorage.getItem('rg_box_img_'+id);
+    if (raw && raw.startsWith('data:')) exportBoxImages[id] = `images/site/box-${id}.jpg`;
+    else if (raw) exportBoxImages[id] = raw;
+  });
+
+  const bundle = { editData, galleries: exportGalleries, boxImages: exportBoxImages, socialLinks, layout: layoutData };
+
+  const blob = new Blob([JSON.stringify(bundle, null, 2)], {type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'projects.json';
+  a.download = 'site-data.json';
   a.click();
 
-  showToast('projects.json downloaded! Upload to GitHub to go live.', 'success');
+  showToast('site-data.json downloaded! Upload it (and any images/site/ files) to your repo.', 'success');
 }
 
 // =============================================
@@ -1717,199 +1401,20 @@ function showToast(msg, type='success') {
 }
 
 // =============================================
-// HERO MEDIA BOX
-// =============================================
-function loadHeroMedia() {
-  const saved = localStorage.getItem('rg_hero_media');
-  if (!saved) return;
-  try {
-    const {type, src} = JSON.parse(saved);
-    applyHeroMedia(type, src);
-  } catch(e) {}
-}
-
-function handleHeroMediaUpload(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const type = file.type.startsWith('video') ? 'video' : 'image';
-    localStorage.setItem('rg_hero_media', JSON.stringify({type, src: e.target.result}));
-    applyHeroMedia(type, e.target.result);
-    showToast('Media uploaded successfully', 'success');
-  };
-  reader.readAsDataURL(file);
-}
-
-function applyHeroMedia(type, src) {
-  const box     = document.getElementById('heroMediaBox');
-  const content = document.getElementById('heroMediaContent');
-  const img     = document.getElementById('heroMediaImg');
-  const video   = document.getElementById('heroMediaVideo');
-  const ctrls   = document.getElementById('heroMediaControls');
-  img.style.display   = 'none';
-  video.style.display = 'none';
-  ctrls.style.opacity = '0';
-  if (type === 'video') {
-    video.src = src;
-    video.style.display = 'block';
-    initVideoControls(video);
-  } else {
-    img.src = src;
-    img.style.display = 'block';
-  }
-  content.classList.add('loaded');
-  box.classList.add('has-media');
-}
-
-function initVideoControls(video) {
-  const play  = document.getElementById('mcPlay');
-  const fill  = document.getElementById('mcProgressFill');
-  const wrap  = document.getElementById('mcProgressWrap');
-  const time  = document.getElementById('mcTime');
-  const vol   = document.getElementById('mcVol');
-  const slider= document.getElementById('mcVolSlider');
-  const fs    = document.getElementById('mcFs');
-  const cont  = document.getElementById('heroMediaContent');
-  // remove old listeners by cloning
-  [play,vol,fs,wrap].forEach(el => { const n=el.cloneNode(true); el.parentNode.replaceChild(n,el); });
-  const pl = document.getElementById('mcPlay');
-  const vl = document.getElementById('mcVol');
-  const fs2= document.getElementById('mcFs');
-  const wr = document.getElementById('mcProgressWrap');
-  const sl = document.getElementById('mcVolSlider');
-  pl.onclick = () => { video.paused ? video.play() : video.pause(); };
-  video.onplay  = () => { pl.innerHTML = '&#9646;&#9646;'; };
-  video.onpause = () => { pl.innerHTML = '&#9654;'; };
-  video.ontimeupdate = () => {
-    if (video.duration) {
-      document.getElementById('mcProgressFill').style.width = (video.currentTime/video.duration*100)+'%';
-      document.getElementById('mcTime').textContent = fmtTime(video.currentTime);
-    }
-  };
-  wr.onclick = e => {
-    const r = wr.getBoundingClientRect();
-    video.currentTime = ((e.clientX - r.left)/r.width) * video.duration;
-  };
-  vl.onclick = () => { video.muted = !video.muted; vl.innerHTML = video.muted ? '&#128263;' : '&#128266;'; };
-  sl.oninput = () => { video.volume = sl.value; };
-  fs2.onclick = () => {
-    if (!document.fullscreenElement) cont.requestFullscreen().catch(()=>{});
-    else document.exitFullscreen();
-  };
-  document.addEventListener('fullscreenchange', () => {
-    fs2.innerHTML = document.fullscreenElement ? '&#x22A0;' : '&#x26F6;';
-  });
-}
-
-function fmtTime(s) {
-  const m = Math.floor(s/60);
-  return `${m}:${Math.floor(s%60).toString().padStart(2,'0')}`;
-}
-
-// =============================================
-// ENGINE BADGE IMAGES
-// =============================================
-function loadEngineBadges() {
-  document.querySelectorAll('.engine-badge[data-badge-idx]').forEach(badge => {
-    const idx = badge.dataset.badgeIdx;
-    const src = localStorage.getItem(`rg_engine_badge_${idx}`);
-    if (src) applyBadgeImage(badge, src);
-    // bind file input
-    const input = badge.querySelector('input[type=file]');
-    if (input) input.addEventListener('change', function() {
-      const file = this.files[0]; if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        localStorage.setItem(`rg_engine_badge_${idx}`, e.target.result);
-        applyBadgeImage(badge, e.target.result);
-        showToast('Badge image updated', 'success');
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-}
-
-function applyBadgeImage(badge, src) {
-  let img = badge.querySelector('img.badge-img');
-  if (!img) { img = document.createElement('img'); img.className = 'badge-img'; badge.prepend(img); }
-  img.src = src;
-  const txt = badge.querySelector('.badge-text');
-  if (txt) txt.style.display = 'none';
-}
-
-// =============================================
-// MARQUEE EDIT
-// =============================================
-function enableMarqueeEdit() {
-  const panel = document.getElementById('marqueeEditPanel');
-  panel.classList.add('open');
-  renderMarqueePanel();
-}
-
-function renderMarqueePanel() {
-  const items = getMarqueeItems();
-  const panel = document.getElementById('marqueeEditPanel');
-  panel.innerHTML = items.map((text, i) => `
-    <div class="marquee-chip">
-      <span class="marquee-chip-text" contenteditable="true" spellcheck="false"
-        onblur="updateMarqueeItem(${i}, this.textContent.trim())">${text}</span>
-      <span class="marquee-chip-del" onclick="removeMarqueeItem(${i})">&#x2715;</span>
-    </div>
-  `).join('') + `<button class="marquee-chip-add" onclick="addMarqueeItem()">+ Add item</button>`;
-}
-
-function updateMarqueeItem(idx, val) {
-  if (!val) return;
-  const items = getMarqueeItems();
-  items[idx] = val.toUpperCase();
-  saveMarqueeItems(items);
-  initMarquee();
-}
-
-function removeMarqueeItem(idx) {
-  const items = getMarqueeItems();
-  items.splice(idx, 1);
-  saveMarqueeItems(items);
-  initMarquee();
-  renderMarqueePanel();
-}
-
-function addMarqueeItem() {
-  const text = prompt('New marquee item:');
-  if (!text) return;
-  const items = getMarqueeItems();
-  items.push(text.toUpperCase());
-  saveMarqueeItems(items);
-  initMarquee();
-  renderMarqueePanel();
-}
-
-// =============================================
-// LAYOUT EDIT — move & scale ANY element
+// LAYOUT EDIT — move & scale
 // =============================================
 let layoutData = {};
 let layoutSelected = null;
 let layoutDragging = false;
 let layoutDragStartX, layoutDragStartY, layoutElemStartX, layoutElemStartY;
-let moveableEls = []; // all registered moveable elements
+let moveableEls = [];
 
-// Which elements can be moved — comprehensive list
 const MOVEABLE_QUERY = [
-  '.hero-left > *',
-  '.hero-media-box',
-  '.hero-overlay-text',
-  '.about-left > .about-heading',
-  '.about-left > .about-body',
-  '.about-left > .skill-bars',
-  '.about-left > .skills-tags-row',
-  '.about-right > .timeline',
-  '.project-card',
-  '.lesson-card',
-  '.playing-card',
-  '.contact-left > .contact-big',
-  '.contact-left > .contact-sub',
-  '.contact-right > .contact-info',
-  '.contact-right > .social-links',
+  '.hero-title-main','.hero-subtitle','.category-row','.bottom-row',
+  '.about-left > .about-heading','.about-left > .about-body','.about-left > .skill-bars','.about-left > .skills-tags-row',
+  '.about-right > .timeline','.lesson-card','.playing-card',
+  '.contact-left .contact-big','.contact-left > .contact-sub',
+  '.contact-right > .contact-info','.contact-right > .social-links',
 ].join(',');
 
 function loadLayoutData() {
@@ -1917,50 +1422,34 @@ function loadLayoutData() {
   if (s) layoutData = JSON.parse(s);
   applyLayoutData();
 }
-
 function applyLayoutData() {
   document.querySelectorAll('[data-move-key]').forEach(el => {
     const d = layoutData[el.dataset.moveKey];
     if (d) el.style.transform = `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`;
   });
 }
-
 function assignMoveKeys() {
   document.querySelectorAll(MOVEABLE_QUERY).forEach((el, i) => {
-    if (!el.dataset.moveKey) {
-      el.dataset.moveKey = el.dataset.key || el.id || `mvk-${i}`;
-    }
+    if (!el.dataset.moveKey) el.dataset.moveKey = el.dataset.key || el.id || `mvk-${i}`;
   });
+  loadLayoutData();
 }
-
 function enableLayoutEdit() {
-  assignMoveKeys();
   document.body.classList.add('layout-edit-active');
   moveableEls = Array.from(document.querySelectorAll(MOVEABLE_QUERY));
   moveableEls.forEach(el => {
-    // CRITICAL FIX: Freeze CSS animations so they don't override inline transform.
-    // animation-fill-mode:forwards can block our style.transform in some browsers.
     const cs = window.getComputedStyle(el);
     if (cs.animationName && cs.animationName !== 'none') {
-      el.style.opacity  = cs.opacity;   // preserve current opacity
-      el.style.animation = 'none';       // kill animation (it already played)
-    }
-    // Also freeze reveal transitions
-    if (el.classList.contains('reveal') || el.classList.contains('visible')) {
       el.style.opacity = cs.opacity;
+      el.style.animation = 'none';
     }
-    // Apply saved position OR set explicit starting transform (removes animation-layer transform)
     const d = layoutData[el.dataset.moveKey];
-    el.style.transform = d
-      ? `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})`
-      : 'translate(0px,0px) scale(1)';
-
+    el.style.transform = d ? `translate(${d.x||0}px,${d.y||0}px) scale(${d.scale||1})` : 'translate(0px,0px) scale(1)';
     el.addEventListener('mousedown', onLayoutMouseDown, true);
   });
   document.getElementById('layoutPanel').classList.add('visible');
   showToast('Click element → drag to move • Scale slider to resize', 'success');
 }
-
 function disableLayoutEdit() {
   document.body.classList.remove('layout-edit-active');
   moveableEls.forEach(el => {
@@ -1975,20 +1464,14 @@ function disableLayoutEdit() {
   document.removeEventListener('mousemove', onLayoutMouseMove, true);
   document.removeEventListener('mouseup', onLayoutMouseUp, true);
 }
-
 function onLayoutMouseDown(e) {
-  // Don't intercept clicks on contenteditable elements in text mode
   const editable = e.target.closest('[contenteditable="true"]');
   if (editable) return;
-  // Don't intercept file inputs, buttons in admin bar
   if (e.target.closest('.admin-bar') || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
-
   const el = e.currentTarget;
-  // deselect previous
   document.querySelectorAll('.layout-selected').forEach(x => x.classList.remove('layout-selected'));
   layoutSelected = el;
   el.classList.add('layout-selected');
-
   const key = el.dataset.moveKey;
   if (!layoutData[key]) layoutData[key] = {x:0, y:0, scale:1};
   const d = layoutData[key];
@@ -1997,23 +1480,17 @@ function onLayoutMouseDown(e) {
   layoutDragStartX = e.clientX;
   layoutDragStartY = e.clientY;
   layoutDragging = false;
-
   updateLayoutPanel(key, d);
-
   document.addEventListener('mousemove', onLayoutMouseMove, true);
   document.addEventListener('mouseup', onLayoutMouseUp, true);
   e.preventDefault();
   e.stopPropagation();
 }
-
 function onLayoutMouseMove(e) {
   if (!layoutSelected) return;
   const dx = e.clientX - layoutDragStartX;
   const dy = e.clientY - layoutDragStartY;
-  if (!layoutDragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
-    layoutDragging = true;
-    layoutSelected.classList.add('layout-dragging');
-  }
+  if (!layoutDragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) { layoutDragging = true; layoutSelected.classList.add('layout-dragging'); }
   if (!layoutDragging) return;
   const key = layoutSelected.dataset.moveKey;
   const d = layoutData[key];
@@ -2024,8 +1501,7 @@ function onLayoutMouseMove(e) {
   if (pos) pos.textContent = `x: ${Math.round(d.x)}  y: ${Math.round(d.y)}`;
   e.preventDefault();
 }
-
-function onLayoutMouseUp(e) {
+function onLayoutMouseUp() {
   if (layoutSelected) {
     layoutSelected.classList.remove('layout-dragging');
     if (layoutDragging) localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
@@ -2034,7 +1510,6 @@ function onLayoutMouseUp(e) {
   document.removeEventListener('mousemove', onLayoutMouseMove, true);
   document.removeEventListener('mouseup', onLayoutMouseUp, true);
 }
-
 function onLayoutScale(val) {
   if (!layoutSelected) return;
   const key = layoutSelected.dataset.moveKey;
@@ -2046,7 +1521,6 @@ function onLayoutScale(val) {
   if (sv) sv.textContent = d.scale.toFixed(2) + 'x';
   localStorage.setItem('rg_hero_layout', JSON.stringify(layoutData));
 }
-
 function updateLayoutPanel(key, d) {
   const title = document.getElementById('layoutPanelTitle');
   const pos   = document.getElementById('layoutPanelPos');
@@ -2071,9 +1545,9 @@ function updateLayoutPanel(key, d) {
 // =============================================
 // TYPOGRAPHY TOOLBAR
 // =============================================
-let typoTarget   = null; // currently focused editable element
-let _tybDrag     = null; // toolbar drag state
-let _savedRange  = null; // saved text selection before color picker steals focus
+let typoTarget   = null;
+let _tybDrag     = null;
+let _savedRange  = null;
 
 function initTypoToolbarDrag() {
   const tb  = document.getElementById('typoToolbar');
@@ -2087,16 +1561,11 @@ function initTypoToolbarDrag() {
     document.addEventListener('mousemove', _typoMove);
     document.addEventListener('mouseup', _typoUp, { once: true });
   });
-  // Save selection before color picker steals focus from the text element
   const colorSwatch = document.querySelector('.typo-color-swatch');
   if (colorSwatch) {
     colorSwatch.addEventListener('mousedown', () => {
       const sel = window.getSelection();
-      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
-        _savedRange = sel.getRangeAt(0).cloneRange();
-      } else {
-        _savedRange = null;
-      }
+      _savedRange = (sel && sel.rangeCount > 0 && !sel.isCollapsed) ? sel.getRangeAt(0).cloneRange() : null;
     });
   }
 }
@@ -2114,7 +1583,6 @@ function _typoUp() { _tybDrag = null; document.removeEventListener('mousemove', 
 function showTypoToolbar(el) {
   typoTarget = el;
   const tb = document.getElementById('typoToolbar');
-  // Position near the element if not manually dragged yet
   if (!tb.dataset.dragged) {
     const rect = el.getBoundingClientRect();
     const top  = Math.max(60, rect.top + window.scrollY - tb.offsetHeight - 10);
@@ -2124,40 +1592,31 @@ function showTypoToolbar(el) {
   }
   tb.classList.add('visible');
 
-  // Sync all controls to current element styles
   const cs  = window.getComputedStyle(el);
   const fontSel = document.getElementById('typoFont');
   const sizeInp = document.getElementById('typoSizeInput');
   const sizeRng = document.getElementById('typoSizeRange');
 
   fontSel.value = matchFontOption(fontSel, el.style.fontFamily || cs.fontFamily);
-
   const sz = parseInt(el.style.fontSize || cs.fontSize) || 16;
   sizeInp.value = sz;
   sizeRng.value = Math.min(200, sz);
 
-  document.getElementById('typoBlod').classList.toggle('on',
-    parseInt(el.style.fontWeight || cs.fontWeight) >= 700);
-  document.getElementById('typoItalic').classList.toggle('on',
-    (el.style.fontStyle || cs.fontStyle) === 'italic');
-  document.getElementById('typoUpper').classList.toggle('on',
-    (el.style.textTransform || cs.textTransform) === 'uppercase');
+  document.getElementById('typoBlod').classList.toggle('on', parseInt(el.style.fontWeight || cs.fontWeight) >= 700);
+  document.getElementById('typoItalic').classList.toggle('on', (el.style.fontStyle || cs.fontStyle) === 'italic');
+  document.getElementById('typoUpper').classList.toggle('on', (el.style.textTransform || cs.textTransform) === 'uppercase');
 
-  // Color
   const col = el.style.color || cs.color;
   const hexCol = rgbToHex(col) || '#e8e8e0';
   document.getElementById('typoColor').value = hexCol;
   document.getElementById('typoColorPreview').style.background = hexCol;
 
-  // Line-height
   const lhRaw = el.style.lineHeight || cs.lineHeight;
   document.getElementById('typoLH').value = lhRaw && lhRaw !== 'normal' ? parseFloat(lhRaw) : '';
 
-  // Letter-spacing
   const lsRaw = el.style.letterSpacing || cs.letterSpacing;
   document.getElementById('typoLS').value = lsRaw && lsRaw !== 'normal' ? parseFloat(lsRaw) : '';
 
-  // Alignment
   const ta = el.style.textAlign || cs.textAlign;
   ['L','C','R'].forEach(a => {
     const map = {L:'left', C:'center', R:'right'};
@@ -2170,27 +1629,19 @@ function rgbToHex(rgb) {
   if (!m) return null;
   return '#' + [m[1],m[2],m[3]].map(n => parseInt(n).toString(16).padStart(2,'0')).join('');
 }
-
 function matchFontOption(sel, ff) {
   for (const opt of sel.options) {
     if (opt.value && ff.includes(opt.value.replace(/'/g,'').split(',')[0].trim())) return opt.value;
   }
   return '';
 }
-
 function hideTypoToolbar() {
   const tb = document.getElementById('typoToolbar');
   tb.classList.remove('visible');
   tb.dataset.dragged = '';
   typoTarget = null;
 }
-
-function typoApplyFont(val) {
-  if (!typoTarget || !val) return;
-  typoTarget.style.fontFamily = val;
-  saveTypoStyle(typoTarget);
-}
-
+function typoApplyFont(val) { if (!typoTarget || !val) return; typoTarget.style.fontFamily = val; saveTypoStyle(typoTarget); }
 function typoApplySize(val) {
   if (!typoTarget || !val) return;
   const sz = Math.max(8, Math.min(300, parseInt(val)));
@@ -2199,12 +1650,7 @@ function typoApplySize(val) {
   document.getElementById('typoSizeInput').value = sz;
   saveTypoStyle(typoTarget);
 }
-
-function typoSyncRange(val) {
-  document.getElementById('typoSizeInput').value = val;
-  typoApplySize(val);
-}
-
+function typoSyncRange(val) { document.getElementById('typoSizeInput').value = val; typoApplySize(val); }
 function typoToggle(prop, onVal, offVal) {
   if (!typoTarget) return;
   const cs = window.getComputedStyle(typoTarget);
@@ -2216,12 +1662,10 @@ function typoToggle(prop, onVal, offVal) {
   if (btn) btn.classList.toggle('on', !isOn);
   saveTypoStyle(typoTarget);
 }
-
 function typoApplyColor(val) {
   if (!val) return;
   document.getElementById('typoColorPreview').style.background = val;
   document.getElementById('typoColor').value = val;
-  // If user had text selected inside the element, apply only to that selection
   if (_savedRange && typoTarget && typoTarget.contains(_savedRange.commonAncestorContainer)) {
     const sel = window.getSelection();
     sel.removeAllRanges();
@@ -2230,12 +1674,10 @@ function typoApplyColor(val) {
     _savedRange = null;
     if (typoTarget) saveTypoStyle(typoTarget);
   } else if (typoTarget) {
-    // No selection — apply to whole element
     typoTarget.style.color = val;
     saveTypoStyle(typoTarget);
   }
 }
-
 function typoSetAlign(val) {
   if (!typoTarget) return;
   typoTarget.style.textAlign = val;
@@ -2245,50 +1687,27 @@ function typoSetAlign(val) {
   });
   saveTypoStyle(typoTarget);
 }
-
-function typoApplyLineH(val) {
-  if (!typoTarget) return;
-  typoTarget.style.lineHeight = val ? parseFloat(val) : '';
-  saveTypoStyle(typoTarget);
-}
-
-function typoApplyLetterSpacing(val) {
-  if (!typoTarget) return;
-  typoTarget.style.letterSpacing = val !== '' ? parseFloat(val) + 'em' : '';
-  saveTypoStyle(typoTarget);
-}
-
+function typoApplyLineH(val) { if (!typoTarget) return; typoTarget.style.lineHeight = val ? parseFloat(val) : ''; saveTypoStyle(typoTarget); }
+function typoApplyLetterSpacing(val) { if (!typoTarget) return; typoTarget.style.letterSpacing = val !== '' ? parseFloat(val) + 'em' : ''; saveTypoStyle(typoTarget); }
 function typoResetElement() {
   if (!typoTarget) return;
-  ['fontFamily','fontSize','fontWeight','fontStyle','textTransform',
-   'color','textAlign','lineHeight','letterSpacing'].forEach(p => {
-    typoTarget.style[p] = '';
-  });
+  ['fontFamily','fontSize','fontWeight','fontStyle','textTransform','color','textAlign','lineHeight','letterSpacing'].forEach(p => { typoTarget.style[p] = ''; });
   const key = typoTarget.dataset.key || typoTarget.dataset.editId;
-  if (key) {
-    delete editData[key + '__style'];
-    localStorage.setItem('rg_editdata', JSON.stringify(editData));
-  }
-  showTypoToolbar(typoTarget); // refresh controls to reflect reset
+  if (key) { delete editData[key + '__style']; localStorage.setItem('rg_editdata', JSON.stringify(editData)); }
+  showTypoToolbar(typoTarget);
 }
-
 function saveTypoStyle(el) {
   const key = el.dataset.key || el.dataset.editId;
   if (!key) return;
   editData[key + '__style'] = {
-    fontFamily:    el.style.fontFamily    || '',
-    fontSize:      el.style.fontSize      || '',
-    fontWeight:    el.style.fontWeight    || '',
-    fontStyle:     el.style.fontStyle     || '',
-    textTransform: el.style.textTransform || '',
-    color:         el.style.color         || '',
-    textAlign:     el.style.textAlign     || '',
-    lineHeight:    el.style.lineHeight    || '',
+    fontFamily: el.style.fontFamily || '', fontSize: el.style.fontSize || '',
+    fontWeight: el.style.fontWeight || '', fontStyle: el.style.fontStyle || '',
+    textTransform: el.style.textTransform || '', color: el.style.color || '',
+    textAlign: el.style.textAlign || '', lineHeight: el.style.lineHeight || '',
     letterSpacing: el.style.letterSpacing || '',
   };
   localStorage.setItem('rg_editdata', JSON.stringify(editData));
 }
-
 function loadTypoStyles() {
   document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => {
     const key = el.dataset.key || el.dataset.editId;
@@ -2297,27 +1716,21 @@ function loadTypoStyles() {
     if (!s) return;
     if (s.fontFamily)    el.style.fontFamily    = s.fontFamily;
     if (s.fontSize)      el.style.fontSize      = s.fontSize;
-    if (s.fontWeight)    el.style.fontWeight     = s.fontWeight;
-    if (s.fontStyle)     el.style.fontStyle      = s.fontStyle;
-    if (s.textTransform) el.style.textTransform  = s.textTransform;
-    if (s.color)         el.style.color          = s.color;
-    if (s.textAlign)     el.style.textAlign      = s.textAlign;
-    if (s.lineHeight)    el.style.lineHeight     = s.lineHeight;
-    if (s.letterSpacing) el.style.letterSpacing  = s.letterSpacing;
+    if (s.fontWeight)    el.style.fontWeight    = s.fontWeight;
+    if (s.fontStyle)     el.style.fontStyle     = s.fontStyle;
+    if (s.textTransform) el.style.textTransform = s.textTransform;
+    if (s.color)         el.style.color         = s.color;
+    if (s.textAlign)     el.style.textAlign     = s.textAlign;
+    if (s.lineHeight)    el.style.lineHeight    = s.lineHeight;
+    if (s.letterSpacing) el.style.letterSpacing = s.letterSpacing;
   });
 }
-
 function resetAllTypography() {
   if (!confirm('Reset ALL typography styles on every element? This will remove all saved font/color/size changes.')) return;
-  // Remove all __style keys from saved data
   Object.keys(editData).forEach(k => { if (k.endsWith('__style')) delete editData[k]; });
   localStorage.setItem('rg_editdata', JSON.stringify(editData));
-  // Remove inline styles from all elements on the page
-  const STYLE_PROPS = ['fontFamily','fontSize','fontWeight','fontStyle','textTransform',
-                       'color','textAlign','lineHeight','letterSpacing'];
-  document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => {
-    STYLE_PROPS.forEach(p => { el.style[p] = ''; });
-  });
+  const STYLE_PROPS = ['fontFamily','fontSize','fontWeight','fontStyle','textTransform','color','textAlign','lineHeight','letterSpacing'];
+  document.querySelectorAll('[data-key],[data-edit-id]').forEach(el => { STYLE_PROPS.forEach(p => { el.style[p] = ''; }); });
   hideTypoToolbar();
 }
 
@@ -2331,18 +1744,24 @@ function toggleSearch() {
   const nav = document.getElementById('topnav');
   const btn = document.getElementById('navSearchBtn');
   const isOpen = nav.classList.contains('search-open');
+  const mode = document.getElementById('navSearchMode');
+  const links = document.getElementById('navLinks');
   if (isOpen) {
     clearSearchState();
     nav.classList.remove('search-open');
     if (btn) btn.classList.remove('active');
+    mode.style.display = 'none';
+    links.style.display = '';
   } else {
     nav.classList.add('search-open');
     if (btn) btn.classList.add('active');
+    mode.style.display = 'flex';
+    links.style.display = 'none';
     setTimeout(() => { const inp = document.getElementById('searchInput'); if (inp) inp.focus(); }, 80);
   }
 }
 
-const SEARCH_SELECTORS = 'h1,h2,h3,h4,p,a,.project-name,.playing-title,.skill-bar-name,.lesson-title,.timeline-title,.timeline-desc,.marquee-item,.stat-number,.stat-label,.section-label,.about-heading,.contact-big';
+const SEARCH_SELECTORS = 'h1,h2,h3,h4,p,a,.category-box-label,.playing-title,.skill-bar-name,.lesson-title,.timeline-title,.timeline-desc,.section-label,.about-heading,.contact-big';
 
 function searchSite(query) {
   clearSearchHighlights();
@@ -2353,10 +1772,7 @@ function searchSite(query) {
   const q = query.toLowerCase();
   document.querySelectorAll(SEARCH_SELECTORS).forEach(el => {
     if (el.offsetParent !== null && el.textContent.toLowerCase().includes(q)) {
-      // avoid duplicates (child also matched parent)
-      if (!searchMatches.some(m => m.contains(el) || el.contains(m))) {
-        searchMatches.push(el);
-      }
+      if (!searchMatches.some(m => m.contains(el) || el.contains(m))) searchMatches.push(el);
     }
   });
   if (searchMatches.length) {
@@ -2367,26 +1783,25 @@ function searchSite(query) {
     count.textContent = 'No results';
   }
 }
-
 function showMatch(idx) {
   document.querySelectorAll('.search-active-box').forEach(el => el.classList.remove('search-active-box'));
   if (idx < 0 || idx >= searchMatches.length) return;
   const el = searchMatches[idx];
   el.classList.add('search-active-box');
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.style.outline = '2px solid var(--accent)';
+  el.style.outlineOffset = '8px';
+  el.scrollIntoView({ behavior:'smooth', block:'center' });
   document.getElementById('searchCount').textContent = `${idx+1} / ${searchMatches.length}`;
 }
-
 function cycleMatch(dir) {
   if (!searchMatches.length) return;
+  document.querySelectorAll('.search-active-box').forEach(el => { el.style.outline=''; el.style.outlineOffset=''; });
   searchCurrentIdx = (searchCurrentIdx + dir + searchMatches.length) % searchMatches.length;
   showMatch(searchCurrentIdx);
 }
-
 function clearSearchHighlights() {
-  document.querySelectorAll('.search-active-box').forEach(el => el.classList.remove('search-active-box'));
+  document.querySelectorAll('.search-active-box').forEach(el => { el.classList.remove('search-active-box'); el.style.outline=''; el.style.outlineOffset=''; });
 }
-
 function clearSearchState() {
   clearSearchHighlights();
   searchMatches = [];
@@ -2416,9 +1831,8 @@ function clearSearchState() {
       text.textContent = 'READY.';
       setTimeout(() => {
         screen.classList.add('hidden');
-        // activate glitch on title after screen fades
         setTimeout(() => {
-          const title = document.querySelector('.hero-title');
+          const title = document.querySelector('.hero-title-main');
           if (title) {
             title.style.opacity = '1';
             title.style.transform = 'translateY(0)';
@@ -2453,13 +1867,9 @@ function clearSearchState() {
     ring.style.top  = ry + 'px';
     requestAnimationFrame(lerpRing);
   })();
-  const hoverSel = 'a,button,[data-editable],[data-edit-id],.project-card,.skill-tag,.playing-card,.lesson-card,.social-link';
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover');
-  });
+  const hoverSel = 'a,button,[data-editable],[data-edit-id],.category-box,.bottom-box,.skill-tag,.playing-card,.lesson-card,.social-link,.cg-slot';
+  document.addEventListener('mouseover', e => { if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover'); });
+  document.addEventListener('mouseout', e => { if (e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover'); });
 })();
 
 // =============================================
@@ -2480,7 +1890,7 @@ function clearSearchState() {
 // HERO MOUSE PARALLAX
 // =============================================
 (function initHeroParallax() {
-  const hero   = document.getElementById('hero');
+  const hero = document.getElementById('hero');
   if (!hero) return;
   const shape1 = hero.querySelector('.shape-1');
   const shape2 = hero.querySelector('.shape-2');

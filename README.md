@@ -1,69 +1,37 @@
-# Rodrigo Giliberti — Portfolio v3
+# InvictusGameStudioEditor
+
+Rodrigo Giliberti's portfolio site — a single self-editing page (`index.html`).
 
 ## Files
 ```
 /
-├── index.html          ← Main portfolio (hero, about, projects, etc.)
-├── project.html        ← Case study template (auto-loads by ?id=0, ?id=1, etc.)
-├── projects.json       ← Project data — edit via admin or manually
-├── resume.pdf          ← ⚠ ADD THIS: your resume PDF
-└── images/
-    └── projects/       ← ⚠ ADD project screenshots here
-        ├── endless-skies.jpg
-        └── ...
+├── index.html       — The whole site: title, subtitle, 3 category boxes
+│                       (Game Design / Level Design / My Games), and a
+│                       Contact / Social / Resume row. Clicking a box opens
+│                       an in-page panel — no separate pages, no reload.
+├── site-data.json    — Admin edits (text, galleries, box images, social
+│                       links), committed here so other visitors see changes
+├── resume.pdf        — Resume PDF linked from the Resume box
+├── project.html      — Legacy per-project case-study template (unused by
+│                       the current home page, kept in case it's wanted later)
+├── projects.json     — Legacy project list used only by project.html
+└── images/site/      — Screenshots referenced by site-data.json
 ```
-
----
 
 ## Admin Password
 Default: `rg2025admin`
 
-**To change it:** open both `index.html` and `project.html`,
-find the line that says `const ADMIN_PASS = 'rg2025admin';` and replace it.
+**To change it:** open `index.html`, find `const ADMIN_HASH = '...'` and
+replace it with the SHA-256 hash of your new password.
 
----
+## Editing the site
+1. Click the lock icon (bottom-right) and log in — the admin bar appears.
+2. **Edit Texts** / **Edit Images** / **Skill Bars** / **Layout** toggle what
+   you can click-and-change on the page (box labels, panel content, bios,
+   timeline, contact info, gallery images, positions).
+3. **Save & Download** → downloads `site-data.json`. Commit it (and any new
+   images under `images/site/`) to this repo so the changes go live for
+   every visitor.
 
-## How to use the Admin
-
-### On index.html:
-1. Click the **lock icon** (bottom-right corner)
-2. Enter your password → admin bar appears at the top
-3. Use the toolbar:
-   - **Edit Texts** → click any text on the page to edit inline
-   - **Edit Images** → click any project thumbnail to upload a new image
-   - **Skill Bars** → drag the bars left/right to adjust percentages
-   - **Reorder** → drag projects up/down to reorder them
-   - **+ Add Project** → adds a new blank project
-4. Click **Save & Download** → downloads `projects.json`
-5. Upload that file to your GitHub repo → site updates in 30s
-
-### On project.html:
-- Same login session carries over (same tab/browser)
-- **Edit Texts** → click any section text to edit
-- **Edit Images** → click hero image or gallery slots to upload
-- **Save & Download** → downloads `project-0-content.json` (or whatever id)
-- Upload that too if you want it persistent across devices (optional — localStorage works locally)
-
----
-
-## Deploy to GitHub Pages
-
-1. Create repo: `rodrigogiliberti.github.io`
-2. Upload all files to root
-3. Settings → Pages → Branch: main → / (root) → Save
-4. Site live at: `https://rodrigogiliberti.github.io`
-
-### Adding images:
-- Put project screenshots in `images/projects/`
-- Name them clearly: `endless-skies-1.jpg`, `myproject-blockout.jpg`
-- In the admin, set the image path to `images/projects/your-file.jpg`
-
-### Updating projects.json on GitHub:
-- Admin → Save & Download → get `projects.json`
-- Go to your GitHub repo → click `projects.json` → Edit → paste content → Commit
-
----
-
-## Timeline (About section)
-Edit directly in `index.html` — search for `exp_2_year`, `exp_2_title`, `exp_2_desc`
-and update with your real history.
+## Deploy
+GitHub Pages → Settings → Pages → Branch: main → / (root).
