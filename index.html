@@ -46,14 +46,35 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
    ============================================= */
 .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:150px 48px 90px}
 .hero-bgfx{position:absolute;inset:0;z-index:0}
-.hero-aurora{position:absolute;inset:-10%;filter:blur(60px);opacity:.6;pointer-events:none;
+.hero-aurora{position:absolute;inset:-15%;filter:blur(55px);opacity:.65;pointer-events:none;
   background:
-    radial-gradient(circle at 20% 30%, rgba(232,255,71,.16), transparent 60%),
-    radial-gradient(circle at 80% 70%, rgba(255,107,53,.13), transparent 55%),
-    radial-gradient(circle at 50% 100%, rgba(96,165,250,.11), transparent 60%);
-  animation: auroraDrift 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 18% 25%, rgba(232,255,71,.19), transparent 55%),
+    radial-gradient(circle at 82% 20%, rgba(255,107,53,.15), transparent 50%),
+    radial-gradient(circle at 75% 78%, rgba(96,165,250,.14), transparent 55%),
+    radial-gradient(circle at 22% 85%, rgba(167,139,250,.11), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(232,255,71,.07), transparent 60%);
+  animation: auroraDrift 16s ease-in-out infinite alternate, auroraPulse 6s ease-in-out infinite;
 }
-@keyframes auroraDrift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-4%) scale(1.08)}100%{transform:translate(-4%,3%) scale(1)}}
+.hero-aurora-2{position:absolute;inset:-22%;filter:blur(75px);opacity:.42;pointer-events:none;
+  background:
+    radial-gradient(circle at 65% 62%, rgba(255,107,53,.13), transparent 50%),
+    radial-gradient(circle at 15% 68%, rgba(96,165,250,.11), transparent 55%),
+    radial-gradient(circle at 88% 15%, rgba(232,255,71,.09), transparent 55%);
+  animation: auroraDrift2 23s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift{
+  0%{transform:translate(0,0) scale(1) rotate(0deg)}
+  25%{transform:translate(4%,-3%) scale(1.06) rotate(3deg)}
+  50%{transform:translate(-2%,4%) scale(1.1) rotate(-2deg)}
+  75%{transform:translate(-4%,-2%) scale(1.04) rotate(2deg)}
+  100%{transform:translate(3%,3%) scale(1.08) rotate(-1deg)}
+}
+@keyframes auroraDrift2{
+  0%{transform:translate(0,0) scale(1) rotate(0deg)}
+  50%{transform:translate(-6%,5%) scale(1.16) rotate(-4deg)}
+  100%{transform:translate(5%,-4%) scale(1.02) rotate(3deg)}
+}
+@keyframes auroraPulse{0%,100%{opacity:.5}50%{opacity:.78}}
 .hero-bg-media{position:absolute;inset:0;overflow:hidden;display:none}
 .hero-bg-media.has-media{display:block}
 .hero-bg-media img,.hero-bg-media video{width:100%;height:100%;object-fit:cover;filter:brightness(.32) saturate(.7)}
@@ -81,7 +102,8 @@ body.mode-images .hero-bg-edit-btn{display:flex}
 }
 @keyframes titleShine{0%,15%{background-position:200% 0}50%,85%{background-position:-50% 0}100%{background-position:-50% 0}}
 @keyframes titleGlow{0%,100%{filter:drop-shadow(0 0 14px rgba(232,255,71,.28))}50%{filter:drop-shadow(0 0 26px rgba(232,255,71,.5))}}
-.hero-subtitle{font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vw,13px);letter-spacing:.35em;text-transform:uppercase;color:var(--accent);opacity:0;animation:fadeUp .8s forwards .45s}
+.hero-subtitle{font-family:'Space Mono',monospace;font-size:clamp(10px,1.3vw,13px);letter-spacing:.35em;text-transform:uppercase;color:var(--accent2);opacity:0;animation:fadeUp .8s forwards .45s,subtitleGlow 3.6s ease-in-out 1.3s infinite}
+@keyframes subtitleGlow{0%,100%{text-shadow:0 0 0 rgba(255,107,53,0)}50%{text-shadow:0 0 14px rgba(255,107,53,.6)}}
 
 .category-row{display:flex;gap:32px;width:100%;justify-content:center;margin-top:44px}
 .category-box-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;flex:1;max-width:340px;opacity:0;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) forwards}
@@ -611,6 +633,7 @@ body.cursor-hover #cursorRing{width:50px;height:50px;border-color:var(--accent);
 <section class="hero" id="hero">
   <div class="hero-bgfx">
     <div class="hero-aurora"></div>
+    <div class="hero-aurora-2"></div>
     <div class="hero-bg-media" id="heroBgMedia">
       <img id="heroBgImg" alt="">
       <video id="heroBgVideo" autoplay muted loop playsinline></video>
