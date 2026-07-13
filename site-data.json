@@ -1,11 +1,18 @@
 {
   "editData": {},
-  "galleries": {
-    "gamedesign": [null, null, null],
-    "leveldesign": [null, null, null],
-    "mygames": [null, null, null]
+  "storyBlocks": {
+    "gamedesign": [
+      { "heading": "Core Loop", "text": "Describe the core gameplay loop here — what the player does moment to moment, and why it's satisfying. Upload a screenshot or diagram and replace this text.", "image": null }
+    ],
+    "leveldesign": [
+      { "heading": "Level Overview", "text": "Describe the level layout here — how the player moves through the space, key beats, and pacing. Upload a top-down map or screenshot and replace this text.", "image": null }
+    ],
+    "mygames": [
+      { "heading": "Featured Project", "text": "Describe a personal game project here — the concept, your role, and what you learned building it. Upload a screenshot and replace this text.", "image": null }
+    ]
   },
   "boxImages": {},
+  "heroBg": null,
   "socialLinks": {
     "instagram": "https://instagram.com/rodrigiliberti",
     "x": "",
